@@ -932,7 +932,7 @@ body.theme-base-01 header.main-header ul li {
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px;
-  margin-top: 285px;
+  margin-top: 8px;
 }
 
 #contact-form .col-25 {
@@ -964,9 +964,6 @@ body.theme-base-01 header.main-header ul li {
 
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
 @media (max-width: 480px) {
-  #contact-form {
-    margin-top: 200px;
-  }
   #about-image {
     float: none;
     margin-bottom: 10px;
