@@ -1,0 +1,944 @@
+---
+layout: post
+title:  "Oracle 11g SQL"
+date:   2014-03-28 15:23:45
+categories: sql
+description: Oracle 11g SQL
+keywords: [Andrei Pall, oracle, sql, database, tutorial, blog, project]
+excerpt: Oracle is a relational database technology developed by Oracle. PLSQL stands for "Procedural Language extensions to SQL", and is an extension of SQL that is used in Oracle. PLSQL is closely integrated into the SQL language, yet it adds programming constructs that are not native to SQL.
+---
+
+<p>In Oracle, users and schemas are essentially the same thing. You can consider that a user is the account you use to connect to a database, and a schema is the set of objects (tables, views, etc.) that belong to that account.</p>
+<p>You create users with the create user statement:</p>
+{% highlight SQL %}
+CREATE USER andrei IDENTIFIED BY password;
+{% endhighlight %}
+<p>This also "creates" the schema (initially empty) - you cannot create a schema as such, it is tied to the user. Once the user is created, an administrator can grant privileges to the user, which will enable it to create tables, execute select queries, insert, and everything else.</p>
+<p>The database is the thing contains all the users you've created, and their data (and a bunch of predefined system users, tables, views, etc. that make the whole thing work).</p>
+
+<h6>The DESCRIBE Table Command</h6>
+<p>The general form of the syntax for this command is intuitively:</p>
+{% highlight SQL %}
+DESC[RIBE] <SCHEMA>.tablename
+{% endhighlight %}
+
+<h6>Syntax of the Primitive SELECT Statement</h6>
+<p>The basic SELECT statement syntax is as follows:</p>
+{% highlight SQL %}
+SELECT *|{[DISTINCT] column|expression [alias],} FROM table;
+{% endhighlight %}
+
+<p>The second form of the basic SELECT statement has the same FROM clause as the first form, but the SELECT clause is different:</p>
+{% highlight SQL %}
+SELECT {[DISTINCT] column|expression [alias],} FROM table;
+{% endhighlight %}
+This SELECT clause can be simplified into two formats:
+{% highlight SQL %}
+SELECT column1 (possibly other columns or expressions) [alias optional]
+{% endhighlight %}
+OR
+{% highlight SQL %}
+SELECT DISTINCT column1 (possibly other columns or expressions) [alias optional]
+{% endhighlight %}
+
+<p>The format of the SQL SELECT statement which includes the WHERE clause is:</p>
+{% highlight SQL %}
+SELECT *|{[DISTINCT] column|expression [alias],} FROM table [WHERE condition(s)];
+
+select last_name from employees where salary >= 3400 and salary <= 4000;
+
+select first_name, hire_date from employees where hire_date between '24-JUL-1994' and '07-JUN-1996';
+
+select last_name from employees where salary in (1000,4000,6000);
+
+select first_name from employees where first_name like 'A%';
+
+select last_name from employees where commission_pct is null;
+
+select first_name, last_name, commission_pct, hire_date from employees where first_name like 'J%' and commission_pct > 0.1;
+
+select first_name, last_name, commission_pct, hire_date from employees where first_name like 'B%' or commission_pct > 0.35;
+
+select first_name, last_name, commission_pct, hire_date from employees where first_name not like 'B%' or not (commission_pct > 0.35);
+{% endhighlight %}
+
+<h6>The ORDER BY Clause</h6>
+<p>The format of the ORDER BY clause in the context of the SQL SELECT statement is as follows:</p>
+{% highlight SQL %}
+SELECT *|{[DISTINCT] column|expression [alias],}
+FROM table
+[WHERE condition(s)]
+[ORDER BY {col(s)|expr|numeric_pos} [ASC|DESC] [NULLS FIRST|LAST]];
+{% endhighlight %}
+
+<h5>Ampersand Substitution</h5>
+<h6>Single Ampersand Substitution</h6>
+<p>The most basic and popular form of substitution of elements in a SQL statement is single ampersand substitution. The ampersand character (&) is the symbol chosen to designate a substitution variable in a statement and precedes the variable name with no spaces between them.</p>
+{% highlight SQL %}
+select employee_id, last_name, phone_number from employees where last_name = &LASTNAME or employee_id = &EMPNO;
+{% endhighlight %}
+
+<h6>Double Ampersand Substitution</h6>
+<p>There are occasions when a substitution variable is referenced multiple times in the same query. In such situations, the Oracle server will prompt you to enter a value for every occurrence of the single ampersand substitution variable.</p>
+{% highlight SQL %}
+select first_name, last_name from employees where last_name like '%&&SEARCH%' and first_name like '%&SEARCH%';
+{% endhighlight %}
+
+<h6>The DEFINE and UNDEFINE Commands</h6>
+<p>The syntax for the two variants of the DEFINE command are as follows:</p>
+{% highlight SQL %}
+DEFINE;
+DEFINE variable=value;
+{% endhighlight %}
+<p>The syntax for undefining session variables is as follows:</p>
+{% highlight SQL %}
+UNDEFINE variable;
+{% endhighlight %}
+<h6>The VERIFY Command</h6>
+<p>The VERIFY command controls whether the substitution variable submitted is displayed onscreen so you can verify that the correct substitution has occurred.</p>
+
+<h5>Single-Row Functions</h5>
+<h6>The LOWER Function</h6>
+<p>The LOWER function converts a string of characters into their lowercase equivalents.</p>
+
+<h6>The UPPER Function</h6>
+<p>The UPPER function is the logical opposite of the LOWER function and converts a string of characters into their uppercase equivalents.</p>
+
+<h6>The INITCAP Function</h6>
+<p>The INITCAP function converts a string of characters into capitalized case.</p>
+
+<h6>The CONCAT Function</h6>
+<p>The CONCAT function joins two character literals, columns, or expressions to yield one larger character expression.</p>
+{% highlight SQL %}
+select concat(1+2.14,' approximates pi') from dual;
+select concat('Today is:',SYSDATE) from dual;
+{% endhighlight %}
+
+<h6>The LENGTH Function</h6>
+<p>The LENGTH function returns the number of characters that constitute a character string. This includes character literals, columns, or expressions.</p>
+{% highlight SQL %}
+select length(1+2.14||' approximates pi') from dual;
+select length(SYSDATE) from dual;
+{% endhighlight %}
+
+<h6>The LPAD and RPAD Functions</h6>
+<p>The LPAD and RPAD functions, also known as left pad and right pad functions, return a string padded with a specified number of characters to the left or right of the source string respectively.</p>
+{% highlight SQL %}
+select lpad(1000+200.55,14,'*') from dual;
+select rpad(1000+200.55,14,'*') from dual;
+select lpad(SYSDATE,14,'$#') from dual;
+select rpad(SYSDATE,4,'$#') from dual;
+{% endhighlight %}
+
+<h6>The TRIM Function</h6>
+<p>The TRIM function removes characters from the beginning or end of character literals, columns or expressions to yield one potentially shorter character item.</p>
+{% highlight SQL %}
+select trim(trailing 'e' from 1+2.14||' is pie') from dual;
+select trim(both '*' from '*******Hidden*******') from dual;
+select trim(1 from sysdate) from dual;
+{% endhighlight %}
+
+<h6>The INSTR Function (In-string)</h6>
+<p>The INSTR function locates the position of a search string within a given string. It returns the numeric position at which the nth occurrence of the search string begins, relative to a specified start position. If the search string is not present the INSTR function returns zero.</p>
+{% highlight SQL %}
+select instr(3+0.14,'.') from dual;
+select instr(sysdate, 'DEC') from dual;
+select instr('1#3#5#7#9#','#') from dual;
+select instr('1#3#5#7#9#','#',5) from dual;
+select instr('1#3#5#7#9#','#',3,4) from dual;
+{% endhighlight %}
+
+<h6>The SUBSTR Function (Substring)</h6>
+<p>The SUBSTR function extracts and returns a segment from a given source string. It extracts a substring of a specified length from the source string beginning at a given position. If the start position is larger than the length of the source string, null is returned.</p>
+{% highlight SQL %}
+select substr(10000-3,3,2) from dual;
+select substr(sysdate,4,3) from dual;
+select substr('1#3#5#7#9#',5) from dual;
+select substr('1#3#5#7#9#',5,6) from dual;
+select substr('1#3#5#7#9#',-3,2) from dual;
+{% endhighlight %}
+
+<h6>The REPLACE Function</h6>
+<p>The REPLACE function replaces all occurrences of a search item in a source string with a replacement term and returns the modified source string. If the length of the replacement term is different from that of the search item, then the lengths of the returned and source strings will be different. If the search string is not found, the source string is returned unchanged.
+The following queries illustrate the REPLACE function with numeric and date expressions:</p>
+{% highlight SQL %}
+select replace(10000-3,'9','85') from dual;
+select replace(sysdate, 'DEC','NOV') from dual;
+select replace('1#3#5#7#9#','#','->') from dual;
+select replace('1#3#5#7#9#','#') from dual;
+{% endhighlight %}
+
+<h5>Using Numeric Functions</h5>
+<h6>The Numeric ROUND Function</h6>
+<p>The ROUND function performs a rounding operation on a numeric value based on the decimal precision specified. The value returned is either rounded up or down based on the numeric value of the significant digit at the specified decimal precision position.</p>
+{% highlight SQL %}
+select round(1601.916718,1) from dual;
+select round(1601.916718,2) from dual;
+select round(1601.916718,-3) from dual;
+select round(1601.916718) from dual;
+{% endhighlight %}
+
+<h6>The Numeric TRUNC Function (Truncate)</h6>
+<p>The TRUNC function performs a truncation operation on a numeric value based on the decimal precision specified. A numeric truncation is different from rounding because the resulting value drops the numbers at the decimal precision specified and does not attempt to round up or down if the decimal precision is positive. However, if the decimal precision specified (n) is negative, the input value is zeroed down from the nth decimal position.</p>
+{% highlight SQL %}
+select trunc(1601.916718,1) from dual;
+select trunc(1601.916718,2) from dual;
+select trunc(1601.916718,-3) from dual;
+select trunc(1601.916718) from dual;
+{% endhighlight %}
+
+<h6>The MOD Function (Modulus)</h6>
+<p>The MOD function takes two parameters. Its syntax is MOD(dividend, divisor). The dividend and divisor parameters represent a numeric literal, column, or expression, which may be negative or positive. The following queries illustrate the usage of this function:</p>
+{% highlight SQL %}
+select mod(6,2) from dual;
+select mod(5,3) from dual;
+select mod(7,35) from dual;
+select mod(5.2,3) from dual;
+{% endhighlight %}
+
+<h5>Working with Dates</h5>
+<h6>The SYSDATE Function</h6>
+<p>The SYSDATE function takes no parameters and returns the current system date and time according to the database server. By default the SYSDATE function returns the DD-MON-RR components of the current system date.
+The query to retrieve the database server date is as follows:</p>
+{% highlight SQL %}
+select sysdate from dual
+{% endhighlight %}
+
+<p>Date Arithmetic</p>
+{% highlight SQL %}
+Date1 - Date2 = Num1
+Date1 + Num1 = Date2
+Date1 = Date2 + Num1
+{% endhighlight %}
+
+<h5>Using Date Functions</h5>
+<h6>The MONTHS_BETWEEN Function</h6>
+<p>The MONTHS_BETWEEN function returns a numeric value representing the number of months between two date values.</p>
+{% highlight SQL %}
+select sysdate, sysdate+31, sysdate+62, sysdate+91, months_between(sysdate+91, sysdate) from dual;
+select months_between('29-mar-2008','28-feb-2008') from dual;
+select months_between('29-mar-2008','28-feb-2008') * 31 from dual;
+select months_between(to_date('29-feb-2008'), to_date('28-feb-2008 12:00:00','dd-mon-yyyy hh24:mi:ss'))* 31 from dual;
+{% endhighlight %}
+
+<h6>The ADD_MONTHS Function</h6>
+<p>The ADD_MONTHS function returns a date item calculated by adding a specified number of months to a given date value.
+Its syntax is ADD_MONTHS (start date, number of months).</p>
+
+<h6>The NEXT_DAY Function</h6>
+<p>The NEXT_DAY function returns the date when the next occurrence of a specified day of the week occurs.
+Its syntax is NEXT_DAY (start date, day of the week). The function computes the date on which the day of the week parameter next occurs after the start date. The day of the week parameter may be either a character value or an integer value.
+The next Wednesday after 01-JAN-2009 is 07-JAN-2009.</p>
+
+<h6>The LAST_DAY Function</h6>
+<p>The LAST_DAY function returns the date of the last day in the month a specified day belongs to.
+Its syntax is LAST_DAY(start date). The function extracts the month that the start date parameter belongs to and calculates the date of the last day of that month.
+The last day in the month of January 2009 is 31-JAN-2009, which is returned by the LAST_DAY('01-JAN-2009') function call;</p>
+
+<h6>The Date ROUND Function</h6>
+<p>The date ROUND function performs a rounding operation on a value based on a specified date precision format. The value returned is either rounded up or down to the nearest date precision format.</p>
+
+<h6>The Date TRUNC Function</h6>
+<p>The date TRUNC function performs a truncation operation on a date value based on a specified date precision format.
+The date TRUNC function takes one mandatory and one optional parameter. Its syntax is TRUNC(source date, [date precision format]). The source date parameter represents any value that can be implicitly converted into a date item. The date precision format parameter specifies the degree of truncation and is optional. If it is absent, the default degree of truncation is day.</p>
+
+
+<h5>Conversion Functions</h5>
+<h6>Converting Numbers to Characters</h6>
+<h6>Using the TO_CHAR Function</h6>
+<p>The TO_CHAR function returns an item of data type VARCHAR2. When applied to items of type NUMBER, several formatting options are available. The syntax is as follows:
+TO_CHAR(number1, [format], [nls_parameter])</p>
+{% highlight SQL %}
+select to_char(00001)||' is a special number' from dual;
+select to_char(00001,'0999999')||' is a special number' from dual;
+{% endhighlight %}
+
+<h6>Converting Dates to Characters Using the TO_CHAR Function</h6>
+<p>You can take advantage of a variety of format models to convert DATE items into almost any character representation of a date using TO_CHAR. Its syntax is as follows:
+TO_CHAR(date1, [format], [nls_parameter])</p>
+{% highlight SQL %}
+select to_char(sysdate)||' is today''s date' from dual;
+select to_char(sysdate,'Month')||'is a special time' from dual;
+select to_char(sysdate,'fmMonth')||'is a special time' from dual;
+{% endhighlight %}
+
+<h6>Converting Characters to Dates Using the TO_DATE Function</h6>
+<p>The TO_DATE function returns an item of type DATE.
+The syntax is as follows:
+TO_DATE(string1, [format], [nls_parameter])</p>
+{% highlight SQL %}
+select to_date('25-DEC-2010') from dual;
+select to_date('25-DEC') from dual;
+select to_date('25-DEC', 'DD-MON') from dual;
+select to_date('25-DEC-2010 18:03:45', 'DD-MON-YYYY HH24:MI:SS') from dual;
+select to_date('25-DEC-10', 'fxDD-MON-YYYY') from dual;
+{% endhighlight %}
+
+<h6>Converting Characters to Numbers</h6>
+<h6>Using the TO_NUMBER Function</h6>
+<p>The TO_NUMBER function returns an item of type NUMBER.
+The syntax is as follows:
+TO_NUMBER(string1, [format], [nls_parameter])</p>
+{% highlight SQL %}
+select to_number('$1,000.55','$999,999.99') from dual;
+{% endhighlight %}
+
+<h5>General Functions</h5>
+<h6>The NVL Function</h6>
+<p>The NVL function evaluates whether a column or expression of any data type is null or not. If the term is null, an alternative not null value is returned; otherwise, the initial term is returned.</p>
+{% highlight SQL %}
+select nvl(null,1234) from dual;
+select nvl(substr('abc',4),'No substring exists') from dual;
+{% endhighlight %}
+
+<h6>The NVL2 Function</h6>
+<p>The NVL2 function provides an enhancement to NVL but serves a very similar purpose. It evaluates whether a column or expression of any data type is null or not. If the first term is not null, the second parameter is returned, else the third parameter is returned. Its syntax is NVL2(original, ifnotnull, ifnull).</p>
+{% highlight SQL %}
+select nvl2(1234,1,'a string') from dual;
+select nvl2(null,1234,5678) from dual;
+select nvl2(substr('abc',2),'Not bc','No substring') from dual;
+{% endhighlight %}
+
+<h6>The NULLIF Function</h6>
+<p>The NULLIF function tests two terms for equality. If they are equal the function returns a null, else it returns the first of the two terms tested. The syntax is NULLIF(ifunequal, comparison_term), where the parameters ifunequal and comparison_term are compared.</p>
+{% highlight SQL %}
+select nullif(1234,1234) from dual;
+select nullif(1234,123+1) from dual;
+select nullif('24-JUL-2009','24-JUL-09') from dual;
+{% endhighlight %}
+
+<h6>The COALESCE Function</h6>
+<p>The COALESCE function returns the first nonnull value from its parameter list. If all its parameters are null, then null is returned. The syntax is COALESCE(expr1, expr2,,exprn), where expr1 is returned if it is not null, else expr2 if it is not null, and so on.</p>
+{% highlight SQL %}
+select coalesce(null, null, null, 'a string') from dual;
+select coalesce(null, null, null) from dual;
+select coalesce(substr('abc',4),'Not bc','No substring') from dual;
+{% endhighlight %}
+
+<h5>Conditional Functions</h5>
+<h6>The DECODE Function</h6>
+<p>The DECODE function implements if-then-else conditional logic by testing its first two terms for equality and returns the third if they are equal and optionally returns another term if they are not.
+The syntax of the function is DECODE(expr1,comp1, iftrue1, [comp2,iftrue2...[ compN,iftrueN]], [iffalse]).</p>
+{% highlight SQL %}
+select decode(1234,123,'123 is a match') from dual;
+select decode(1234,123,'123 is a match','No match') from dual;
+select decode('search','comp1','true1', 'comp2','true2', 'search','true3', substr('2search',2,6)),'true4', 'false') from dual;
+{% endhighlight %}
+
+<h6>The CASE Expression</h6>
+<p>The syntax for the simple CASE expression is as follows:</p>
+{% highlight SQL %}
+CASE search_expr
+WHEN comparison_expr1 THEN iftrue1
+[WHEN comparison_expr2 THEN iftrue2
+
+WHEN comparison_exprN THEN iftrueN
+ELSE iffalse]
+END
+
+select
+case substr(1234,1,3)
+when '134' then '1234 is a match'
+when '1235' then '1235 is a match'
+when concat('1','23') then concat('1','23')||' is a match'
+else 'no match'
+end
+from dual;
+{% endhighlight %}
+
+<p>The syntax for the searched CASE expression is as follows:</p>
+{% highlight SQL %}
+CASE
+WHEN condition1 THEN iftrue1
+[WHEN condition2 THEN iftrue2
+
+WHEN conditionN THEN iftrueN
+ELSE iffalse]
+END
+
+select last_name, hire_date,
+trunc(months_between(sysdate,hire_date)/12) years,
+trunc(months_between(sysdate,hire_date)/60) "Years divided by 5",
+case
+when trunc(months_between(sysdate,hire_date)/60) < 1 then 'Intern'
+when trunc(months_between(sysdate,hire_date)/60) < 2 then 'Junior'
+when trunc(months_between(sysdate,hire_date)/60) < 3 then 'Intermediate'
+when trunc(months_between(sysdate,hire_date)/60) < 4 then 'Senior'
+else 'Furniture'
+end Loyalty
+from employees
+where department_id in (60,10);
+{% endhighlight %}
+
+<h5>Group functions</h5>
+<p>The COUNT function counts the number of rows in a group. Its syntax is as follows:</p>
+{% highlight SQL %}
+COUNT({*|[DISTINCT|ALL] expr});
+{% endhighlight %}
+<p>The AVG function calculates the average value of a numeric column or expression in a group. Its syntax is as follows:</p>
+{% highlight SQL %}
+AVG([DISTINCT|ALL] expr);
+{% endhighlight %}
+<p>The SUM function returns the aggregated total of the nonnull numeric expression values in a group. It has the following syntax:</p>
+{% highlight SQL %}
+SUM([DISTINCT|ALL] expr);
+{% endhighlight %}
+<p>The MAX and MIN functions return the maximum (largest) and minimum (smallest) expr value in a group. Their syntax is as follows:</p>
+{% highlight SQL %}
+MAX([DISTINCT|ALL] expr); 
+MIN([DISTINCT|ALL] expr);
+{% endhighlight %}
+<p>The STDDEV and VARIANCE functions are two of many statistical group functions Oracle provides. VARIANCE has the following syntax:</p>
+{% highlight SQL %}
+VARIANCE([DISTINCT|ALL] expr);
+{% endhighlight %}
+<p>STDDEV has the following syntax:</p>
+{% highlight SQL %}
+STDDEV([DISTINCT|ALL] expr);
+{% endhighlight %}
+<h6>The GROUP BY Clause</h6>
+<p>The SELECT statement is enhanced by the addition of the GROUP BY clause. This clause facilitates the creation of groups. It appears after the WHERE clause but before the ORDER BY clause, as follows:</p>
+{% highlight SQL %}
+SELECT column|expression|group_function(column|expression [alias]),}
+FROM table
+[WHERE condition(s)]
+[GROUP BY {col(s)|expr}]
+[ORDER BY {col(s)|expr|numeric_pos} [ASC|DESC] [NULLS FIRST|LAST]];
+{% endhighlight %}
+<h6>Include or Exclude Grouped Rows Using the HAVING Clause</h6>
+<p>The general form of the SELECT statement is further enhanced by the addition of the HAVING clause and becomes:</p>
+{% highlight SQL %}
+SELECT column|expression|group_function(column|expression [alias]),}
+FROM table
+[WHERE condition(s)]
+[GROUP BY {col(s)|expr}]
+[HAVING group_condition(s)]
+[ORDER BY {col(s)|expr|numeric_pos} [ASC|DESC] [NULLS FIRST|LAST]];
+{% endhighlight %}
+
+<h5>Write SELECT Statements to Access Data from More Than One Table Using Equijoins and Nonequijoins</h5>
+<h6>Natural Joins</h6>
+<p>The natural join is implemented using three possible join clauses that use the following keywords in different combinations: NATURAL JOIN, USING, and ON.</p>
+{% highlight SQL %}
+SELECT REGION_NAME FROM REGIONS NATURAL JOIN COUNTRIES WHERE COUNTRY_NAME='Canada';
+SELECT COUNTRY_NAME FROM COUNTRIES NATURAL JOIN REGIONS WHERE REGION_NAME='Americas';
+SELECT REGION_NAME FROM REGIONS JOIN COUNTRIES USING (REGION_ID) WHERE COUNTRY_NAME='Canada';
+SELECT COUNTRY_NAME FROM COUNTRIES JOIN REGIONS ON (COUNTRIES.REGION_ID=REGIONS.REGION_ID) WHERE REGION_NAME='Americas';
+{% endhighlight %}
+
+<h6>Outer Joins</h6>
+<p>Suppose the EMPLOYEES and DEPARTMENTS tables are joined with common DEPARTMENT_ID values. EMPLOYEES records with null DEPARTMENT_ID values are excluded along with values absent from the DEPARTMENTS table. An outer join fetches these rows.</p>
+
+<h6>Cross Joins</h6>
+<p>A cross join or Cartesian product derives its names from mathematics, where it is also referred to as a cross product between two sets or matrices. This join creates one row of output for every combination of source and target table rows.</p>
+
+<h6>Oracle Join Syntax</h6>
+<p>The general form of the traditional Oracle-proprietary syntax relevant to joins is as follows:</p>
+{% highlight SQL %}
+SELECT table1.column, table2.column
+FROM table1, table2
+[WHERE (table1.column_name = table2.column_name)] |
+[WHERE (table1.column_name(+)= table2.column_name)] |
+[WHERE (table1.column_name)= table2.column_name) (+)] ;
+{% endhighlight %}
+{% highlight SQL %}
+Query 1: select regions.region_name, countries.country_name from regions, countries where regions.region_id=countries.region_id;
+Query 2: select last_name, department_name from employees, departments where employees.department_id (+) = departments.department_id;
+Query 3: select * from regions,countries;
+{% endhighlight %}
+<p>Query 1 performs a natural join by specifying the join as a condition in the WHERE clause.</p>
+<p>Query 2 specifies the join between the source and target tables as a WHERE condition. There is a plus symbol enclosed in brackets (+) to the left of the equal sign that indicates to Oracle that a right outer join must be performed.</p>
+<p>Query 3 performs a Cartesian or cross join by excluding the join condition.</p>
+
+<h6>Joining Tables Using SQL:1999 Syntax</h6>
+<p>The general form of the SELECT statement using ANSI SQL:1999 syntax is as follows:</p>
+{% highlight SQL %}
+SELECT table1.column, table2.column
+FROM table1
+[NATURAL JOIN table2] |
+[JOIN table2 USING (column_name)] |
+[JOIN table2 ON (table1.column_name = table2.column_name)] |
+[LEFT | RIGHT | FULL OUTER JOIN table2
+ON (table1.column_name = table2.column_name)] |
+[CROSS JOIN table2];
+{% endhighlight %}
+
+<h6>The NATURAL JOIN Clause</h6>
+<p>The general syntax for the NATURAL JOIN clause is as follows:</p>
+{% highlight SQL %}
+SELECT table1.column, table2.column
+FROM table1
+NATURAL JOIN table2;
+{% endhighlight %}
+<p>The pure natural join identifies the columns with common names in table1 and table2 and implicitly joins the tables using all these columns.</p>
+
+<h6>The Natural JOIN USING Clause</h6>
+<p>The format of the syntax for the natural JOIN USING clause is as follows:</p>
+{% highlight SQL %}
+SELECT table1.column, table2.column
+FROM table1
+JOIN table2 USING (join_column1, join_column2);
+{% endhighlight %}
+<p>While the pure natural join contains the NATURAL keyword in its syntax, the JOINUSING syntax does not. An error is raised if the keywords NATURAL and USING occur in the same join clause. The JOINUSING clause allows one or more equijoin columns to be explicitly specified in brackets after the USING keyword.</p>
+
+<h6>The Natural JOIN ON Clause</h6>
+<p>The format of the syntax for the natural JOIN ON clause is as follows:</p>
+{% highlight SQL %}
+SELECT table1.column, table2.column
+FROM table1
+JOIN table2 ON (table1.column_name = table2.column_name);
+{% endhighlight %}
+
+<h6>Nonequijoins</h6>
+<p>Nonequijoins match column values from different tables based on an inequality expression. The value of the join column in each row in the source table is compared to the corresponding values in the target table. A match is found if the expression used in the join, based on an inequality operator, evaluates to true. When such a join is constructed, a nonequijoin is performed.
+A nonequijoin is specified using the JOINON syntax, but the join condition contains an inequality operator instead of an equal sign.
+The format of the syntax for a nonequijoin clause is as follows:</p>
+{% highlight SQL %}
+SELECT table1.column, table2.column
+FROM table1
+[JOIN table2 ON (table1.column_name < table2.column_name)]|
+[JOIN table2 ON (table1.column_name > table2.column_name)]|
+[JOIN table2 ON (table1.column_name <= table2.column_name)]|
+[JOIN table2 ON (table1.column_name >= table2.column_name)]|
+[JOIN table2 ON (table1.column BETWEEN table2.col1 AND table2.col2)]|
+{% endhighlight %}
+
+<h6>Join a Table to Itself Using a Self-join</h6>
+
+<h6>Joining a Table to Itself Using the JOINON Clause</h6>
+{% highlight SQL %}
+select f1.name Dad, f2.name Child from family f1 join family f2 on (f1.id=f2.father_id);
+{% endhighlight %}
+<p>View Data that Does Not Meet a Join Condition by Using Outer Joins</p>
+
+<h6>Inner versus Outer Joins</h6>
+<p>When equijoins and nonequijoins are performed, rows from the source and target tables are matched using a join condition formulated with equality and inequality operators, respectively. These are referred to as inner joins. An outer join is performed when rows, which are not retrieved by an inner join, are returned.</p>
+
+<h6>Left Outer Joins</h6>
+<p>The format of the syntax for the LEFT OUTER JOIN clause is as follow:</p>
+{% highlight SQL %}
+SELECT table1.column, table2.column
+FROM table1
+LEFT OUTER JOIN table2
+ON (table1.column = table2.column);
+{% endhighlight %}
+<p>A left outer join performs an inner join of table1 and table2 based on the condition specified after the ON keyword. Any rows from the table on the left of the JOIN keyword excluded for not fulfilling the join condition are also returned.</p>
+
+<h6>Right Outer Joins</h6>
+<p>The format of the syntax for the RIGHT OUTER JOIN clause is as follows:</p>
+{% highlight SQL %}
+SELECT table1.column, table2.column
+FROM table1
+RIGHT OUTER JOIN table2
+ON (table1.column = table2.column);
+{% endhighlight %}
+<p>A right outer join performs an inner join of table1 and table2 based on the join condition specified after the ON keyword. Rows from the table to the right of the JOIN keyword, excluded by the join condition, are also returned.</p>
+
+<h6>Full Outer Joins</h6>
+<p>The format of the syntax for the FULL OUTER JOIN clause is as follows:</p>
+{% highlight SQL %}
+SELECT table1.column, table2.column
+FROM table1
+FULL OUTER JOIN table2
+ON (table1.column = table2.column);
+{% endhighlight %}
+<p>A full outer join returns the combined results of a left and right outer join. An inner join of table1 and table2 is performed before rows excluded by the join condition from both tables are merged into the results set.</p>
+
+<h6>Generate a Cartesian Product of Two or More Tables</h6>
+<p>Cartesian product is a mathematical term. It refers to the set of data created by merging the rows from two or more tables together. Cross join is the syntax used to create a Cartesian product by joining multiple tables. Both terms are often used synonymously. The format of the syntax for the CROSS JOIN clause is as follows:</p>
+{% highlight SQL %}
+SELECT table1.column, table2.column
+FROM table1
+CROSS JOIN table2;
+{% endhighlight %}
+<p>It is important to observe that no join condition is specified using the ON or USING keywords. A Cartesian product freely associates the rows from table1 with every row in table2. Conditions that limit the results are permitted in the form of WHERE clause restrictions. If table1 and table2 contain x and y number of rows, respectively, the Cartesian product will contain x times y number of rows.</p>
+
+
+<h5>Using Subqueries to Solve Problems</h5>
+
+<p>A subquery is a query that is nested inside a SELECT, INSERT, UPDATE, or DELETE statement or inside another subquery.
+The places in a query where a subquery may be used are as follows:</p>
+<ul>
+<li>In the SELECT list used for column projection</li>
+<li>In the FROM clause</li>
+<li>In the WHERE clause</li>
+<li>In the HAVING clause</li>
+</ul>
+
+<p>Use of a Subquery Result Set for Comparison Purposes</p>
+{% highlight SQL %}
+select last_name from employees where salary < (select avg(salary)from employees);
+select department_name from departments where department_id in (select distinct(department_id) from employees);
+{% endhighlight %}
+
+<h6>Star Transformation</h6>
+{% highlight SQL %}
+select  from sales s, products p, buyers b, channels c
+where s.prod_code=p.prod_code
+and s.buy_code=b.buy_code
+and s.chan_code=c.chan_code
+and p.product=Books
+and b.country=Germany
+and c.channel=Internet;
+
+select  from sales
+where prod_code in (select prod_code from products where product=Books)
+and buy_code in (select buy_code from buyers where country=Germany)
+and chan_code in (select chan_code from channels where channel=Internet);
+{% endhighlight %}
+<p>The rewrite of the first statement to the second is the star transformation.</p>
+
+
+<h6>Generate a Table from Which to SELECT</h6>
+{% highlight SQL %}
+select avg(salary),country_id from (select salary,department_id,location_id,country_id from employees natural join departments natural join locations) group by country_id;
+{% endhighlight %}
+
+<h6>Generate Values for Projection</h6>
+{% highlight SQL %}
+select(select max(salary) from employees) * (select max(commission_pct) from employees) / 100 from dual;
+{% endhighlight %}
+
+<h6>Generate Rows to be Passed to a DML Statement</h6>
+{% highlight SQL %}
+insert into sales_hist select * from sales where date > sysdate-1;
+update employees set salary = (select avg(salary) from employees);
+delete from departments where department_id not in (select department_id from employees);
+{% endhighlight %}
+
+<h6>Single- and Multiple-row Subqueries
+<p>The single-row subquery returns one row. Multiple-row subqueries return sets of rows. </p>
+
+<h6>Correlated Subqueries</h6>
+<p>A correlated subquery has a more complex method of execution than single- and multiple-row subqueries and is potentially much more powerful. If a subquery references columns in the parent query, then its result will be dependent on the parent query.</p>
+{% highlight SQL %}
+select p.last_name, p.department_id from employees p
+where p.salary < (select avg(s.salary) from employees s
+where s.department_id=p.department_id);
+{% endhighlight %}
+
+<h6>Write Single-row and Multiple-row Subqueries</h6>
+{% highlight SQL %}
+select last_name from employees where manager_id in
+(select employee_id from employees where department_id in
+(select department_id from departments where location_id in
+(select location_id from locations where country_id=UK)));
+
+select last_name from employees where salary > all
+(select salary from employees where department_id=80);
+select last_name from employees where salary >
+(select max(salary) from employees where department_id=80);
+{% endhighlight %}
+
+<h6>Using the Set Operators</h6>
+<p>The set operators used in compound queries are as follows:</p>
+<ul>
+<li>UNION Returns the combined rows from two queries, sorting them and removing duplicates.</li>
+<li>UNION ALL Returns the combined rows from two queries without sorting or removing duplicates.</li>
+<li>INTERSECT Returns only the rows that occur in both queries result sets, sorting them and removing duplicates.</li>
+<li>MINUS Returns only the rows in the first result set that do not appear in the second result set, sorting them and removing duplicates.</li>
+</ul>
+{% highlight SQL %}
+select region_name from regions union select region_name from regions;
+select region_name from regions union all select region_name from regions;
+select region_name from regions intersect select region_name from regions;
+select region_name from regions minus select region_name from regions;
+{% endhighlight %}
+
+<h6>Control the Order of Rows Returned</h6>
+{% highlight SQL %}
+select deptno,trim(dname) name from old_dept union select dept_id,dname from new_dept order by name;
+{% endhighlight %}
+
+<h5>Manipulating Data</h5>
+<h6>Insert Rows into a Table</h6>
+<p>The simplest form of the INSERT statement inserts one row into one table, using values provided in line as part of the command. The syntax is as follows:</p>
+{% highlight SQL %}
+INSERT INTO table [(column [,column])] VALUES (value [,value]);
+{% endhighlight %}
+<p>For example:</p>
+{% highlight SQL %}
+insert into hr.regions values (10,'Great Britain');
+insert into hr.regions (region_name, region_id) values ('Australasia',11);
+insert into hr.regions (region_id) values (12);
+insert into hr.regions values (13,null);
+{% endhighlight %}
+
+<h6>Update Rows in a Table</h6>
+<p>The UPDATE command changes column values in one or more existing rows in a single table. The basic syntax is the following:</p>
+{% highlight SQL %}
+UPDATE table SET column=value [,column=value] [WHERE condition];
+{% endhighlight %}
+<p>The syntax of an update that uses subqueries is as follows:</p>
+{% highlight SQL %}
+UPDATE table
+SET column=[subquery] [,column=subquery]
+WHERE column = (subquery) [AND column=subquery];
+update employees
+set salary=10000
+where department_id in (select department_id from departments
+where department_name like '%IT%');
+{% endhighlight %}
+
+<h6>Removing Rows with DELETE</h6>
+<p>The DELETE commands removes rows from a single table. The syntax is as follows:</p>
+{% highlight SQL %}
+DELETE FROM table [WHERE condition];
+delete from employees where employee_id=206;
+delete from employees where last_name like 'S%';
+delete from employees where department_id=&Which_department;
+delete from employees where department_id is null;
+{% endhighlight %}
+
+<h6>Removing Rows with TRUNCATE</h6>
+<p>The syntax to truncate a table couldnt be simpler:</p>
+{% highlight SQL %}
+TRUNCATE TABLE table;
+{% endhighlight %}
+
+<h6>MERGE</h6>
+{% highlight SQL %}
+merge into employees e using new_employees n
+on (e.employee_id = n.employee_id)
+when matched then
+update set e.salary=n.salary
+when not matched then
+insert (employee_id,last_name,salary)
+values (n.employee_id,n.last_name,n.salary);
+{% endhighlight %}
+
+<h5>Database Transactions</h5>
+<h6>COMMIT</h6>
+<p>This will end the current transaction, which has the dual effect of making the changes both permanent and visible to other sessions. The syntax is as follows:</p>
+{% highlight SQL %}
+COMMIT;
+{% endhighlight %}
+
+<h6>ROLLBACK</h6>
+<p>While a transaction is in progress, Oracle keeps an image of the data as it was before the transaction.
+The syntax to request a rollback is as follows:</p>
+{% highlight SQL %}
+ROLLBACK [TO SAVEPOINT savepoint];
+{% endhighlight %}
+
+<h6>SAVEPOINT</h6>
+<p>The use of savepoints is to allow a programmer to set a marker in a transaction that can be used to control the effect of the ROLLBACK command.
+The syntax is as follows:</p>
+{% highlight SQL %}
+SAVEPOINT savepoint;
+{% endhighlight %}
+
+<h5>Using DDL Statements to Create and Manage Tables</h5>
+<h6>Object Types</h6>
+<p>This query lists the object types that happen to exist in this particular database, with a count of how many there are:</p>
+{% highlight SQL %}
+select object_type,count(object_type) from dba_objects;
+{% endhighlight %}
+
+<h6>Users and Schemas</h6>
+<p>A user is a person who can connect to the database. The user will have a username and a password. A schema is a container for
+the objects owned by a user. When a user is created, their schema is created too.
+A schema is the objects owned by a user; initially, it will be empty.</p>
+
+<h6>Object Namespaces</h6>
+<p>It is often said that the unique identifier for an object is the object name, prefixed with the schema name.</p>
+
+<h6>Creating Tables with Column Specifications</h6>
+<p>To create a standard heap table, use this syntax:</p>
+{% highlight SQL %}
+CREATE TABLE [schema.]table [ORGANIZATION HEAP]
+(column datatype [DEFAULT expression]
+[,column datatype [DEFAULT expression]);
+
+CREATE TABLE SCOTT.EMP
+(EMPNO NUMBER(4),
+ENAME VARCHAR2(10),
+HIREDATE DATE DEFAULT TRUNC(SYSDATE),
+SAL NUMBER(7,2),
+COMM NUMBER(7,2) DEFAULT 0.03);
+{% endhighlight %}
+
+<h6>Creating Tables from Subqueries</h6>
+<p>The syntax is as follows:</p>
+{% highlight SQL %}
+CREATE TABLE [schema.]table AS subquery;
+{% endhighlight %}
+
+<p>A simple example of creating a table with a subquery is:</p>
+{% highlight SQL %}
+create table employees_copy as select * from employees;
+{% endhighlight %}
+
+<h6>Altering Table Definitions after Creation</h6>
+<p>The following are examples (for the most part self-explanatory):</p>
+<ul>
+<li>Adding columns:<br>
+alter table emp add (job_id number);</li>
+<li>Modifying columns:<br>
+alter table emp modify (comm number(4,2) default 0.05);</li>
+<li>Dropping columns:<br>
+alter table emp drop column comm;</li>
+<li>Marking columns as unused:<br>
+alter table emp set unused column job_id;</li>
+<li>Renaming columns:<br>
+alter table emp rename column hiredate to recruited;</li>
+<li>Marking the table as read-only:<br>
+alter table emp read only;</li>
+</ul>
+
+<h6>Dropping Tables</h6>
+<p>The syntax is as follows:</p>
+{% highlight SQL %}
+DROP TABLE [schema.]tablename;
+{% endhighlight %}
+
+<h6>Constraints</h6>
+<p>The constraint types supported by the Oracle database are as follows:</p>
+{% highlight SQL %}
+UNIQUE
+NOT NULL
+PRIMARY KEY
+FOREIGN KEY
+CHECK
+{% endhighlight %}
+
+<h6>Defining Constraints</h6>
+<p>Constraints can be defined when creating a table or added to the table later.</p>
+{% highlight SQL %}
+create table dept(
+deptno number(2,0) constraint dept_deptno_pk primary key
+constraint dept_deptno_ck check (deptno between 10 and 90),
+dname varchar2(20) constraint dept_dname_nn not null);
+create table emp(
+empno number(4,0) constraint emp_empno_pk primary key,
+ename varchar2(20) constraint emp_ename_nn not null,
+mgr number (4,0) constraint emp_mgr_fk references emp (empno),
+dob date,
+hiredate date,
+deptno number(2,0) constraint emp_deptno_fk references dept(deptno)
+on delete set null,
+email varchar2(30) constraint emp_email_uk unique,
+constraint emp_hiredate_ck check (hiredate >= dob + 365*16),
+constraint emp_email_ck
+check ((instr(email,'@') > 0) and (instr(email,'.') > 0)));
+{% endhighlight %}
+
+<h6>CREATE VIEW, ALTER VIEW, and DROP VIEW</h6>
+<p>The syntax to create a view is as follows:</p>
+{% highlight SQL %}
+CREATE [OR REPLACE] [FORCE | NOFORCE] VIEW
+[schema.]viewname [(alias [,alias])]
+AS subquery
+[WITH CHECK OPTION [CONSTRAINT constraintname]]
+[WITH READ ONLY [CONSTRAINT constraintname]];
+{% endhighlight %}
+
+<p>The optional keywords, none of which have been used in the examples so far, are as follows:</p>
+<ul>
+<li>OR REPLACE If the view already exists, it will be dropped before being created.</li>
+<li>FORCE or NOFORCE The FORCE keyword will create the view even if the detail table(s) in the subquery does not exist. NOFORCE is the default and will cause an error if the detail table does not exist.</li>
+<li>WITH CHECK OPTION This is to do with DML. If the subquery includes a WHERE clause, then this option will prevent insertion of rows that wouldnt be seen in the view or updates that would cause a row to disappear from the view. By default, this option is not enabled, which can give disconcerting results.</li>
+<li>WITH READ ONLY Prevents any DML through the view.</li>
+<li>CONSTRAINT constraintname This can be used to name the WITH CHECK OPTION and WITH READ ONLY restrictions so that error messages when the restrictions cause statements to fail, will be more comprehensible.</li>
+</ul>
+
+<p>The main use of the ALTER VIEW command is to compile the view. A view must be compiled successfully before it can be used.</p>
+
+<p>It is not possible to adjust a views column definitions after creation in the way that a tables columns can be changed. The view must be dropped and re-created. The DROP command is as follows:</p>
+{% highlight SQL %}
+DROP VIEW [schema.]viewname;
+{% endhighlight %}
+
+<h6>Retrieve Data from Views</h6>
+<p>Queries can be addressed to views exactly as though to tables. Views and tables share the same namespace, so syntactically there is absolutely no difference in the SELECT statements.</p>
+
+<h6>Create Private and Public Synonyms</h6>
+<p>A synonym is an alternative name for an object.
+The syntax to create a synonym is as follows:</p>
+{% highlight SQL %}
+CREATE [PUBLIC] SYNONYM synonym FOR object;
+{% endhighlight %}
+<p>To drop a synonym:</p>
+{% highlight SQL %}
+DROP [PUBLIC] SYNONYM synonym;
+{% endhighlight %}
+<p>If the object to which a synonym refers (the table or view) is dropped, the synonym continues to exist. If the object is recreated, the synonym must be recompiled before use.
+As with views, this will happen automatically the next time the synonym is addressed, or it can be done explicitly with</p>
+{% highlight SQL %}
+ALTER SYNONYM synonym COMPILE;
+{% endhighlight %}
+
+<h5>Create, Maintain, and Use Sequences</h5>
+<h6>Creating Sequences</h6>
+<p>The full syntax for creating a sequence is as follows:</p>
+{% highlight SQL %}
+CREATE SEQUENCE [schema.]sequencename
+[INCREMENT BY number]
+[START WITH number]
+[MAXVALUE number | NOMAXVALUE]
+[MINVALUE number | NOMINVALUE]
+[CYCLE | NOCYCLE]
+[CACHE number | NOCACHE]
+[ORDER | NOORDER];
+
+create sequence order_seq start with 10;
+create sequence line_seq start with 10;
+insert into orders (order_number,order_date,customer_number)
+values (order_seq.nextval,sysdate,'1000');
+insert into order_lines (order_number,line_number,item_number,quantity)
+values (order_seq.currval,line_seq.nextval,'A111',1);
+insert into order_lines (order_number,line_number,item_number,quantity)
+values (order_seq.currval,line_seq.nextval,'B111',1);
+commit;
+{% endhighlight %}
+
+<p>After creating and using a sequence, it can be modified. The syntax is as follows:</p>
+{% highlight SQL %}
+ALTER SEQUENCE sequencename
+[INCREMENT BY number]
+[START WITH number]
+[MAXVALUE number | NOMAXVALUE]
+[MINVALUE number | NOMINVALUE]
+[CYCLE | NOCYCLE]
+[CACHE number | NOCACHE]
+[ORDER | NOORDER];
+{% endhighlight %}
+
+<p>To adjust the cache value from default to improve performance of the preceding order entry example:</p>
+{% highlight SQL %}
+alter sequence order_seq cache 1000;
+{% endhighlight %}
+<p>However, if you want to reset the sequence to its starting value, the only way is to drop it:</p>
+{% highlight SQL %}
+drop sequence order_seq;
+{% endhighlight %}
+<p>and create it again.</p>
+
+<h6>Creating and Using Indexes</h6>
+<p>Indexes are created implicitly when primary key and unique constraints are defined, if an index on the relevant column(s) does not already exist. The basic syntax for creating an index explicitly is as follows:</p>
+{% highlight SQL %}
+CREATE [UNIQUE | BITMAP] INDEX [ schema.]indexname
+ON [schema.]tablename (column [, column] ) ;
+{% endhighlight %}
+<p>The default type of index is a nonunique B*Tree index.</p>
+
+<p>Consider this example of creating tables and indexes and then defining constraints:</p>
+{% highlight SQL %}
+create table dept(deptno number,dname varchar2(10));
+create table emp(empno number, surname varchar2(10), forename varchar2(10), dob date, deptno number);
+create unique index dept_i1 on dept(deptno);
+create unique index emp_i1 on emp(empno);
+create index emp_i2 on emp(surname,forename);
+create bitmap index emp_i3 on emp(deptno);
+alter table dept add constraint dept_pk primary key (deptno);
+alter table emp add constraint emp_pk primary key (empno);
+alter table emp add constraint emp_fk foreign key (deptno) references dept(deptno);
+{% endhighlight %}
+
+<h6>Modifying and Dropping Indexes</h6>
+{% highlight SQL %}
+drop index emp_i2;
+create index emp_i2 on emp(surname,forename,dob);
+{% endhighlight %}
+
+

@@ -1,0 +1,990 @@
+---
+---
+
+// Import reset 
+@import "partials/reset";
+
+// Import colors, fonts etc...
+@import "partials/variables";
+
+// Import custom mixins
+@import "partials/mixins";
+
+// Import layout mixin
+@import "partials/layout";
+
+// Import syntax 
+@import "partials/syntax";
+
+
+/* -------------------------------- 
+
+ Primary style
+
+-------------------------------- */
+
+html * {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*, *:after, *:before {
+  @include box-sizing(border-box);
+}
+
+body {
+  font: {
+    size: 100%;
+    family: $primary-font; // variables inside partials > _variables.scss
+  }
+}
+
+.wc-container {
+    width: 90%;
+    max-width: $M; // see breakpoints in _sass/partials/_layout.scss
+    margin: 0 auto;
+
+    &::after { /* Clearfix */
+        content: '';
+        display: table;
+        clear: both;
+    }
+}
+
+.wc-img-replace { /* replace text with a background-image */
+  display: inline-block;
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* --------------------------------
+
+ Small Typography
+
+--------------------------------- */
+
+h1, h2, h3, h4, h5, h6 { 
+  line-height: 1.6;
+}
+
+h1 {
+  // mobile first
+  @include font-size(20px);
+  @include MQ(M) {
+    @include font-size(36px);
+  }
+}
+
+h2 {
+  // mobile first
+  @include font-size(18px);
+  @include MQ(M) {
+    @include font-size(31px);
+  }
+}
+
+h3 {
+  @include font-size(15px);
+  @include MQ(M) {
+    @include font-size(30px);
+  }
+}
+
+h4 {
+  @include font-size(16px);
+  @include MQ(M) {
+    @include font-size(24px);
+  }
+}
+
+h5 {
+  @include font-size(14px);
+  @include MQ(M) {
+    @include font-size(22px);
+  }
+}
+
+h6 {
+  @include font-size(14px);
+  @include MQ(M) {
+    @include font-size(19px);
+  }
+}
+
+p {
+  line-height: 1.6;
+  @include font-size(14px);
+  @include MQ(M) {
+    @include font-size(18px);
+  }
+}
+
+a {
+  background: transparent;
+}
+
+a:active, a:hover, a:focus {
+  outline: 0;
+}
+
+img {
+  border: 0;
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+
+hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 0;
+  border-top: 1px solid #eee;
+  height: 0;
+}
+
+/* bold text */
+strong, b { font-weight: 600; }
+
+/* italic */
+em, i { font-style: italic; }
+/* --------------------------------
+
+ Theme base
+
+--------------------------------- */
+
+// default 
+
+a.default-anchor {
+  
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  color: $base-08;
+  &:hover, &:active, &:focus {
+    @include transition(border-bottom-color .2s);
+    border-bottom-color: $base-08;
+  }
+
+}
+
+div.default-page-content {
+  h1, h2, h3, h4, h5, h6 { color: $base-00; }
+}
+
+body {
+  color: $color-2;
+}
+
+a {
+  @extend .default-anchor;
+}
+
+header.main-header, footer.main-footer {
+  p,address {
+    @include font-size(12px);
+    @include MQ(M) {
+      @include font-size(14px);        
+    }
+  }
+}
+
+header.main-header {
+  color: $base-00;
+  border-top: 5px $base-00 solid;
+
+  h1, h2 { text-align: center; color: inherit;}
+  a { 
+    color: inherit;
+    &:hover, &:active, &:focus {
+      border-bottom-color: transparent;
+    }
+  }
+
+  ul {
+    width: 100%;
+    text-align: center;
+    padding: 15px;
+  }
+  ul li {       
+    display: inline-block;
+    position:relative;
+    color: $base-08;
+  }
+
+  ul li span {
+    float: left;
+    display: inline-block;
+    width: 15px;
+  }
+
+  ul li a { 
+    display:inline-block;
+    color: inherit;
+    border-bottom: 2px transparent solid;
+    padding-bottom:5px;
+    @include transition(all, .2s);
+    @include MQ(M) {
+      @include font-size(18px);
+    }
+    &:hover, &:focus, &:active {
+      border-bottom-color: inherit;
+    }
+  }
+}
+
+footer.main-footer {
+  background-color: $base-00;
+  color: $base-07;
+  .column {
+    float:left;
+    @include column(1);
+
+    @include MQ(M) {
+      &.one, &.two {
+        @include column(.5);
+        display: block;
+      }
+    }
+  }
+
+  h6 {
+      position: relative;
+      padding: 10px 0;
+      text-transform: uppercase;
+  }
+  h6::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      width: 2em;
+      height: 2px;
+      background: $base-07;
+      overflow: hidden;
+  } 
+
+  ul.menu {
+    padding: 0 0 1em 0;
+    li {
+      @include font-size(12px);
+      line-height: 1.6;
+      display: inline;
+      padding-right: 10px;        
+      @include MQ(M) {
+        @include font-size(16px);          
+      }
+    }
+  }
+
+  p.disclaimer {
+    text-align: center;
+  }
+
+ ul.social-media {
+  text-align:left;
+  padding: 0 0 10px 0;
+  li { 
+    display:inline-block;
+  }
+  li > a {
+    width: 32px;
+    height: 32px;
+    background: $base-07;
+    background-image: url("./images/socials-icons.svg");
+    background-size: 224px 64px;
+    border-radius: 0.25em;
+    @include transition(background-color 0.2s);
+    border-bottom-color: transparent;
+
+    &:hover {
+      background-color: $base-08;
+    }
+  }
+    
+  li a.twitter {
+    background-position: 0 0;
+      &:hover {
+        background-position: 0 -32px;
+    } 
+  }
+
+  li a.github {
+    background-position: -32px 0;
+    &:hover {
+      background-position: -32px -32px;
+    }
+  }
+
+  li a.facebook {
+    background-position: -64px 0;
+    &:hover {
+      background-position: -64px -32px;
+    }
+  }
+
+  li a.dribble {
+    background-position: -96px 0;
+    &:hover {
+      background-position: -96px -32px;
+    }
+  }
+
+  li a.google {
+    background-position: -128px 0;
+    &:hover {
+      background-position: -128px -32px;
+    }
+  }
+
+  li a.pinterest {
+      background-position: -196px 0;
+      &:hover {
+        background-position: -196px -32px;
+      }
+    }
+  }
+}
+
+.no-svg footer.main-footer ul.social-media li a {
+  width: 32px;
+    height: 32px;
+    background-color: $base-07;
+    background-image: url("./images/socials-icons.png");
+    background-size: 224px 64px;
+    border-radius: 0.25em;
+    @include transition(background-color 0.2s);
+    border-bottom-color: transparent;
+
+    &:hover {
+      background-color: $base-08;
+    }
+}
+
+div.page-content {
+  @extend .default-page-content;
+  min-height: initial;
+
+  @include MQ(M) {
+    min-height: 800px;
+  }
+}    
+
+div.page-content {
+  ul {       
+    padding: 0 0 1em 0;
+    li {
+      @include font-size(14px);
+      color: $color-2; 
+      line-height: 1.6;
+      background: url(./images/bullet.svg);
+      background-repeat: no-repeat;
+      background-position: 0 6px;
+      padding: 0 0 5px 15px;
+      margin-left: 0;
+    }
+    @include MQ(M){        
+      li {         
+        @include font-size(16px);  
+        line-height: 1.5;
+        background-position: 0 7px; 
+      }
+    }
+  }
+  ol { 
+    @include font-size(12px);
+    // padding-top: 1em;
+    padding-bottom: 1em;
+    list-style: decimal;
+    margin-left: 0;
+    li {
+      color: $color-2; 
+      line-height: 1.6;
+      padding: 0 0 5px 0px;
+      margin-left: 2em;
+      position:relative;
+    }
+    @include MQ(M){
+      @include font-size(16px);
+      li { 
+        line-height: 1.5;
+        background-position: 0 7px; 
+      }
+    }
+  }
+
+  dl {
+    padding-bottom: 1em;
+    dt, dd {
+      @include font-size(12px);  
+      line-height: 1.5;        
+    }
+    
+    dt {
+      font-weight: bold;
+      padding-bottom: 5px;
+      padding-top: 20px;
+    }
+
+    dt:first-child {
+      padding-top: 0px;
+    }
+
+    dd {
+      padding-left: 10px;
+    }
+
+    @include MQ(M) {        
+      dt, dd {
+        @include font-size(16px);
+        line-height: 1.6;        
+      }
+    }
+  }
+  
+  img { 
+    padding: 1em 0;
+  }
+
+  p {
+    margin-bottom: 1em;      
+  }
+
+  h1, h2, h3, h4, h5, h6 { 
+    padding-bottom: 5px;
+  }
+}
+
+.no-svg div.page-content ul li {
+  background: url(./images/bullet.png);
+  @include font-size(13px);
+  color: $color-2; 
+  line-height: 1.6;
+  background-repeat: no-repeat;
+  background-position: 0 6px;
+  padding: 0 0 5px 15px;
+  margin-left: 0;
+} 
+
+// Theme base 01
+body.theme-base-01 {
+  
+  a {
+    @extend .default-anchor;   
+  }
+
+  footer.main-footer {
+    background-color: $base-01;
+    color: $base-07;
+  }
+
+  header.main-header {
+    color: $base-01;
+    ul li { 
+      color: $base-08;
+    }
+  }
+
+  div.page-content {
+    h1, h2, h3, h4, h5, h6 { color: $base-01; }
+  }
+
+
+}
+
+/* --------------------------------
+
+ Main Header
+
+--------------------------------- */
+
+header.main-header { 
+  padding: 1em 0;
+  @include MQ(M) { padding: 2em 0; }
+}
+footer.main-footer {
+  padding: 1em 0;
+  @include MQ(M) { padding: 2em 0; }
+}
+.page-content {
+  padding: 1em 0;
+  @include MQ(M) { padding: 2em 0; }
+}
+
+
+/* ---------------------------------
+
+  Blockquote
+
+---------------------------------- */
+blockquote {
+  padding: .5em 1em;
+  margin: .8em 0;
+  color: #7a7a7a;
+  border-left: .25em solid #e5e5e5;
+}
+blockquote p:last-child {
+  margin-bottom: 0;
+}
+@include MQ(M) {
+  blockquote {
+    padding-right: 5em;
+    padding-left: 1.25em;
+  }
+}
+
+/* --------------------------------
+
+Code snippets
+
+--------------------------------- */
+code, pre {
+  font-family: Menlo, Monaco, "Courier New", monospace;
+}
+code {  
+  padding: .25em .5em;
+  font-size: 85%;
+  color: $base-08;
+  background-color: rgba($base-08, .1);
+}
+pre {
+  display: block;
+  margin-top: 0;
+  margin-bottom: 1em;
+  padding: 1em;
+  @include font-size(12px);
+  line-height: 1.4;
+  white-space: pre;
+  white-space: pre-wrap;
+  word-break: break-all;
+  word-wrap: break-word;
+  background-color: $color-white;
+  border: 1px solid $base-05;
+  code {
+    padding: 0;
+    font-size: 100%;
+    color: inherit;
+    background-color: transparent;
+  }
+
+  @include MQ(M) {
+    @include font-size(14px);
+  }
+}
+
+.highlight {
+  margin-bottom: 1em;
+  margin-top: 1em;
+  pre {
+    margin-bottom: 0;
+  }
+}
+
+/* Gist via GitHub Pages */
+.gist .gist-file {
+  font-family: Menlo, Monaco, "Courier New", monospace !important;
+  margin: 1em 0;
+}
+.gist .markdown-body {
+  padding: 15px;
+}
+.gist pre {
+  padding: 0;
+  background-color: transparent;
+}
+.gist .gist-file .gist-data {
+  font-size: 12px;
+  @include MQ(M) {
+    font-size: 14px !important;
+  }
+  line-height: 1.4;
+}
+.gist code {
+  padding: 0;
+  color: inherit;
+  background-color: transparent;
+  border-radius: 0;
+}
+
+/* --------------------------------
+
+Post styles
+
+--------------------------------- */
+
+div.posts {
+
+  .div.post {
+    
+  }
+}
+div.post {
+  padding-top: .5em;
+  padding-bottom: 1em;
+  border-bottom: 1px $base-05 solid;
+  @include MQ(M) {
+
+    padding-bottom: 2em;  
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+p.post-meta {
+  line-height: 1.6;
+  letter-spacing: 2px;
+  @include font-size(12px);
+  overflow: hidden;
+  display: block;
+  padding: 1em 0;
+  color: #7A7A7A;
+  @include MQ(M) {
+    @include font-size(16px);
+  }
+}
+
+/* --------------------------------
+
+ Related post
+
+--------------------------------- */
+.related {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  border-top: 1px solid $base-05;
+
+  @include MQ(M) {
+    padding-top: 2em;
+    padding-bottom: 2em;
+  }
+}
+.related-posts {
+  padding-left: 0;
+  list-style: none;
+}
+.related-posts h3 {
+  margin-top: 0;
+}
+.related-posts li small {
+  font-size: 75%;
+  color: #999;
+}
+.related-posts li a:hover {
+  color: #268bd2;
+  text-decoration: none;
+}
+.related-posts li a:hover small {
+  color: inherit;
+}
+
+/* --------------------------------
+
+ Post footer
+
+--------------------------------- */
+.post-footer {
+  
+  border-top: 1px solid $base-05;
+  border-bottom: 1px solid $base-05;
+  height: 40px;
+  display: table;
+  width: 100%;
+  position: relative;
+
+  @include MQ(M) {    
+    height: 80px;
+  }
+
+  .column-1, .column-2, .column-3, .column-full {    
+    padding-top: 10px;
+    @include MQ(M) {
+      padding-top: 30px;
+    }
+    span { color: $base-04; }
+    a,span {
+      @include font-size(12px);
+      @include MQ(M) {
+        @include font-size(16px);        
+      }
+    }
+  }
+
+  .column-1 {
+    text-align: left;
+    @include column(.3333);
+  }
+  .column-2 {
+    text-align: center;
+    @include column(.3333);
+  }
+  .column-3 {
+    text-align: right;
+    @include column(.3333);
+  }
+  .column-full {
+    text-align: center;
+    width: 100%;
+  }
+}
+
+/* -----------------------------------
+
+  Table
+
+----------------------------------- */
+table {
+  margin: 1em 0;
+  width: 100%;
+  border: 1px solid $base-04;
+  border-collapse: collapse;
+}
+td,
+th {
+  padding: .25em .5em;
+  border: 1px solid $base-04;
+}
+tbody tr:nth-child(odd) td,
+tbody tr:nth-child(odd) th {
+  background-color: $base-05;
+}
+
+/* -----------------------------------
+
+  Custom added styles
+
+----------------------------------- */
+div.page-content  ul.portfolio li { 
+  min-height: 202px;
+  padding: 5px !important;
+  border-radius: 5px;
+  background-color: #f2f2f2 !important;
+  background-image: none !important;
+  list-style-type: none;
+  clear: both;
+  margin-bottom: 15px;
+  .article-image {
+    float: left;
+    border-style: solid;
+    border-color: gray;
+    border-width: 5px;
+  }
+  .article-content {
+    margin: 5px 0px 5px 225px;
+  }
+}
+#address {
+  float: left;
+  width: 255px;
+}
+#map {
+  float: right;
+  margin-top: -50px;
+  background: transparent;
+  padding: 8px;
+  border: 1px solid #999999;
+}
+#site-baseurl {
+  color: #f9f7f3;
+  text-shadow: 0 0 3px #f9f7f3;
+  z-index: 5;
+  position: relative;
+}
+#site-description {
+  color: #f9f7f3;
+  text-shadow: 0 0 4px black;
+  z-index: 5;
+  position: relative;
+}
+.main-header {
+  background-image: url("./images/sitebg.png");
+  background-repeat: no-repeat;
+}
+#linux {
+  position: absolute;
+}
+#main-header {
+  position: fixed;
+  width: 100%;
+}
+.page-content > div:first-of-type {
+  margin-top: 200px;
+}
+body.theme-base-01 header.main-header ul li {
+  background-color: white;
+}
+#gallery, #gallery-post {
+  text-align: center;
+}
+#gallery img {
+  background: transparent;
+  padding: 8px;
+  border: 1px solid #999999;
+}
+#gallery a {
+  display: inline-block;
+  margin: 10px;
+  border-bottom: 0px solid transparent;
+}
+#lightbox a {
+  border-bottom: 0px solid transparent;
+}
+.button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #da4939;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 1.125rem;
+  padding: 10px;
+  width: 100px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+#prev_button {
+  width: 135px;
+}
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+#prev_button span:before {
+  content: '\00ab';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  left: -20px;
+  transition: 0.5s;
+}
+#next_button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+#prev_button:hover span {
+  padding-left: 25px;
+}
+#next_button:hover span {
+  padding-right: 25px;
+}
+
+#prev_button:hover span:before {
+  opacity: 1;
+  left: 0;
+}
+#next_button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+#pagination {
+  margin-top: 50px;
+}
+.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.button.disabled span {
+  cursor: not-allowed;
+}
+
+#contact-form * {
+  box-sizing: border-box;
+}
+
+#contact-form input[type=text], #contact-form input[type=email], #contact-form select, #contact-form textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+#contact-form label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+#contact-form input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+  margin-top: 10px;
+}
+
+#contact-form input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+#contact-form {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  margin-top: 285px;
+}
+
+#contact-form .col-25 {
+  float: left;
+  width: 18%;
+  margin-top: 6px;
+}
+
+#contact-form .col-75 {
+  float: left;
+  width: 82%;
+  margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+#contact-form .row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+#about-image { 
+  float:right; 
+  margin-left: 10px;
+  background:transparent;
+  padding:8px;
+  border:1px solid #999999;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media (max-width: 480px) {
+  #contact-form {
+    margin-top: 200px;
+  }
+  #about-image {
+    float: none;
+    margin-bottom: 10px;
+  }
+  #map {
+    display: none;
+  }
+}
+@media (max-width: 840px) {
+  #map {
+    display: none;
+  }
+  #contact-form .col-25, #contact-form .col-75 {
+    width: 100%;
+    margin-top: 0;
+  }
+  #address {
+    width: 100%;
+  }
+}
+
