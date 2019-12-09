@@ -1,9 +1,9 @@
 ---
 layout: page
-title: About me
+title: About Me
 permalink: /about/
 ---
-<img id="about-image" src="/assets/img/andrei.jpg" />
+<img id="about-image" src="/assets/img/andrei.jpg" width=300 height=300 />
 
 Hi, my name is <strong>Andrei Pall</strong> and I am a web applications developer who lives in Brasov, Romania.
 
