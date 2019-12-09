@@ -13,5 +13,5 @@ title: Blog archive
     		<ul class="posts">
     		{% capture year %}{{currentyear}}{% endcapture %} 
   		{% endif %}
-    <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+    <li><a href="{{ post.url }}" class="post-title">{{ post.title }}</a></li>
   {% endfor %}
