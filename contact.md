@@ -20,7 +20,7 @@ permalink: /contact/
 			<div class="col-75"><input type="text" name="name" id="name" placeholder="Name" required></div>
 		</div>
 		<div class="row">
-		  <div class="col-25"><label for="email">Your email:</label></div>
+		  <div class="col-25"><label for="email">Your e-mail:</label></div>
 		  <div class="col-75"><input type="email" name="_replyto" id="email" placeholder="E-mail" required></div>
 		</div>
 		<div class="row">
