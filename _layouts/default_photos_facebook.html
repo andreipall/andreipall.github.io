@@ -110,6 +110,52 @@
           lightbox.option({
               'showImageNumberLabel': false
           });
+          window.fbAsyncInit = function() {
+            FB.init({
+              appId            : '534908083749670',
+              autoLogAppEvents : false,
+              xfbml            : false,
+              version          : 'v4.0'
+            });
+            FB.api(
+              '/me/photos',
+              'GET',
+              {"fields":"images","limit":"30","type":"uploaded", access_token: 'EAAHmfv5RwyYBABNj9ZCLrMoeLJIm0XEhcpgGjN18fpG8CstcyZB0gE3S5ZA8e6j4jQF5fZAse1QrZByDLsZBwsZBfJBEZB5gOIhY2SEHyoZAoS2lTUeKuk6FGAJZAt7FTQrldq2yCgcZBfBZCTy2asNUHYMH2MEiXDhLZBA2LA6MylTCE9QZDZD'},
+              function(response) {
+                  $.each(response.data, function(key, imageObj) {
+                      var images = imageObj.images.sort(function(obj1, obj2) {
+	                      return obj2.width - obj1.width;
+                      });
+                      var thumbnail;
+                      $.each(images, function(k, image) {
+                          if(image.width == 300) {
+                              thumbnail = image.source;
+                              return false;
+                          }
+                      });
+                      if (typeof thumbnail === "undefined") {
+                        console.log("Couldn't find thumbnail image with the width 300.");
+                      } else {
+                        $("#gallery").append('<a href="'+images[0].source+'" data-lightbox="gallery"><img src="'+thumbnail+'" /></a>');
+                      }
+                  });
+                  if (typeof response.paging === 'undefined') {
+                      $("#gallery").html("Facebook application request limit reached. Please return in a few hours.");
+                  }
+                  else {
+                      if(response.paging.hasOwnProperty('next')) {
+                        $("#next_button").removeClass("disabled");
+                        $("#next_button").attr("href", "#gallery").click(function(event) {
+                          event.preventDefault();
+                          getPage(response.paging.next);
+                        });
+                      }
+                  }
+              }
+            );
+          };
+        </script>
+        <script async defer src="https://connect.facebook.net/en_US/sdk.js"></script>
         <!-- Google analytics  -->
         {% include google-analytics.html %}
         <script id="dsq-count-scr" src="//andreipall.disqus.com/count.js" async></script>
