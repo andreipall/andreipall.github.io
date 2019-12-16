@@ -82,6 +82,23 @@
 			albums.on('add', function () { console.log(albums.toJSON()); });
 			albums.fetch();
 			console.log(albums.toJSON());
+			
+			PhotosRouter = Backbone.Router.extend({
+				routes: {
+					'photos/:album_id': 'showAlbum',
+					'': 'photos'
+				},
+				photos: function () { 
+
+				},
+				showAlbum: function (album_id) {
+					console.log(album_id);
+				},
+			});
+myRouter = new MyRouter();
+
+// start Backbone.history - root is optional
+Backbone.history.start({pushState: true, root: 'my/app'});
         </script>
         <!-- Site js -->
         <script src="{{ site.baseurl }}/assets/js/all.js"></script>
