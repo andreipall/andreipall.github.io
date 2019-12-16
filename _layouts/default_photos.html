@@ -65,7 +65,22 @@
         <script src="{{ site.baseurl }}/assets/js/backbone-min.js"></script>
         <script src="{{ site.baseurl }}/assets/lightbox2/js/lightbox.min.js"></script>
         <script type="text/javascript">
-          
+          var Album = Backbone.Model.extend({
+			  defaults: {
+				id: '',
+				folder_name: '',
+				date_created: ''
+			  }
+			});
+
+			var AlbumList = Backbone.Collection.extend({
+			  url: 'https://script.google.com/macros/s/AKfycbxn1GMabSaA5_1ng6bZ24LPOF0h4ECEn3gfTCqGSg/exec',
+			  model: Album
+			});
+
+			var albums = new AlbumList();
+			albums.fetch();
+			console.log(albums.toJSON());
         </script>
         <!-- Site js -->
         <script src="{{ site.baseurl }}/assets/js/all.js"></script>
