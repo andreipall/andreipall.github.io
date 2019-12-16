@@ -1001,8 +1001,12 @@ a.album {
   text-align: center;
 }
 
-a.album:hover {
+a.album:hover, a.album:hover span {
   text-decoration: none;
+}
+
+a.album span {
+  line-height: 1.3;
 }
 
 a.album img {
