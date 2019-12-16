@@ -995,6 +995,12 @@ body.theme-base-01 header.main-header ul li {
 }
 
 a.album {
-  width: 200px;
+  width: 192px;
   display: block;
+  float: left;
 }
+
+a.album img {
+  width: 50%;
+}
+
