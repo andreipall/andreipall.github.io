@@ -1001,8 +1001,7 @@ a.album {
   text-align: center;
 }
 
-a.album:hover, a.album:hover span {
-  text-decoration: none;
+a.album, a.album:hover {
   border-bottom: 0px solid transparent;
 }
 
