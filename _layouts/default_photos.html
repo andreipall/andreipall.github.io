@@ -79,6 +79,7 @@
 			});
 
 			var albums = new AlbumList();
+			albums.on('add', function () { console.log(albums.toJSON()); });
 			albums.fetch();
 			console.log(albums.toJSON());
         </script>
