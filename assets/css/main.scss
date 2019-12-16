@@ -1001,8 +1001,17 @@ a.album {
   text-align: center;
 }
 
+a.album:hover {
+  text-decoration: none;
+}
+
 a.album img {
   width: 50%;
   margin: auto;
+}
+
+a.album img:hover {
+  opacity: 0.8;
+  filter: alpha(opacity=80); /* For IE8 and earlier */
 }
 
