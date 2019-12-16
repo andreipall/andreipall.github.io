@@ -95,10 +95,11 @@
 					console.log(album_id);
 				},
 			});
-myRouter = new MyRouter();
+photosRouter = new PhotosRouter();
 
 // start Backbone.history - root is optional
-Backbone.history.start({pushState: true, root: 'my/app'});
+Backbone.history.start({pushState: true});
+//Backbone.history.start({pushState: true, root: 'my/app'});
         </script>
         <!-- Site js -->
         <script src="{{ site.baseurl }}/assets/js/all.js"></script>
