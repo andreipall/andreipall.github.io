@@ -8,7 +8,7 @@
         <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.harmony.meta_description }}{% endif %}">
         <meta name="keywords" content="{% if page.keywords %}{{page.keywords | join: ','}}{% else %}{{ site.harmony.meta_keywords }}{% endif %}" />
         <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
-        <link rel="shortcut icon" href="/assets/img/favicon.ico">
+        <link rel="shortcut icon" href="{{ site.baseurl }}/assets/img/favicon.ico">
         <!-- Harmony styles -->
         <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/assets/css/main.css">
 
@@ -26,7 +26,7 @@
     <body class="{{ site.harmony.basetheme }}">
         <header id="main-header" class="main-header">
             <div class="wc-container">
-                <img id="linux" src="/assets/img/linux.png" />
+                <img id="linux" src="{{ site.baseurl }}/assets/img/linux.png" />
                 <h1 id="site-baseurl"><a href="{{ site.baseurl }}/">{{ site.harmony.name }}</a></h1>
                 <h2 id="site-description">{{ site.harmony.description }}</h2>
                 {% include header-links.html %}                

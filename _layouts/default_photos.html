@@ -8,7 +8,7 @@
         <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.harmony.meta_description }}{% endif %}">
         <meta name="keywords" content="{% if page.keywords %}{{page.keywords | join: ','}}{% else %}{{ site.harmony.meta_keywords }}{% endif %}" />
         <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
-        <link rel="shortcut icon" href="/assets/img/favicon.ico">
+        <link rel="shortcut icon" href="{{ site.baseurl }}/assets/img/favicon.ico">
         <!-- Harmony styles -->
         <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/assets/lightbox2/css/lightbox.min.css">
         <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/assets/css/main.css">
@@ -27,7 +27,7 @@
     <body class="{{ site.harmony.basetheme }}">
         <header id="main-header" class="main-header">
             <div class="wc-container">
-                <img id="linux" src="/assets/img/linux.png" />
+                <img id="linux" src="{{ site.baseurl }}/assets/img/linux.png" />
                 <h1 id="site-baseurl"><a href="{{ site.baseurl }}/">{{ site.harmony.name }}</a></h1>
                 <h2 id="site-description">{{ site.harmony.description }}</h2>
                 {% include header-links.html %}                
@@ -61,55 +61,14 @@
         </script>
         <!-- jQuery -->
         <script src="{{ site.baseurl }}/assets/js/jquery.min.js"></script>
+        <script src="{{ site.baseurl }}/assets/js/underscore-min.js"></script>
+        <script src="{{ site.baseurl }}/assets/js/backbone-min.js"></script>
         <script src="{{ site.baseurl }}/assets/lightbox2/js/lightbox.min.js"></script>
+        <script type="text/javascript">
+          
+        </script>
         <!-- Site js -->
         <script src="{{ site.baseurl }}/assets/js/all.js"></script>
-        <script>
-          function getPage(url) {
-            $("#gallery").html("");
-            $.getJSON(url, function(response) {
-                  $.each(response.data, function(key, imageObj) {
-                      var images = imageObj.images.sort(function(obj1, obj2) {
-	                      return obj2.width - obj1.width;
-                      });
-                      var thumbnail;
-                      $.each(images, function(k, image) {
-                          if(image.width == 300) {
-                              thumbnail = image.source;
-                              return false;
-                          }
-                      });
-                      if (typeof thumbnail === "undefined") {
-                        console.log("Couldn't find thumbnail image with the width 300.");
-                      } else {
-                        $("#gallery").append('<a href="'+images[0].source+'" data-lightbox="gallery"><img src="'+thumbnail+'" /></a>');
-                      }
-                  });
-                  if(response.paging.hasOwnProperty('previous')) {
-                    $("#prev_button").removeClass("disabled");
-                    $("#prev_button").attr("href", "#gallery").click(function(event) {
-                      event.preventDefault();
-                      getPage(response.paging.previous);
-                    });
-                  }
-                  else {
-                    $("#prev_button").addClass("disabled");
-                  }
-                  if(response.paging.hasOwnProperty('next')) {
-                    $("#next_button").removeClass("disabled");
-                    $("#next_button").attr("href", "#gallery").click(function(event) {
-                      event.preventDefault();
-                      getPage(response.paging.next);
-                    });
-                  }
-                  else {
-                    $("#next_button").addClass("disabled");
-                  }
-            });
-          }
-          lightbox.option({
-              'showImageNumberLabel': false
-          });
         <!-- Google analytics  -->
         {% include google-analytics.html %}
         <script id="dsq-count-scr" src="//andreipall.disqus.com/count.js" async></script>
