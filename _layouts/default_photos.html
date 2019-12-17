@@ -108,7 +108,7 @@
 			template: _.template($("#albums-view").html()),
 			initialize: function () {
 			    this.albums = new AlbumList();
-			    this.listenTo(this.albums, 'add', this.render);
+			    //this.listenTo(this.albums, 'add', this.render);
 			    this.albums.fetch();
 			},
 			render: function () {
@@ -135,6 +135,7 @@
 			},
 			photos: function () { 
 				var albumsView = new AlbumsView();
+				albumsView.render();
 			},
 			showAlbum: function (album_id) {
 				console.log(album_id);
