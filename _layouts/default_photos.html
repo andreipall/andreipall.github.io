@@ -108,7 +108,6 @@
 			template: _.template($("#albums-view").html()),
 			initialize: function () {
 			    this.albums = new AlbumList();
-			    //this.listenTo(this.albums, 'add', this.render);
 			    this.listenTo(this.albums, 'reset', this.render);
 			    this.albums.fetch({reset: true});
 			},
@@ -141,7 +140,7 @@
 			showAlbum: function (album_id) {
 				console.log(album_id);
 				var album_photos = new PhotoList();
-			    	album_photos.fetch({data: $.param({ folderId: album_id})});/*.then( function(resp) {// fetch client collection from db
+			    	album_photos.fetch({data: $.param({ folderId: album_id}), reset: true});/*.then( function(resp) {// fetch client collection from db
 				     	console.log(resp);
 					new PhotosView({ collection: resp });
 				});*/
