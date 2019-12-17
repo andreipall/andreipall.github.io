@@ -138,6 +138,9 @@
 			},
 			showAlbum: function (album_id) {
 				console.log(album_id);
+				photos = new PhotoList();
+			    	photos.fetch({data: $.param({ folderId: album_id})});
+				var photosView = new PhotosView({collection: photos});
 			},
 		});
 		photosRouter = new PhotosRouter();
