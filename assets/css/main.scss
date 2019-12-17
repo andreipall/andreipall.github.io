@@ -993,11 +993,13 @@ body.theme-base-01 header.main-header ul li {
 .post-title {
   text-transform: capitalize;
 }
+#albums {
+  text-align: center;
+}
 
 a.album {
   width: 192px;
-  display: block;
-  float: left;
+  display: inline-grid;
   text-align: center;
 }
 
