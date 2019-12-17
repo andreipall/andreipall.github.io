@@ -70,7 +70,7 @@
         <script src="{{ site.baseurl }}/assets/js/backbone-min.js"></script>
         <script src="{{ site.baseurl }}/assets/lightbox2/js/lightbox.min.js"></script>
         <script type="text/javascript">
-          var Album = Backbone.Model.extend({
+          		var Album = Backbone.Model.extend({
 			  defaults: {
 				id: '',
 				folder_name: '',
@@ -83,9 +83,6 @@
 			  model: Album
 			});
 
-			/*var albums = new AlbumList();
-			albums.on('add', function () { console.log(albums.toJSON()); });
-			albums.fetch();*/
 			AlbumsView = Backbone.View.extend({
 				el: '#albums',
 				template: _.template($("#albums-view").html()),
@@ -112,11 +109,11 @@
 					console.log(album_id);
 				},
 			});
-photosRouter = new PhotosRouter();
+			photosRouter = new PhotosRouter();
 
-// start Backbone.history - root is optional
-Backbone.history.start({pushState: true});
-//Backbone.history.start({pushState: true, root: 'my/app'});
+			// start Backbone.history - root is optional
+			Backbone.history.start({pushState: true, root: 'photos-test'});
+			//Backbone.history.start({pushState: true, root: 'my/app'});
         </script>
         <!-- Site js -->
         <script src="{{ site.baseurl }}/assets/js/all.js"></script>
