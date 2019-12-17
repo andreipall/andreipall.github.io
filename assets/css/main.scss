@@ -1024,3 +1024,8 @@ a.album img:hover, #back-button img:hover {
   width: 40px;
   margin-right: -40px;
 }
+.gallery-image {
+  display: inline-block;
+  margin: 10px;
+  border-bottom: 0px solid transparent;
+}
