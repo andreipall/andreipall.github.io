@@ -119,7 +119,8 @@
 		PhotosView = Backbone.View.extend({
 			el: '#albums',
 			template: _.template($("#photos-view").html()),
-			initialize: function () {
+			initialize: function (options) {
+			    this.photos = options.photos;
 			    this.render();
 			},
 			render: function () {
