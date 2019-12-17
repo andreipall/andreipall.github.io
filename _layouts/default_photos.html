@@ -55,7 +55,7 @@
 	</script>
 	<script type="text/template" id="photos-view">
 	    <h1 style="text-align: center;">Photos</h1>	
-	    <% _.each(photos, function(photo) { %>
+	    <% _.each(collection, function(photo) { %>
 		<a href="<%=photo.url%>" data-lightbox="gallery"><img src="<%=photo.url%>" title="<%=photo.file_name%>"></a>
 	    <%});%>
 	</script>
