@@ -1031,11 +1031,12 @@ a.album img:hover, #back-button img:hover {
 }
 .gallery-image {
   display: inline-block;
-  margin: 10px;
+  margin: 8px;
   border-bottom: 0px solid transparent;
+  vertical-align: middle;
 }
 .gallery-image img {
   background: transparent;
-  padding: 8px;
+  padding: 6px;
   border: 1px solid #999999;
 }
