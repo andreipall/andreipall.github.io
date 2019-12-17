@@ -53,6 +53,12 @@
 		<a href="{{ site.baseurl }}/photos-test/#/<%=album.id%>" class="album"><img src="{{ site.baseurl }}/assets/img/album.png"><span class="album-name"><%=album.folder_name%></span></a>
 	    <%});%>
 	</script>
+	<script type="text/template" id="photos-view">
+	    <h1 style="text-align: center;">Photos</h1>	
+	    <% _.each(photos, function(photo) { %>
+		<a href="<%=photo.url%>" data-lightbox="gallery"><img src="<%=photo.url%>" title="<%=photo.file_name%>"></a>
+	    <%});%>
+	</script>
         <script type="text/javascript">
           /* To avoid render blocking css */
           var cb = function() {
@@ -110,19 +116,17 @@
 			    return this;
 			}
 		    });
-		/*PhotosView = Backbone.View.extend({
+		PhotosView = Backbone.View.extend({
 			el: '#albums',
 			template: _.template($("#photos-view").html()),
 			initialize: function () {
-			    this.photos = new PhotoList();
-			    this.listenTo(this.photos, 'add', this.render);
-			    this.photos.fetch();
+			    this.render();
 			},
 			render: function () {
-			    this.$el.html(this.template({ photos: this.photos.toJSON() }));
+			    this.$el.html(this.template({ photos: this.collection.toJSON() }));
 			    return this;
 			}
-		    });*/
+		    });
 
 		PhotosRouter = Backbone.Router.extend({
 			routes: {
