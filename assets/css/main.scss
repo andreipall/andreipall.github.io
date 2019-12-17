@@ -1001,7 +1001,7 @@ a.album {
   text-align: center;
 }
 
-a.album, a.album:hover, a.album:link, a.album:visited, a.album:active, #back-button {
+a.album, a.album:hover, a.album:link, a.album:visited, a.album:active, #back-button, .gallery-image, .gallery-image:hover, .gallery-image:link, .gallery-image:visited, .gallery-image:active {
   border-bottom: 0px solid transparent !important;
 }
 
@@ -1021,11 +1021,19 @@ a.album img:hover, #back-button img:hover {
 }
 #back-button {
   float: left;
-  width: 40px;
-  margin-right: -40px;
+  width: 30px;
+  margin-right: -30px;
+  position: relative;
+  top: -20px;
+  left: 20px;
 }
 .gallery-image {
   display: inline-block;
   margin: 10px;
   border-bottom: 0px solid transparent;
+}
+.gallery-image img {
+  background: transparent;
+  padding: 8px;
+  border: 1px solid #999999;
 }
