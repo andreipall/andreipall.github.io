@@ -48,6 +48,7 @@
             </p>
         </footer>
 	<script type="text/template" id="albums-view">
+	    <h1 style="text-align: center;">Albums</h1>	
 	    <% _.each(albums, function(album) { %>
 		<a href="{{ site.baseurl }}/photos-test/#/<%=album.id%>" class="album"><img src="{{ site.baseurl }}/assets/img/album.png"><span class="album-name"><%=album.folder_name%></span></a>
 	    <%});%>
@@ -70,53 +71,52 @@
         <script src="{{ site.baseurl }}/assets/js/backbone-min.js"></script>
         <script src="{{ site.baseurl }}/assets/lightbox2/js/lightbox.min.js"></script>
         <script type="text/javascript">
-          		var Album = Backbone.Model.extend({
-			  defaults: {
-				id: '',
-				folder_name: '',
-				date_created: ''
-			  }
-			});
+		var Album = Backbone.Model.extend({
+		  defaults: {
+			id: '',
+			folder_name: '',
+			date_created: ''
+		  }
+		});
 
-			var AlbumList = Backbone.Collection.extend({
-			  url: 'https://script.google.com/macros/s/AKfycbxn1GMabSaA5_1ng6bZ24LPOF0h4ECEn3gfTCqGSg/exec',
-			  model: Album,
-			  comparator: function(m) {
-				return -Date.parse(m.get('datestring'));
-			  }
-			});
+		var AlbumList = Backbone.Collection.extend({
+		  url: 'https://script.google.com/macros/s/AKfycbxn1GMabSaA5_1ng6bZ24LPOF0h4ECEn3gfTCqGSg/exec',
+		  model: Album,
+		  comparator: function(m) {
+			return -Date.parse(m.get('datestring'));
+		  }
+		});
 
-			AlbumsView = Backbone.View.extend({
-				el: '#albums',
-				template: _.template($("#albums-view").html()),
-				initialize: function () {
-				    this.albums = new AlbumList();
-				    this.listenTo(this.albums, 'add', this.render);
-				    this.albums.fetch();
-				},
-				render: function () {
-				    this.$el.html(this.template({ albums: this.albums.toJSON() }));
-				    return this;
-				}
-			    });
-			//var albumsView = new AlbumsView();
-			PhotosRouter = Backbone.Router.extend({
-				routes: {
-					':album_id': 'showAlbum',
-					'': 'photos'
-				},
-				photos: function () { 
-					var albumsView = new AlbumsView();
-				},
-				showAlbum: function (album_id) {
-					console.log(album_id);
-				},
-			});
-			photosRouter = new PhotosRouter();
+		AlbumsView = Backbone.View.extend({
+			el: '#albums',
+			template: _.template($("#albums-view").html()),
+			initialize: function () {
+			    this.albums = new AlbumList();
+			    this.listenTo(this.albums, 'add', this.render);
+			    this.albums.fetch();
+			},
+			render: function () {
+			    this.$el.html(this.template({ albums: this.albums.toJSON() }));
+			    return this;
+			}
+		    });
 
-			// start Backbone.history - root is optional
-			Backbone.history.start({pushState: true, root: 'photos-test'});
-			//Backbone.history.start({pushState: true, root: 'my/app'});
+		PhotosRouter = Backbone.Router.extend({
+			routes: {
+				':album_id': 'showAlbum',
+				'': 'photos'
+			},
+			photos: function () { 
+				var albumsView = new AlbumsView();
+			},
+			showAlbum: function (album_id) {
+				console.log(album_id);
+			},
+		});
+		photosRouter = new PhotosRouter();
+
+		// start Backbone.history - root is optional
+		Backbone.history.start({pushState: true, root: 'photos-test'});
         </script>
         <!-- Site js -->
         <script src="{{ site.baseurl }}/assets/js/all.js"></script>
