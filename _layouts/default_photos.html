@@ -55,7 +55,7 @@
 	</script>
 	<script type="text/template" id="photos-view">
 	    <h1 style="text-align: center;">Photos</h1>	
-	    <% _.each(photos, function(photo) { %>
+	    <% _.each(album_photos, function(photo) { %>
 		<a href="<%=photo.url%>" data-lightbox="gallery"><img src="<%=photo.url%>" title="<%=photo.file_name%>"></a>
 	    <%});%>
 	</script>
@@ -120,11 +120,11 @@
 			el: '#albums',
 			template: _.template($("#photos-view").html()),
 			initialize: function (options) {
-			    this.photos = options.photos;
+			    this.album_photos = options.album_photos;
 			    this.render();
 			},
 			render: function () {
-			    this.$el.html(this.template({ photos: this.photos.toJSON() }));
+			    this.$el.html(this.template({ album_photos: this.album_photos.toJSON() }));
 			    return this;
 			}
 		    });
@@ -139,12 +139,12 @@
 			},
 			showAlbum: function (album_id) {
 				console.log(album_id);
-				photos = new PhotoList();
-			    	photos.fetch({data: $.param({ folderId: album_id})});/*.then( function(resp) {// fetch client collection from db
+				var album_photos = new PhotoList();
+			    	album_photos.fetch({data: $.param({ folderId: album_id})});/*.then( function(resp) {// fetch client collection from db
 				     	console.log(resp);
 					new PhotosView({ collection: resp });
 				});*/
-				var photosView = new PhotosView({photos: photos});
+				var photosView = new PhotosView({album_photos: album_photos});
 			},
 		});
 		photosRouter = new PhotosRouter();
