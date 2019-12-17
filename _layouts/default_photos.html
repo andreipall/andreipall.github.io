@@ -80,7 +80,10 @@
 
 			var AlbumList = Backbone.Collection.extend({
 			  url: 'https://script.google.com/macros/s/AKfycbxn1GMabSaA5_1ng6bZ24LPOF0h4ECEn3gfTCqGSg/exec',
-			  model: Album
+			  model: Album,
+			  comparator: function(m) {
+				return -m.get('date_created').getTime();
+			  }
 			});
 
 			AlbumsView = Backbone.View.extend({
