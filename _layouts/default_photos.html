@@ -56,7 +56,7 @@
 	<script type="text/template" id="photos-view">
 	    <h1 style="text-align: center;">Photos</h1>	
 	    <% _.each(collection, function(photo) { %>
-		<a href="<%=photo.url%>" data-lightbox="gallery"><img src="<%=photo.url%>" title="<%=photo.file_name%>"></a>
+		<a href="<%=photo.get('url')%>" data-lightbox="gallery"><img src="<%=photo.get('url')%>" title="<%=photo.get('file_name')%>"></a>
 	    <%});%>
 	</script>
         <script type="text/javascript">
@@ -140,7 +140,8 @@
 				console.log(album_id);
 				photos = new PhotoList();
 			    	photos.fetch({data: $.param({ folderId: album_id})}).then( function(resp) {// fetch client collection from db
-				     new PhotosView({ collection: resp.data });
+				     	console.log(resp);
+					new PhotosView({ collection: resp.data });
 				});
 				//var photosView = new PhotosView({photos: photos});
 			},
