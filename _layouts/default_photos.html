@@ -54,6 +54,7 @@
 	    <%});%>
 	</script>
 	<script type="text/template" id="photos-view">
+		<a href="{{ site.baseurl }}/photos-test/#/" id="back-button"><img src="{{ site.baseurl }}/assets/img/back.png"></a>
 	    <h1 style="text-align: center;">Photos</h1>	
 	    <% _.each(album_photos, function(photo) { %>
 		<a href="<%=photo.url%>" data-lightbox="gallery"><img src="<%=photo.url%>" title="<%=photo.file_name%>"></a>
@@ -138,17 +139,14 @@
 			},
 			photos: function () { 
 				var albumsView = new AlbumsView();
-				albumsView.render();
+				//albumsView.render();
 			},
 			showAlbum: function (album_id) {
 				console.log(album_id);
 				var album_photos = new PhotoList();
-			    	album_photos.fetch({data: $.param({ folderId: album_id}), reset: true});/*.then( function(resp) {// fetch client collection from db
-				     	console.log(resp);
-					new PhotosView({ collection: resp });
-				});*/
+			    	album_photos.fetch({data: $.param({ folderId: album_id}), reset: true});
 				var photosView = new PhotosView({album_photos: album_photos, reset: true});
-				photosView.render();
+				//photosView.render();
 			},
 		});
 		photosRouter = new PhotosRouter();
