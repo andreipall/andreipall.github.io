@@ -119,8 +119,11 @@
 		PhotosView = Backbone.View.extend({
 			el: '#albums',
 			template: _.template($("#photos-view").html()),
-			initialize: function () {
-			    this.render();
+			initialize: function (options) {
+				// ensure that the 'options' is a hash to avoid errors if undefined.
+				options = options || {};
+				this.album_photos = options.album_photos;
+				this.listenTo(this.album_photos, 'reset', this.render);
 			},
 			render: function () {
 			    this.$el.html(this.template({ album_photos: this.album_photos.toJSON() }));
@@ -144,7 +147,8 @@
 				     	console.log(resp);
 					new PhotosView({ collection: resp });
 				});*/
-				var photosView = new PhotosView({album_photos: album_photos});
+				var photosView = new PhotosView({album_photos: album_photos, reset: true});
+				photosView.render();
 			},
 		});
 		photosRouter = new PhotosRouter();
