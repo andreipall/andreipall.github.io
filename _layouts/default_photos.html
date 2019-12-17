@@ -96,14 +96,14 @@
 				    return this;
 				}
 			    });
-			var albumsView = new AlbumsView();
+			//var albumsView = new AlbumsView();
 			PhotosRouter = Backbone.Router.extend({
 				routes: {
 					':album_id': 'showAlbum',
 					'': 'photos'
 				},
 				photos: function () { 
-
+					var albumsView = new AlbumsView();
 				},
 				showAlbum: function (album_id) {
 					console.log(album_id);
