@@ -141,7 +141,7 @@
 				photos = new PhotoList();
 			    	photos.fetch({data: $.param({ folderId: album_id})}).then( function(resp) {// fetch client collection from db
 				     	console.log(resp);
-					new PhotosView({ collection: resp.data });
+					new PhotosView({ collection: resp });
 				});
 				//var photosView = new PhotosView({photos: photos});
 			},
