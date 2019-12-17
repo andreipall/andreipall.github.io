@@ -109,6 +109,7 @@
 			initialize: function () {
 			    this.albums = new AlbumList();
 			    //this.listenTo(this.albums, 'add', this.render);
+			    this.listenTo(this.albums, 'reset', this.render);
 			    this.albums.fetch({reset: true});
 			},
 			render: function () {
