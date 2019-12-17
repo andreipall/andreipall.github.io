@@ -71,6 +71,16 @@
         <script src="{{ site.baseurl }}/assets/js/backbone-min.js"></script>
         <script src="{{ site.baseurl }}/assets/lightbox2/js/lightbox.min.js"></script>
         <script type="text/javascript">
+		var Photo = Backbone.Model.extend({
+		  defaults: {
+			file_name: '',
+			url: ''
+		  }
+		});
+		var PhotoList = Backbone.Collection.extend({
+		  url: 'https://script.google.com/macros/s/AKfycbx2vWMCpxhnvhZ8tURbAAVgX5GZ6h5vLj7QZxUQOw/exec',
+		  model: Photo
+		});
 		var Album = Backbone.Model.extend({
 		  defaults: {
 			id: '',
@@ -97,6 +107,19 @@
 			},
 			render: function () {
 			    this.$el.html(this.template({ albums: this.albums.toJSON() }));
+			    return this;
+			}
+		    });
+		PhotosView = Backbone.View.extend({
+			el: '#albums',
+			template: _.template($("#photos-view").html()),
+			initialize: function () {
+			    this.photos = new PhotoList();
+			    this.listenTo(this.photos, 'add', this.render);
+			    this.photos.fetch();
+			},
+			render: function () {
+			    this.$el.html(this.template({ photos: this.photos.toJSON() }));
 			    return this;
 			}
 		    });
