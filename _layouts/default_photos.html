@@ -123,7 +123,7 @@
 			    this.render();
 			},
 			render: function () {
-			    this.$el.html(this.template({ photos: this.collection.toJSON() }));
+			    this.$el.html(this.template({ photos: this.model.toJSON() }));
 			    return this;
 			}
 		    });
