@@ -109,7 +109,7 @@
 			initialize: function () {
 			    this.albums = new AlbumList();
 			    //this.listenTo(this.albums, 'add', this.render);
-			    this.albums.fetch();
+			    this.albums.fetch({reset: true});
 			},
 			render: function () {
 			    this.$el.html(this.template({ albums: this.albums.toJSON() }));
