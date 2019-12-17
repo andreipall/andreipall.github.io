@@ -1001,8 +1001,8 @@ a.album {
   text-align: center;
 }
 
-a.album, a.album:hover {
-  border-bottom: 0px solid transparent;
+a.album, a.album:hover, a.album:link, a.album:visited, a.album:active {
+  border-bottom: 0px solid transparent !important;
 }
 
 a.album span {
