@@ -1001,7 +1001,7 @@ a.album {
   text-align: center;
 }
 
-a.album, a.album:hover, a.album:link, a.album:visited, a.album:active {
+a.album, a.album:hover, a.album:link, a.album:visited, a.album:active, #back-button {
   border-bottom: 0px solid transparent !important;
 }
 
@@ -1015,8 +1015,12 @@ a.album img {
   margin: auto;
 }
 
-a.album img:hover {
+a.album img:hover, #back-button img:hover {
   opacity: 0.8;
   filter: alpha(opacity=80); /* For IE8 and earlier */
 }
-
+#back-button {
+  float: left;
+  width: 40px;
+  margin-right: -40px;
+}

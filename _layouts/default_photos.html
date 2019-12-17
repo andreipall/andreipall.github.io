@@ -57,7 +57,7 @@
 		<a href="{{ site.baseurl }}/photos-test/#/" id="back-button"><img src="{{ site.baseurl }}/assets/img/back.png"></a>
 	    <h1 style="text-align: center;">Photos</h1>	
 	    <% _.each(album_photos, function(photo) { %>
-		<a href="<%=photo.thumbnail_url%>" data-lightbox="gallery"><img src="<%=photo.url%>" title="<%=photo.file_name%>"></a>
+		<a href="<%=photo.url%>" data-lightbox="gallery"><img src="<%=photo.thumbnail_url%>" title="<%=photo.file_name%>"></a>
 	    <%});%>
 	</script>
         <script type="text/javascript">
