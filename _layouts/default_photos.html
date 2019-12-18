@@ -139,21 +139,18 @@
 				'': 'photos'
 			},
 			photos: function () { 
-				var albumsView = new AlbumsView();
-				//albumsView.render();
+				new AlbumsView();
 			},
 			showAlbum: function (album_id) {
 				console.log(album_id);
 				var album_photos = new PhotoList();
 			    	album_photos.fetch({data: $.param({ folderId: album_id}), reset: true});
-				var photosView = new PhotosView({album_photos: album_photos, reset: true});
-				//photosView.render();
+				new PhotosView({album_photos: album_photos, reset: true});
 			},
 		});
 		photosRouter = new PhotosRouter();
 
 		// start Backbone.history - root is optional
-		//Backbone.history.start({pushState: true, root: 'photos'});
 		Backbone.history.start({root: 'photos'});
         </script>
         <!-- Site js -->
