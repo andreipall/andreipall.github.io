@@ -50,11 +50,11 @@
 	<script type="text/template" id="albums-view">
 	    <h1 style="text-align: center;">Albums</h1>	
 	    <% _.each(albums, function(album) { %>
-		<a href="{{ site.baseurl }}/photos-test/#/<%=album.id%>" class="album"><img src="{{ site.baseurl }}/assets/img/album.png"><span class="album-name"><%=album.folder_name%></span></a>
+		<a href="{{ site.baseurl }}/photos/#/<%=album.id%>" class="album"><img src="{{ site.baseurl }}/assets/img/album.png"><span class="album-name"><%=album.folder_name%></span></a>
 	    <%});%>
 	</script>
 	<script type="text/template" id="photos-view">
-		<a href="{{ site.baseurl }}/photos-test/#/" id="back-button" title="Back"><img src="{{ site.baseurl }}/assets/img/back.png"></a>
+		<a href="{{ site.baseurl }}/photos/#/" id="back-button" title="Back"><img src="{{ site.baseurl }}/assets/img/back.png"></a>
 	    <h1 style="text-align: center;">Photos</h1>	
 	    <% _.each(album_photos, function(photo) { %>
 		<a href="<%=photo.url%>" data-lightbox="gallery" class="gallery-image"><img src="<%=photo.thumbnail_url%>" title="<%=photo.file_name%>"></a>
@@ -153,7 +153,7 @@
 		photosRouter = new PhotosRouter();
 
 		// start Backbone.history - root is optional
-		Backbone.history.start({pushState: true, root: 'photos-test'});
+		Backbone.history.start({pushState: true, root: 'photos'});
         </script>
         <!-- Site js -->
         <script src="{{ site.baseurl }}/assets/js/all.js"></script>
