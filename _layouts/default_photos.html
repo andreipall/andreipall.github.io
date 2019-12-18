@@ -153,7 +153,8 @@
 		photosRouter = new PhotosRouter();
 
 		// start Backbone.history - root is optional
-		Backbone.history.start({pushState: true, root: 'photos'});
+		//Backbone.history.start({pushState: true, root: 'photos'});
+		Backbone.history.start({root: 'photos'});
         </script>
         <!-- Site js -->
         <script src="{{ site.baseurl }}/assets/js/all.js"></script>
