@@ -1028,6 +1028,7 @@ a.album img:hover, #back-button img:hover {
   position: relative;
   top: -20px;
   left: 20px;
+  z-index: -1;
 }
 .gallery-image {
   display: inline-block;
