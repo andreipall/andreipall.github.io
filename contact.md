@@ -14,18 +14,18 @@ permalink: /contact/
   <iframe id="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1394.4661106033652!2d25.614286658279134!3d45.65218286967391!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b35c78551ae2dd%3A0x61ccb06b9fd42cdc!2sStrada+Toamnei+20%2C+Bra%C8%99ov!5e0!3m2!1sro!2sro!4v1493644395397" width="500" height="300" frameborder="0"></iframe>
   <br style="clear: both;" />
   <div id="contact-form">
-	  <form action="https://formspree.io/xwkpwnpa" method="POST">
+	  <form action="https://docs.google.com/forms/d/e/1FAIpQLScZEhTEFJ3z81FhHejJyLXAm7QdsdIJv5l1wSbGZY9RyqfFxw/formResponse" method="POST">
 		<div class="row">
 			<div class="col-25"><label for="name">Your name:</label></div>
-			<div class="col-75"><input type="text" name="name" id="name" placeholder="Name" required></div>
+			<div class="col-75"><input type="text" name="entry.454701732" id="name" placeholder="Name" required></div>
 		</div>
 		<div class="row">
 		  <div class="col-25"><label for="email">Your e-mail:</label></div>
-		  <div class="col-75"><input type="email" name="_replyto" id="email" placeholder="E-mail" required></div>
+		  <div class="col-75"><input type="email" name="entry.373221922" id="email" placeholder="E-mail" required></div>
 		</div>
 		<div class="row">
 		  <div class="col-25"><label for="message">Your message:</label></div>
-		  <div class="col-75"><textarea name="message" id="message" style="height:200px" placeholder="Message" required></textarea></div>
+		  <div class="col-75"><textarea name="entry.596938251" id="message" style="height:200px" placeholder="Message" required></textarea></div>
 		</div>
 		<div class="row">
 		  <input type="submit" value="Send">
