@@ -811,6 +811,7 @@ div.page-content  ul.portfolio li {
 #main-header {
   position: fixed;
   width: 100%;
+  z-index: 5;
 }
 .page-content > div:first-of-type {
   margin-top: 200px;
@@ -1028,7 +1029,7 @@ a.album img:hover, #back-button img:hover {
   position: relative;
   top: -20px;
   left: 20px;
-  z-index: -1;
+  z-index: 1;
 }
 .gallery-image {
   display: inline-block;
