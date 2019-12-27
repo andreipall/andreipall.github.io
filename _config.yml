@@ -4,9 +4,6 @@
 # baseurl: /harmony
 
 # Site live URL
-# url: http://gayan.me
-
-# Localhost 
 url: https://andreipall.github.io  
 
 # Harmony theme configuration. Please change accordingly.
