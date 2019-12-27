@@ -6,10 +6,10 @@ title: Blog archive
   <div>
   <h1>Blog Archive</h1>  
   {% for post in site.posts %}
-    {% if post.categories contains 'portfolio' %}{% continue %}{% endif %}
   	{% capture currentyear %}{{post.date | date: "%Y"}}{% endcapture %}
   	{% if currentyear != year %}
     	{% unless forloop.first %}</ul>{% endunless %}
+            {% if post.categories contains 'portfolio' %}{% continue %}{% endif %}
     		<h5>{{ currentyear }}</h5>
     		<ul class="posts">
     		{% capture year %}{{currentyear}}{% endcapture %} 
