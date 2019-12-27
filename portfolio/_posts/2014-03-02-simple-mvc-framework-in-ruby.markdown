@@ -2,7 +2,6 @@
 layout: post
 title:  "Simple MVC framework in Ruby TEST"
 date:   2014-03-02 17:46:56
-categories: Ruby
 description: Simple MVC framework in Ruby
 keywords: [Andrei Pall, blog, gem, mvc, ruby, framework]
 excerpt: Model–view–controller (MVC) is a software architectural pattern for implementing user interfaces. It divides a given software application into three interconnected parts, so as to separate internal representations of information from the ways that information is presented to or accepted from the user.
