@@ -9,7 +9,6 @@ title: Blog archive
   	{% capture currentyear %}{{post.date | date: "%Y"}}{% endcapture %}
   	{% if currentyear != year %}
     	{% unless forloop.first %}</ul>{% endunless %}
-            {% if post.categories contains 'portfolio' %}{% continue %}{% endif %}
     		<h5>{{ currentyear }}</h5>
     		<ul class="posts">
     		{% capture year %}{{currentyear}}{% endcapture %} 
