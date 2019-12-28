@@ -5,7 +5,7 @@ layout: default
 <div class="page-content wc-container">
 	
 	<div class="post">
-		<div style="width: 80%; float: left;">
+		<div>
 		<h1 class="post-title">{{ page.title }}</h1>
 		<p class="post-meta">
 			{% if (page.categories.size > 0 %}
@@ -18,29 +18,9 @@ layout: default
 	    </span>
 		</p>
 		</div>
-		{% if (page.categories.size > 0 %}
-		<div style="width: 20%; float: right;">
-			<img src="/assets/img/categories/{{ page.categories | array_to_sentence_string | downcase }}.png" style="background: transparent; padding: 8px; border: 1px solid #999999;" />
-		</div>
-		<div style="clear: both;"></div>
-		{% endif %}	
 		<div class="post">
 			{{ content }}
 		</div>
 	</div>
-    <div id="disqus_thread"></div>
-    <script>
-    var disqus_config = function () {
-    this.page.url = "{{site.url}}{{page.url}}";
-    this.page.identifier = "{{page.id}}";
-    };
-    (function() { // DON'T EDIT BELOW THIS LINE
-    var d = document, s = d.createElement('script');
-    s.src = 'https://andreipall.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-    })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
  
