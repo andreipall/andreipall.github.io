@@ -45,6 +45,9 @@ highlighter: rouge
 
 # Permalinks
 permalink: /:categories/:title/
+collections:
+  portfolio:
+    output: true
 
 exclude: 
   - CNAME
