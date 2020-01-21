@@ -1045,10 +1045,13 @@ a.album img:hover, #back-button img:hover {
 html { 
   scrollbar-color: #da4939 #ffe6e6; 
   overflow-y: scroll; 
-} 
-body::-webkit-scrollbar-track {
+}
+::-webkit-scrollbar {
+  width: 14px;
+}
+::-webkit-scrollbar-track {
   background: #ffe6e6;
 }
-body::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   background-color: #da4939;
 }
