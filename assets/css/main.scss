@@ -1043,7 +1043,7 @@ a.album img:hover, #back-button img:hover {
   border: 1px solid #999999;
 }
 html { 
-  scrollbar-color: #da4939 #ffe6e6; 
+  scrollbar-color: red #ffe6e6; 
   overflow-y: scroll; 
 }
 ::-webkit-scrollbar {
@@ -1053,5 +1053,5 @@ html {
   background: #ffe6e6;
 }
 ::-webkit-scrollbar-thumb {
-  background-color: #da4939;
+  background-color: red;
 }
