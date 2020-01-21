@@ -1042,14 +1042,3 @@ a.album img:hover, #back-button img:hover {
   padding: 6px !important;
   border: 1px solid #999999;
 }
-body {
-  scrollbar-color: #da4939 #ffe6e6;
-}
-body::-webkit-scrollbar-track {
-  background: #ffe6e6;
-}
-body::-webkit-scrollbar-thumb {
-  background-color: #da4939;
-  border-radius: 6px;
-  border: 3px solid #ffe6e6;
-}
