@@ -24,6 +24,16 @@
         <![endif]-->        
     </head>
     <body class="{{ site.harmony.basetheme }}">
+        <svg id="gradient-rotate" preserveAspectRatio="none" viewBox="0 0 500 500">
+            <defs>
+              <linearGradient x1="0%" y1="0%" y2="100%" id="a">
+                <stop id="color-stop-1" stop-color="#22C8F6" offset="0%"></stop>
+                <stop id="color-stop-2" stop-color="#20C498" offset="65%"></stop>
+                <stop id="color-stop-3" stop-color="#189932" offset="100%"></stop>
+              </linearGradient>
+            </defs>
+            <path fill="url(#a)" d="M0 0h500v500H0z"></path>
+        </svg>
         <header id="main-header" class="main-header">
             <div class="wc-container">
                 <img id="linux" src="{{ site.baseurl }}/assets/img/linux.png" />
@@ -60,6 +70,7 @@
         </script>
         <!-- jQuery -->
         <script src="{{ site.baseurl }}/assets/js/jquery.min.js"></script>
+        <script src="{{ site.baseurl }}/assets/js/trianglify.min.js"></script>
         <!-- Site js -->
         <script src="{{ site.baseurl }}/assets/js/all.js"></script>
         <!-- Google analytics  -->
