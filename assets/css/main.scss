@@ -1060,22 +1060,24 @@ html {
 }
 
 #gradient-rotate {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
+  z-index: -5;
 }
 #trianglify-overlay {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
+  z-index: -5;
 }
 #color-stop-1 {
   -webkit-animation: change-color-1 12s ease-in-out infinite alternate;
