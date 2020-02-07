@@ -15,8 +15,4 @@ I am passionate about software development in all it’s forms and I like helpin
 
 ### Contact me
 
-If you have projects for me you can find me on [LinkedIn][linkedin] / [Facebook][facebook] or just say `Hello` at <a href="mailto:andreipall@yahoo.com">andreipall@yahoo.com</a>.
-
-[linkedin]: https://www.linkedin.com/pub/pall-andrei/38/37b/232
-[facebook]: https://www.facebook.com/andreipall
-
+If you have Spring Boot projects that need to be changed or fixed don't hesitate to contact me at <a href="mailto:andreipall3@gmail.com">andreipall3@gmail.com</a>.
