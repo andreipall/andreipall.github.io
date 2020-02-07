@@ -1047,6 +1047,8 @@ a.album img:hover, #back-button img:hover {
   border: 1px solid #999999;
 }
 video {
+  width: 100%;
+  max-height: 100%;
   max-width: 768px;
 }
 html { 
