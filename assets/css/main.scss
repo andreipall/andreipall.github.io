@@ -1046,6 +1046,9 @@ a.album img:hover, #back-button img:hover {
   padding: 6px !important;
   border: 1px solid #999999;
 }
+video {
+  max-width: 768px;
+}
 html { 
   scrollbar-color: red #ffe6e6; 
   overflow-y: scroll; 
