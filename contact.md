@@ -18,15 +18,15 @@ permalink: /contact/
 	  <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) {window.location='{{ site.baseurl }}/thank-you';}"></iframe>
 	  <form action="https://docs.google.com/forms/d/e/1FAIpQLScZEhTEFJ3z81FhHejJyLXAm7QdsdIJv5l1wSbGZY9RyqfFxw/formResponse" method="POST" target="hidden_iframe" onsubmit="submitted=true;">
 		<div class="row">
-			<div class="col-25"><label for="name">Your name:</label></div>
+			<div class="col-25"><label for="name">Your Name:</label></div>
 			<div class="col-75"><input type="text" name="entry.454701732" id="name" placeholder="Name" required></div>
 		</div>
 		<div class="row">
-		  <div class="col-25"><label for="email">Your e-mail:</label></div>
+		  <div class="col-25"><label for="email">Your E-mail:</label></div>
 		  <div class="col-75"><input type="email" name="entry.373221922" id="email" placeholder="E-mail" required></div>
 		</div>
 		<div class="row">
-		  <div class="col-25"><label for="message">Your message:</label></div>
+		  <div class="col-25"><label for="message">Your Message:</label></div>
 		  <div class="col-75"><textarea name="entry.596938251" id="message" style="height:200px" placeholder="Message" required></textarea></div>
 		</div>
 		<div class="row">
