@@ -12,16 +12,7 @@ title: Recipes
 			            {{ post.title }}
 			          </a>
         			</h3>
-                  </div> 
-                <div><a href="{{ post.url | prepend: site.url }}"><img src="/assets/img/recipes/{{ post.image }}" /></a></div>    			
-  				<p>
-	  				{{ post.excerpt }}	
-  				</p>
-  				<p>
-  					<a href="{{ post.url | prepend: site.url }}" title="{{ post.title}}">
-  						Read More - {{ post.title}}
-					</a>
-  				</p>
+                  		</div>    			
   			</div>
   		{% endfor %}
 	</div>
