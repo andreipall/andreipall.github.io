@@ -48,6 +48,8 @@ permalink: /:categories/:title/
 collections:
   portfolio:
     output: true
+  recipes:
+    output: true
 
 exclude: 
   - CNAME
