@@ -5,11 +5,11 @@ title: Housework
 <div id="home" class="page-content wc-container">
 	<div class="posts">
 		<h3>Recipes</h3>
+		<ul>
   		{% for post in site.recipes %}
-		  <a href="{{ post.url | prepend: site.url }}">
-		    {{ post.title }}
-		  </a>
+		  <li><a href="{{ post.url | prepend: site.url }}">{{ post.title }}</a></li>
   		{% endfor %}
+		</ul>
         <h3>Party</h3>
         <a href="{{ '/party' | prepend: site.url }}">Songs</a>
 	</div>
