@@ -3,8 +3,8 @@ layout: page
 title: Contact
 permalink: /contact/
 ---
+<img id="food-and-clotes" src="/assets/img/wallet.svg" />
 <div class="content">
-  <img id="food" src="/assets/img/wallet.svg" />
   <address id="address">
     <p><strong>Name:</strong> <strong style="color: #da4939;">Andrei Pall</strong></p>
     <p><strong>Address:</strong> Str. Toamnei Nr. 20 Bl. 2 Sc. B Ap. 23, Brasov, Romania</p>
