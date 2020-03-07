@@ -58,7 +58,7 @@
             </p>
         </footer>
 	<script type="text/template" id="albums-view">
-	    <h1 style="text-align: center;">Albums</h1>	
+	    <h1 style="text-align: center;">Photo Albums</h1>	
 	    <% _.each(albums, function(album) { %>
 		<a href="{{ site.baseurl }}/photos/#/<%=album.id%>" class="album"><img src="{{ site.baseurl }}/assets/img/album.png"><span class="album-name"><%=album.folder_name%></span></a>
 	    <%});%>
