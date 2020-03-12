@@ -1156,11 +1156,13 @@ html {
     width: 200px;
     margin: 0 auto;
 }
-#food-and-clothes {
+#food-and-clothes, #where-you-are {
     width: 100px;
     margin: 0 auto;
 }
-#where-you-are {
-    width: 100px;
+#pregnant-woman {
+    background: transparent;
+    padding: 8px;
+    border: 1px solid #999999;
     margin: 0 auto;
 }
