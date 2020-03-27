@@ -1152,6 +1152,9 @@ html {
     stop-color: #ff46dc
   }
 }
+#house {
+    margin: 0 auto;
+}
 #food {
     width: 200px;
     margin: 0 auto;
@@ -1160,7 +1163,7 @@ html {
     width: 100px;
     margin: 0 auto;
 }
-#pregnant-woman {
+#pregnant-woman, #house {
     background: transparent;
     padding: 8px;
     border: 1px solid #999999;
