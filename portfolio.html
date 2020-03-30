@@ -3,9 +3,9 @@ layout: default
 title: Portfolio
 ---
 <div id="home" class="page-content wc-container">
-	<img src="/assets/img/29889.png" />
 	<div class="posts">
   		{% for post in site.portfolio %}
+		<img src="/assets/img/29889.png" />
   			<div class="post">
 				<div>
         			<h3 class="post-title">
@@ -13,7 +13,7 @@ title: Portfolio
 			            {{ post.title }}
 			          </a>
         			</h3>
-                  </div> 
+                        </div> 
                 <div><a href="{{ post.url | prepend: site.url }}"><img src="/assets/img/portfolio/{{ post.image }}" /></a></div>    			
   				<p>
 	  				{{ post.excerpt }}	
