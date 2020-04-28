@@ -15,6 +15,8 @@ I am currently employed at <a href="https://www.icore.ro" target="_blank">iCore 
 
 I am passionate about software development in all it’s forms and I like helping businesses and artists build and improve their online presence. Aside from web development, I enjoy spending my time reading books, playing chess and traveling around the world.
 
+<img src="/assets/img/lion.jpg" title="Lion" />
+
 ### Contact me
 
 If you have Spring Boot projects that need to be changed or fixed don't hesitate to contact me at <a href="mailto:andreipall3@gmail.com">andreipall3@gmail.com</a>.
