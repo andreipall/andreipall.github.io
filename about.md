@@ -3,8 +3,8 @@ layout: page
 title: About Me
 permalink: /about/
 ---
-<img src="/assets/img/gold-king-crown.png id="crown-image" title="Crown" />
-                                                                    
+<img src="/assets/img/gold-king-crown.png" id="crown-image" title="Crown" />
+                                                        
 ![Andrei Pall](/assets/img/andrei.jpg){:id="about-image"}
 
 Hello, my name is <strong>Andrei Pall</strong> and I am a web applications developer who lives in Brasov, Romania.
