@@ -272,3 +272,191 @@ excerpt: Database normalization is the process of structuring a relational datab
 </td>
 <td>Tutorial
 </td></tr></tbody></table>
+<p>We assume in this example that each book has only one author.</p>
+<h3>Satisfying 1NF</h3>
+<p>To satisfy 1NF, the values in each column of a table must be atomic. In the initial table, Subject contains a set of subject values, meaning it does not comply.</p>
+<p>One way to achieve the 1NF would be to separate the duplicities into multiple columns using repeating groups 'subject':</p>
+<table>
+<tbody><tr>
+<th><u>Title</u>
+</th>
+<th><u>Format</u>
+</th>
+<th>Author
+</th>
+<th>Author Nationality
+</th>
+<th>Price
+</th>
+<th>Subject 1
+</th>
+<th>Subject 2
+</th>
+<th>Subject 3
+</th>
+<th>Pages
+</th>
+<th>Thickness
+</th>
+<th>Publisher
+</th>
+<th>Publisher country
+</th>
+<th>Genre ID
+</th>
+<th>Genre Name
+</th></tr>
+<tr>
+<td>Beginning MySQL Database Design and Optimization
+</td>
+<td>Hardcover
+</td>
+<td>Chad Russell
+</td>
+<td>American
+</td>
+<td>49.99
+</td>
+<td>MySQL
+</td>
+<td>Database
+</td>
+<td>Design
+</td>
+<td>520
+</td>
+<td>Thick
+</td>
+<td>Apress
+</td>
+<td>USA
+</td>
+<td>1
+</td>
+<td>Tutorial
+</td></tr></tbody></table>
+<p>Although now the table formally complies to the 1NF (is atomic), the problem with this solution is obvious - if a book has more than three subjects, it cannot be added to the database without altering its structure.</p>
+<p>To solve the problem in a more elegant way, it is necessary to identify entities represented in the table and separate them into their own respective tables. In this case, it would result in Book, Subject and Publisher tables:</p>
+<table>
+<caption>Book
+</caption>
+<tbody><tr>
+<th><u>Title</u>
+</th>
+<th><u>Format</u>
+</th>
+<th>Author
+</th>
+<th>Author Nationality
+</th>
+<th>Price
+</th>
+<th>Pages
+</th>
+<th>Thickness
+</th>
+<th><i>Subject ID</i>
+</th>
+<th>Genre Name
+</th>
+<th><i>Publisher ID</i>
+</th></tr>
+<tr>
+<td>Beginning MySQL Database Design and Optimization
+</td>
+<td>Hardcover
+</td>
+<td>Chad Russell
+</td>
+<td>American
+</td>
+<td>49.99
+</td>
+<td>520
+</td>
+<td>Thick
+</td>
+<td>1
+</td>
+<td>Tutorial
+</td>
+<td><i>1</i>
+</td></tr></tbody></table>
+<table>
+<tbody><tr>
+<td>
+<table>
+<caption><b>Subject</b>
+</caption>
+<tbody><tr>
+<th><b><u>Subject ID</u></b>
+</th>
+<th><b>Subject name</b>
+</th></tr>
+<tr>
+<td>1
+</td>
+<td>MySQL
+</td></tr>
+<tr>
+<td>2
+</td>
+<td>Database
+</td></tr>
+<tr>
+<td>3
+</td>
+<td>Design
+</td></tr></tbody></table>
+</td>
+<td>
+<table>
+<caption><b>Publisher</b>
+</caption>
+<tbody><tr>
+<th><b><u>Publisher_ID</u></b>
+</th>
+<th><b>Name</b>
+</th>
+<th><b>Country</b>
+</th></tr>
+<tr>
+<td>1
+</td>
+<td>Apress
+</td>
+<td>USA
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+<p>Simply separating the initial data into multiple tables would break the connection between the data. That means the relationships between the newly introduced tables need to be determined. Notice that the Publisher ID column in the Book's table is a foreign key realizing many-to-one relation between a book and a publisher.</p>
+<p>A book can fit many subjects, as well as a subject may correspond to many books. That means also a many-to-many relationship needs to be defined, achieved by creating a link table:</p>
+<table>
+<tbody><tr>
+<td>
+<table>
+<caption><b>Title - Subject</b>
+</caption>
+<tbody><tr>
+<th><u>Title</u>
+</th>
+<th><i><b>Subject ID</b></i>
+</th></tr>
+<tr>
+<td>Beginning MySQL Database Design and Optimization
+</td>
+<td>1
+</td></tr>
+<tr>
+<td>Beginning MySQL Database Design and Optimization
+</td>
+<td>2
+</td></tr>
+<tr>
+<td>Beginning MySQL Database Design and Optimization
+</td>
+<td>3
+</td></tr></tbody></table>
+<p><br>
+</p>
+</td></tr></tbody></table>
+<p>Instead of one table in unnormalized form, there are now 4 tables conforming to the 1NF.</p>
