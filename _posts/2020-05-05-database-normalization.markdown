@@ -460,3 +460,408 @@ excerpt: Database normalization is the process of structuring a relational datab
 </p>
 </td></tr></tbody></table>
 <p>Instead of one table in unnormalized form, there are now 4 tables conforming to the 1NF.</p>
+<h3>Satisfying 2NF</h3>
+<p>The Book table has one candidate key, the compound key {Title , Format}. Consider the following table fragment:</p>
+<table>
+<caption>Book
+</caption>
+<tbody><tr>
+<th><u>Title</u>
+</th>
+<th><u>Format</u>
+</th>
+<th>Author
+</th>
+<th>Author Nationality
+</th>
+<th>Price
+</th>
+<th>Pages
+</th>
+<th>Thickness
+</th>
+<th>Genre ID
+</th>
+<th>Genre Name
+</th>
+<th><i>Publisher ID</i>
+</th></tr>
+<tr>
+<td>Beginning MySQL Database Design and Optimization
+</td>
+<td>Hardcover
+</td>
+<td>Chad Russell
+</td>
+<td>American
+</td>
+<td>49.99
+</td>
+<td>520
+</td>
+<td>Thick
+</td>
+<td>1
+</td>
+<td>Tutorial
+</td>
+<td><i>1</i>
+</td></tr>
+<tr>
+<td>Beginning MySQL Database Design and Optimization
+</td>
+<td>E-book
+</td>
+<td>Chad Russell
+</td>
+<td>American
+</td>
+<td>22.34
+</td>
+<td>520
+</td>
+<td>Thick
+</td>
+<td>1
+</td>
+<td>Tutorial
+</td>
+<td><i>1</i>
+</td></tr>
+<tr>
+<td>The Relational Model for Database Management: Version 2
+</td>
+<td>E-book
+</td>
+<td>E.F.Codd
+</td>
+<td>British
+</td>
+<td>13.88
+</td>
+<td>538
+</td>
+<td>Thick
+</td>
+<td>2
+</td>
+<td>Popular science
+</td>
+<td><i>2</i>
+</td></tr>
+<tr>
+<td>The Relational Model for Database Management: Version 2
+</td>
+<td>Paperback
+</td>
+<td>E.F.Codd
+</td>
+<td>British
+</td>
+<td>39.99
+</td>
+<td>538
+</td>
+<td>Thick
+</td>
+<td>2
+</td>
+<td>Popular science
+</td>
+<td><i>2</i>
+</td></tr></tbody></table>
+<p>All of the attributes that are not part of the key depend on Title, but only Price also depends on Format. To conform to 2NF and remove duplicities, every non-key attribute must depend on the whole key, not just part of it.</p>
+<p>To normalize this table, make {Title} the (simple) key so that every non-key attribute depends upon the whole key, and remove Price into a separate table so that its dependency on Format can be preserved:</p>
+<table>
+<tbody><tr>
+<td>
+<table>
+<caption>Book
+</caption>
+<tbody><tr>
+<th><u>Title</u>
+</th>
+<th>Author
+</th>
+<th>Author Nationality
+</th>
+<th>Pages
+</th>
+<th>Thickness
+</th>
+<th>Genre ID
+</th>
+<th>Genre Name
+</th>
+<th><i>Publisher ID</i>
+</th></tr>
+<tr>
+<td>Beginning MySQL Database Design and Optimization
+</td>
+<td>Chad Russell
+</td>
+<td>American
+</td>
+<td>520
+</td>
+<td>Thick
+</td>
+<td>1
+</td>
+<td>Tutorial
+</td>
+<td><i>1</i>
+</td></tr>
+<tr>
+<td>The Relational Model for Database Management: Version 2
+</td>
+<td>E.F.Codd
+</td>
+<td>British
+</td>
+<td>538
+</td>
+<td>Thick
+</td>
+<td>2
+</td>
+<td>Popular science
+</td>
+<td><i>2</i>
+</td></tr></tbody></table>
+</td>
+<td>
+<table>
+<caption>Format - Prices
+</caption>
+<tbody><tr>
+<th><u>Title</u>
+</th>
+<th><u>Format</u>
+</th>
+<th>Price
+</th></tr>
+<tr>
+<td>Beginning MySQL Database Design and Optimization
+</td>
+<td>Hardcover
+</td>
+<td>49.99
+</td></tr>
+<tr>
+<td>Beginning MySQL Database Design and Optimization
+</td>
+<td>E-book
+</td>
+<td>22.34
+</td></tr>
+<tr>
+<td>The Relational Model for Database Management: Version 2
+</td>
+<td>E-book
+</td>
+<td>13.88
+</td></tr>
+<tr>
+<td>The Relational Model for Database Management: Version 2
+</td>
+<td>Paperback
+</td>
+<td>39.99
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+<p>Now, the book table conforms to 2NF.</p>
+<h3>Satisfying 3NF</h3>
+<p>A table in third normal form (3NF) is a table in 2NF that has no transitive dependencies. Note the book table with more rows (previously omitted for brevity):</p>
+<table>
+<caption>Book
+</caption>
+<tbody><tr>
+<th><u>Title</u>
+</th>
+<th>Author
+</th>
+<th>Author Nationality
+</th>
+<th>Pages
+</th>
+<th>Thickness
+</th>
+<th>Genre ID
+</th>
+<th>Genre Name
+</th>
+<th><i>Publisher ID</i>
+</th></tr>
+<tr>
+<td>Beginning MySQL Database Design and Optimization
+</td>
+<td>Chad Russell
+</td>
+<td>American
+</td>
+<td>520
+</td>
+<td>Thick
+</td>
+<td>1
+</td>
+<td>Tutorial
+</td>
+<td><i>1</i>
+</td></tr>
+<tr>
+<td>The Relational Model for Database Management: Version 2
+</td>
+<td>E.F.Codd
+</td>
+<td>British
+</td>
+<td>538
+</td>
+<td>Thick
+</td>
+<td>2
+</td>
+<td>Popular science
+</td>
+<td><i>2</i>
+</td></tr>
+<tr>
+<td>Learning SQL
+</td>
+<td>Alan Beaulieu
+</td>
+<td>American
+</td>
+<td>338
+</td>
+<td>Slim
+</td>
+<td>1
+</td>
+<td>Tutorial
+</td>
+<td><i>3</i>
+</td></tr>
+<tr>
+<td>SQL Cookbook
+</td>
+<td>Anthony Molinaro
+</td>
+<td>American
+</td>
+<td>636
+</td>
+<td>Thick
+</td>
+<td>1
+</td>
+<td>Tutorial
+</td>
+<td><i>3</i>
+</td></tr></tbody></table>
+<p>Genre ID and Genre Name both depend upon the primary key {Title}, but they are not independent of one another. The dependency of, say, Genre Name on the primary key can be deduced from the dependency of Genre Name on Genre ID and of Genre ID on the primary key. Since there are more titles than genres, that dependency introduces redundant data into the Book table which can be eliminated by abstracting the dependency of Genre Name on Genre ID into its own table:</p>
+<table>
+<tbody><tr>
+<td>
+<table>
+<caption>Book
+</caption>
+<tbody><tr>
+<th><u>Title</u>
+</th>
+<th>Author
+</th>
+<th>Author Nationality
+</th>
+<th>Pages
+</th>
+<th>Thickness
+</th>
+<th><i>Genre ID</i>
+</th>
+<th><i>Publisher ID</i>
+</th></tr>
+<tr>
+<td>Beginning MySQL Database Design and Optimization
+</td>
+<td>Chad Russell
+</td>
+<td>American
+</td>
+<td>520
+</td>
+<td>Thick
+</td>
+<td><i>1</i>
+</td>
+<td><i>1</i>
+</td></tr>
+<tr>
+<td>The Relational Model for Database Management: Version 2
+</td>
+<td>E.F.Codd
+</td>
+<td>British
+</td>
+<td>538
+</td>
+<td>Thick
+</td>
+<td><i>2</i>
+</td>
+<td><i>2</i>
+</td></tr>
+<tr>
+<td>Learning SQL
+</td>
+<td>Alan Beaulieu
+</td>
+<td>American
+</td>
+<td>338
+</td>
+<td>Slim
+</td>
+<td><i>1</i>
+</td>
+<td><i>3</i>
+</td></tr>
+<tr>
+<td>SQL Cookbook
+</td>
+<td>Anthony Molinaro
+</td>
+<td>American
+</td>
+<td>636
+</td>
+<td>Thick
+</td>
+<td><i>1</i>
+</td>
+<td><i>3</i>
+</td></tr></tbody></table>
+</td>
+<td><br>
+<table>
+<caption>Book Genres
+</caption>
+<tbody><tr>
+<th><u>Genre ID</u>
+</th>
+<th>Genre Name
+</th></tr>
+<tr>
+<td>1
+</td>
+<td>Tutorial
+</td></tr>
+<tr>
+<td>2
+</td>
+<td>Popular science
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+<p>The Book table is now in third normal form. Although tables in 1NF are by definition normalized, "normalized" is commonly used to mean 3NF.</p>
