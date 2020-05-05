@@ -40,7 +40,7 @@ excerpt: Database normalization is the process of structuring a relational datab
 <th scope="col">DKNF</th>
 <th scope="col">6NF</th></tr>
 <tr>
-<td style="text-align:right">Primary key (no duplicate tuples)</td>
+<td style="text-align:right; background-color: #e6e1dc;">Primary key (no duplicate tuples)</td>
 <td style="background: #FFB; color: black; vertical-align: middle; text-align: center;" class="partial table-partial"><img alt="Maybe" src="/assets/img/13px-Yellow_check.svg.png" decoding="async" title="Maybe" data-file-width="600" data-file-height="600" width="13" height="13"></td>
 <td data-sort-value="Yes" style="background: #D2FFD2; color: black; vertical-align: middle; text-align: center;" class="table-yes2"><img alt="Yes" src="/assets/img/13px-Green_check.svg.png" decoding="async" title="Yes" data-file-width="600" data-file-height="600" width="13" height="13"></td>
 <td data-sort-value="Yes" style="background: #D2FFD2; color: black; vertical-align: middle; text-align: center;" class="table-yes2"><img alt="Yes" src="/assets/img/13px-Green_check.svg.png" decoding="async" title="Yes" data-file-width="600" data-file-height="600" width="13" height="13"></td>
@@ -54,7 +54,7 @@ excerpt: Database normalization is the process of structuring a relational datab
 <td data-sort-value="Yes" style="background: #D2FFD2; color: black; vertical-align: middle; text-align: center;" class="table-yes2"><img alt="Yes" src="/assets/img/13px-Green_check.svg.png" decoding="async" title="Yes" data-file-width="600" data-file-height="600" width="13" height="13">
 </td></tr>
 <tr>
-<td style="text-align:right">No repeating groups</td>
+<td style="text-align:right; background-color: #e6e1dc;">No repeating groups</td>
 <td style="background: #FFB; color: black; vertical-align: middle; text-align: center;" class="partial table-partial"><img alt="Maybe" src="/assets/img/13px-Yellow_check.svg.png" decoding="async" title="Maybe" data-file-width="600" data-file-height="600" width="13" height="13"></td>
 <td data-sort-value="Yes" style="background: #D2FFD2; color: black; vertical-align: middle; text-align: center;" class="table-yes2"><img alt="Yes" src="/assets/img/13px-Green_check.svg.png" decoding="async" title="Yes" data-file-width="600" data-file-height="600" width="13" height="13"></td>
 <td data-sort-value="Yes" style="background: #D2FFD2; color: black; vertical-align: middle; text-align: center;" class="table-yes2"><img alt="Yes" src="/assets/img/13px-Green_check.svg.png" decoding="async" title="Yes" data-file-width="600" data-file-height="600" width="13" height="13"></td>
@@ -68,7 +68,7 @@ excerpt: Database normalization is the process of structuring a relational datab
 <td data-sort-value="Yes" style="background: #D2FFD2; color: black; vertical-align: middle; text-align: center;" class="table-yes2"><img alt="Yes" src="/assets/img/13px-Green_check.svg.png" decoding="async" title="Yes" data-file-width="600" data-file-height="600" width="13" height="13">
 </td></tr>
 <tr>
-<td style="text-align:right">Atomic columns (cells have single value)</td>
+<td style="text-align:right; background-color: #e6e1dc;">Atomic columns (cells have single value)</td>
 <td data-sort-value="No" style="background: #FFD2D2; color:black; vertical-align: middle; text-align: center;" class="table-no2"><img alt="No" src="/assets/img/13px-Dark_Red_x.svg.png" decoding="async" title="No" data-file-width="600" data-file-height="600" width="13" height="13"></td>
 <td data-sort-value="Yes" style="background: #D2FFD2; color: black; vertical-align: middle; text-align: center;" class="table-yes2"><img alt="Yes" src="/assets/img/13px-Green_check.svg.png" decoding="async" title="Yes" data-file-width="600" data-file-height="600" width="13" height="13"></td>
 <td data-sort-value="Yes" style="background: #D2FFD2; color: black; vertical-align: middle; text-align: center;" class="table-yes2"><img alt="Yes" src="/assets/img/13px-Green_check.svg.png" decoding="async" title="Yes" data-file-width="600" data-file-height="600" width="13" height="13"></td>
@@ -82,7 +82,7 @@ excerpt: Database normalization is the process of structuring a relational datab
 <td data-sort-value="Yes" style="background: #D2FFD2; color: black; vertical-align: middle; text-align: center;" class="table-yes2"><img alt="Yes" src="/assets/img/13px-Green_check.svg.png" decoding="async" title="Yes" data-file-width="600" data-file-height="600" width="13" height="13">
 </td></tr>
 <tr>
-<td style="text-align:right">No partial dependencies (values depend on the whole of every Candidate key)</td>
+<td style="text-align:right; background-color: #e6e1dc;">No partial dependencies (values depend on the whole of every Candidate key)</td>
 <td data-sort-value="No" style="background: #FFD2D2; color:black; vertical-align: middle; text-align: center;" class="table-no2"><img alt="No" src="/assets/img/13px-Dark_Red_x.svg.png" decoding="async" title="No" data-file-width="600" data-file-height="600" width="13" height="13"></td>
 <td data-sort-value="No" style="background: #FFD2D2; color:black; vertical-align: middle; text-align: center;" class="table-no2"><img alt="No" src="/assets/img/13px-Dark_Red_x.svg.png" decoding="async" title="No" data-file-width="600" data-file-height="600" width="13" height="13"></td>
 <td data-sort-value="Yes" style="background: #D2FFD2; color: black; vertical-align: middle; text-align: center;" class="table-yes2"><img alt="Yes" src="/assets/img/13px-Green_check.svg.png" decoding="async" title="Yes" data-file-width="600" data-file-height="600" width="13" height="13"></td>
@@ -96,7 +96,7 @@ excerpt: Database normalization is the process of structuring a relational datab
 <td data-sort-value="Yes" style="background: #D2FFD2; color: black; vertical-align: middle; text-align: center;" class="table-yes2"><img alt="Yes" src="/assets/img/13px-Green_check.svg.png" decoding="async" title="Yes" data-file-width="600" data-file-height="600" width="13" height="13">
 </td></tr>
 <tr>
-<td style="text-align:right">No transitive dependencies (values depend only on Candidate keys)</td>
+<td style="text-align:right; background-color: #e6e1dc;">No transitive dependencies (values depend only on Candidate keys)</td>
 <td data-sort-value="No" style="background: #FFD2D2; color:black; vertical-align: middle; text-align: center;" class="table-no2"><img alt="No" src="/assets/img/13px-Dark_Red_x.svg.png" decoding="async" title="No" data-file-width="600" data-file-height="600" width="13" height="13"></td>
 <td data-sort-value="No" style="background: #FFD2D2; color:black; vertical-align: middle; text-align: center;" class="table-no2"><img alt="No" src="/assets/img/13px-Dark_Red_x.svg.png" decoding="async" title="No" data-file-width="600" data-file-height="600" width="13" height="13"></td>
 <td data-sort-value="No" style="background: #FFD2D2; color:black; vertical-align: middle; text-align: center;" class="table-no2"><img alt="No" src="/assets/img/13px-Dark_Red_x.svg.png" decoding="async" title="No" data-file-width="600" data-file-height="600" width="13" height="13"></td>
@@ -110,7 +110,7 @@ excerpt: Database normalization is the process of structuring a relational datab
 <td data-sort-value="Yes" style="background: #D2FFD2; color: black; vertical-align: middle; text-align: center;" class="table-yes2"><img alt="Yes" src="/assets/img/13px-Green_check.svg.png" decoding="async" title="Yes" data-file-width="600" data-file-height="600" width="13" height="13">
 </td></tr>
 <tr>
-<td style="text-align:right">Every non-trivial functional dependency involves either a superkey or an elementary key's subkey</td>
+<td style="text-align:right; background-color: #e6e1dc;">Every non-trivial functional dependency involves either a superkey or an elementary key's subkey</td>
 <td data-sort-value="No" style="background: #FFD2D2; color:black; vertical-align: middle; text-align: center;" class="table-no2"><img alt="No" src="/assets/img/13px-Dark_Red_x.svg.png" decoding="async" title="No" data-file-width="600" data-file-height="600" width="13" height="13"></td>
 <td data-sort-value="No" style="background: #FFD2D2; color:black; vertical-align: middle; text-align: center;" class="table-no2"><img alt="No" src="/assets/img/13px-Dark_Red_x.svg.png" decoding="async" title="No" data-file-width="600" data-file-height="600" width="13" height="13"></td>
 <td data-sort-value="No" style="background: #FFD2D2; color:black; vertical-align: middle; text-align: center;" class="table-no2"><img alt="No" src="/assets/img/13px-Dark_Red_x.svg.png" decoding="async" title="No" data-file-width="600" data-file-height="600" width="13" height="13"></td>
@@ -124,7 +124,7 @@ excerpt: Database normalization is the process of structuring a relational datab
 <td data-sort-value="" style="background: #ececec; color: #2C2C2C; vertical-align: middle; text-align: center;" class="table-na">N/A
 </td></tr>
 <tr>
-<td style="text-align:right">No redundancy from any functional dependency</td>
+<td style="text-align:right; background-color: #e6e1dc;">No redundancy from any functional dependency</td>
 <td data-sort-value="No" style="background: #FFD2D2; color:black; vertical-align: middle; text-align: center;" class="table-no2"><img alt="No" src="/assets/img/13px-Dark_Red_x.svg.png" decoding="async" title="No" data-file-width="600" data-file-height="600" width="13" height="13"></td>
 <td data-sort-value="No" style="background: #FFD2D2; color:black; vertical-align: middle; text-align: center;" class="table-no2"><img alt="No" src="/assets/img/13px-Dark_Red_x.svg.png" decoding="async" title="No" data-file-width="600" data-file-height="600" width="13" height="13"></td>
 <td data-sort-value="No" style="background: #FFD2D2; color:black; vertical-align: middle; text-align: center;" class="table-no2"><img alt="No" src="/assets/img/13px-Dark_Red_x.svg.png" decoding="async" title="No" data-file-width="600" data-file-height="600" width="13" height="13"></td>
@@ -138,7 +138,7 @@ excerpt: Database normalization is the process of structuring a relational datab
 <td data-sort-value="" style="background: #ececec; color: #2C2C2C; vertical-align: middle; text-align: center;" class="table-na">N/A
 </td></tr>
 <tr>
-<td style="text-align:right">Every non-trivial, multi-value dependency has a superkey</td>
+<td style="text-align:right; background-color: #e6e1dc;">Every non-trivial, multi-value dependency has a superkey</td>
 <td data-sort-value="No" style="background: #FFD2D2; color:black; vertical-align: middle; text-align: center;" class="table-no2"><img alt="No" src="/assets/img/13px-Dark_Red_x.svg.png" decoding="async" title="No" data-file-width="600" data-file-height="600" width="13" height="13"></td>
 <td data-sort-value="No" style="background: #FFD2D2; color:black; vertical-align: middle; text-align: center;" class="table-no2"><img alt="No" src="/assets/img/13px-Dark_Red_x.svg.png" decoding="async" title="No" data-file-width="600" data-file-height="600" width="13" height="13"></td>
 <td data-sort-value="No" style="background: #FFD2D2; color:black; vertical-align: middle; text-align: center;" class="table-no2"><img alt="No" src="/assets/img/13px-Dark_Red_x.svg.png" decoding="async" title="No" data-file-width="600" data-file-height="600" width="13" height="13"></td>
@@ -152,7 +152,7 @@ excerpt: Database normalization is the process of structuring a relational datab
 <td data-sort-value="" style="background: #ececec; color: #2C2C2C; vertical-align: middle; text-align: center;" class="table-na">N/A
 </td></tr>
 <tr>
-<td style="text-align:right">A component of every explicit join dependency is a superkey</td>
+<td style="text-align:right; background-color: #e6e1dc;">A component of every explicit join dependency is a superkey</td>
 <td data-sort-value="No" style="background: #FFD2D2; color:black; vertical-align: middle; text-align: center;" class="table-no2"><img alt="No" src="/assets/img/13px-Dark_Red_x.svg.png" decoding="async" title="No"  data-file-width="600" data-file-height="600" width="13" height="13"></td>
 <td data-sort-value="No" style="background: #FFD2D2; color:black; vertical-align: middle; text-align: center;" class="table-no2"><img alt="No" src="/assets/img/13px-Dark_Red_x.svg.png" decoding="async" title="No"  data-file-width="600" data-file-height="600" width="13" height="13"></td>
 <td data-sort-value="No" style="background: #FFD2D2; color:black; vertical-align: middle; text-align: center;" class="table-no2"><img alt="No" src="/assets/img/13px-Dark_Red_x.svg.png" decoding="async" title="No"  data-file-width="600" data-file-height="600" width="13" height="13"></td>
@@ -166,7 +166,7 @@ excerpt: Database normalization is the process of structuring a relational datab
 <td data-sort-value="" style="background: #ececec; color: #2C2C2C; vertical-align: middle; text-align: center;" class="table-na">N/A
 </td></tr>
 <tr>
-<td style="text-align:right">Every non-trivial join dependency is implied by a <a href="/wiki/Candidate_key" title="Candidate key">candidate key</a></td>
+<td style="text-align:right; background-color: #e6e1dc;">Every non-trivial join dependency is implied by a <a href="/wiki/Candidate_key" title="Candidate key">candidate key</a></td>
 <td data-sort-value="No" style="background: #FFD2D2; color:black; vertical-align: middle; text-align: center;" class="table-no2"><img alt="No" src="/assets/img/13px-Dark_Red_x.svg.png" decoding="async" title="No"  data-file-width="600" data-file-height="600" width="13" height="13"></td>
 <td data-sort-value="No" style="background: #FFD2D2; color:black; vertical-align: middle; text-align: center;" class="table-no2"><img alt="No" src="/assets/img/13px-Dark_Red_x.svg.png" decoding="async" title="No"  data-file-width="600" data-file-height="600" width="13" height="13"></td>
 <td data-sort-value="No" style="background: #FFD2D2; color:black; vertical-align: middle; text-align: center;" class="table-no2"><img alt="No" src="/assets/img/13px-Dark_Red_x.svg.png" decoding="async" title="No"  data-file-width="600" data-file-height="600" width="13" height="13"></td>
@@ -180,7 +180,7 @@ excerpt: Database normalization is the process of structuring a relational datab
 <td data-sort-value="" style="background: #ececec; color: #2C2C2C; vertical-align: middle; text-align: center;" class="table-na">N/A
 </td></tr>
 <tr>
-<td style="text-align:right">Every constraint is a consequence of domain constraints and key constraints</td>
+<td style="text-align:right; background-color: #e6e1dc;">Every constraint is a consequence of domain constraints and key constraints</td>
 <td data-sort-value="No" style="background: #FFD2D2; color:black; vertical-align: middle; text-align: center;" class="table-no2"><img alt="No" src="/assets/img/13px-Dark_Red_x.svg.png" decoding="async" title="No"  data-file-width="600" data-file-height="600" width="13" height="13"></td>
 <td data-sort-value="No" style="background: #FFD2D2; color:black; vertical-align: middle; text-align: center;" class="table-no2"><img alt="No" src="/assets/img/13px-Dark_Red_x.svg.png" decoding="async" title="No"  data-file-width="600" data-file-height="600" width="13" height="13"></td>
 <td data-sort-value="No" style="background: #FFD2D2; color:black; vertical-align: middle; text-align: center;" class="table-no2"><img alt="No" src="/assets/img/13px-Dark_Red_x.svg.png" decoding="async" title="No"  data-file-width="600" data-file-height="600" width="13" height="13"></td>
@@ -194,7 +194,7 @@ excerpt: Database normalization is the process of structuring a relational datab
 <td data-sort-value="" style="background: #ececec; color: #2C2C2C; vertical-align: middle; text-align: center;" class="table-na">N/A
 </td></tr>
 <tr>
-<td style="text-align:right">Every join dependency is trivial</td>
+<td style="text-align:right; background-color: #e6e1dc;">Every join dependency is trivial</td>
 <td data-sort-value="No" style="background: #FFD2D2; color:black; vertical-align: middle; text-align: center;" class="table-no2"><img alt="No" src="/assets/img/13px-Dark_Red_x.svg.png" decoding="async" title="No"  data-file-width="600" data-file-height="600" width="13" height="13"></td>
 <td data-sort-value="No" style="background: #FFD2D2; color:black; vertical-align: middle; text-align: center;" class="table-no2"><img alt="No" src="/assets/img/13px-Dark_Red_x.svg.png" decoding="async" title="No"  data-file-width="600" data-file-height="600" width="13" height="13"></td>
 <td data-sort-value="No" style="background: #FFD2D2; color:black; vertical-align: middle; text-align: center;" class="table-no2"><img alt="No" src="/assets/img/13px-Dark_Red_x.svg.png" decoding="async" title="No"  data-file-width="600" data-file-height="600" width="13" height="13"></td>
