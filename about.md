@@ -3,10 +3,12 @@ layout: page
 title: About Me
 permalink: /about/
 ---
-<p style="float: left;">Hello, my name is <strong>Andrei Pall</strong> and I am a web applications developer who lives in Brasov, Romania.</p>
+<p>Hello, my name is <strong>Andrei Pall</strong> and I am a web applications developer who lives in Brasov, Romania.
 
-<p style="float: left;">I am a man who likes hiking, jogging and walking after work. I am 1.88 m tall and weigh 90 kg. If you are a woman who would like to know me as a person you can contact me on weekends or after working hours.</p>
+I am a man who likes hiking, jogging and walking after work. I am 1.88 m tall and weigh 90 kg. If you are a woman who would like to know me as a person you can contact me on weekends or after working hours.
 <img src="/assets/img/gold-king-crown.png" id="crown-image" title="Crown" /><br style="clear:both;" />
+</p>
+
                                                         
 ![Andrei Pall](/assets/img/andrei.jpg){:id="about-image"}
 I have over 6 years experience with programming languages like Java and PHP and database management systems like MySQL and PostgreSQL.
