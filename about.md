@@ -3,7 +3,7 @@ layout: page
 title: About Me
 permalink: /about/
 ---
-<img src="/assets/img/gold-king-crown.png" id="crown-image" title="Crown" />
+<img src="/assets/img/gold-king-crown.png" id="crown-image" title="Crown" /><br style="clear:both;" />
                                                         
 ![Andrei Pall](/assets/img/andrei.jpg){:id="about-image"}
 
