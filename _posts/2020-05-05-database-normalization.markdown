@@ -865,3 +865,382 @@ excerpt: Database normalization is the process of structuring a relational datab
 </td></tr></tbody></table>
 </td></tr></tbody></table>
 <p>The Book table is now in third normal form. Although tables in 1NF are by definition normalized, "normalized" is commonly used to mean 3NF.</p>
+<h3>Satisfying EKNF</h3>
+<p>The elementary key normal form (EKNF) falls strictly between 3NF and BCNF and is not much discussed in the literature. It is intended “to capture the salient qualities of both 3NF and BCNF” while avoiding the problems of both (namely, that 3NF is “too forgiving” and BCNF is “prone to computational complexity”). Since it is rarely mentioned in literature, it is not included in this example.</p>
+<h3>Satisfying BCNF</h3>
+<p>Consider the table in 3NF from the previous step:</p>
+<table>
+<caption>Book
+</caption>
+<tbody><tr>
+<th><u>Title</u>
+</th>
+<th>Author
+</th>
+<th>Author Nationality
+</th>
+<th>Pages
+</th>
+<th>Thickness
+</th>
+<th><i>Genre ID</i>
+</th>
+<th><i>Publisher ID</i>
+</th></tr>
+<tr>
+<td>Beginning MySQL Database Design and Optimization
+</td>
+<td>Chad Russell
+</td>
+<td>American
+</td>
+<td>520
+</td>
+<td>Thick
+</td>
+<td><i>1</i>
+</td>
+<td><i>1</i>
+</td></tr>
+<tr>
+<td>The Relational Model for Database Management: Version 2
+</td>
+<td>E.F.Codd
+</td>
+<td>British
+</td>
+<td>538
+</td>
+<td>Thick
+</td>
+<td><i>2</i>
+</td>
+<td><i>2</i>
+</td></tr>
+<tr>
+<td>Learning SQL
+</td>
+<td>Alan Beaulieu
+</td>
+<td>American
+</td>
+<td>338
+</td>
+<td>Slim
+</td>
+<td><i>1</i>
+</td>
+<td><i>3</i>
+</td></tr>
+<tr>
+<td>SQL Cookbook
+</td>
+<td>Anthony Molinaro
+</td>
+<td>American
+</td>
+<td>636
+</td>
+<td>Thick
+</td>
+<td><i>1</i>
+</td>
+<td><i>3</i>
+</td></tr></tbody></table>
+<p>There is a non-trivial dependency violating BCNF - {Author} → {Author Nationality}. Therefore, the table should be decomposed:</p>
+<table>
+<tbody><tr>
+<td>
+<table>
+<caption>Book
+</caption>
+<tbody><tr>
+<th><u>Title</u>
+</th>
+<th>Author
+</th>
+<th>Pages
+</th>
+<th>Thickness
+</th>
+<th><i>Genre ID</i>
+</th>
+<th><i>Publisher ID</i>
+</th></tr>
+<tr>
+<td>Beginning MySQL Database Design and Optimization
+</td>
+<td>Chad Russell
+</td>
+<td>520
+</td>
+<td>Thick
+</td>
+<td><i>1</i>
+</td>
+<td><i>1</i>
+</td></tr>
+<tr>
+<td>The Relational Model for Database Management: Version 2
+</td>
+<td>E.F.Codd
+</td>
+<td>538
+</td>
+<td>Thick
+</td>
+<td><i>2</i>
+</td>
+<td><i>2</i>
+</td></tr>
+<tr>
+<td>Learning SQL
+</td>
+<td>Alan Beaulieu
+</td>
+<td>338
+</td>
+<td>Slim
+</td>
+<td><i>1</i>
+</td>
+<td><i>3</i>
+</td></tr>
+<tr>
+<td>SQL Cookbook
+</td>
+<td>Anthony Molinaro
+</td>
+<td>636
+</td>
+<td>Thick
+</td>
+<td><i>1</i>
+</td>
+<td><i>3</i>
+</td></tr></tbody></table>
+</td>
+<td>
+<table>
+<caption>Author - Nationality
+</caption>
+<tbody><tr>
+<th><u>Author</u>
+</th>
+<th>Author Nationality
+</th></tr>
+<tr>
+<td>Chad Russell
+</td>
+<td>American
+</td></tr>
+<tr>
+<td>E.F.Codd
+</td>
+<td>British
+</td></tr>
+<tr>
+<td>Alan Beaulieu
+</td>
+<td>American
+</td></tr>
+<tr>
+<td>Anthony Molinaro
+</td>
+<td>American
+</td></tr></tbody></table>
+</td>
+<td>
+</td></tr></tbody></table>
+<p>Now, each attribute represents a fact about the key, the whole key, and nothing but the key. Therefore BCNF has been achieved.</p>
+<h3>Satisfying 4NF</h3>
+<p>Assume the database is owned by a book retailer franchise that has several franchisees that own shops in different locations. And therefore the retailer decided to add a table that contains data about availability of the books at different locations:</p>
+<table>
+<caption align="top"><b>Franchisee - Book  Location</b>
+</caption>
+<tbody><tr>
+<th><u>Franchisee ID</u>
+</th>
+<th><u>Title</u>
+</th>
+<th><u>Location</u>
+</th></tr>
+<tr>
+<td>1
+</td>
+<td>Beginning MySQL Database Design and Optimization
+</td>
+<td>California
+</td></tr>
+<tr>
+<td>1
+</td>
+<td>Beginning MySQL Database Design and Optimization
+</td>
+<td>Florida
+</td></tr>
+<tr>
+<td>1
+</td>
+<td>Beginning MySQL Database Design and Optimization
+</td>
+<td>Texas
+</td></tr>
+<tr>
+<td>1
+</td>
+<td>The Relational Model for Database Management: Version 2
+</td>
+<td>California
+</td></tr>
+<tr>
+<td>1
+</td>
+<td>The Relational Model for Database Management: Version 2
+</td>
+<td>Florida
+</td></tr>
+<tr>
+<td>1
+</td>
+<td>The Relational Model for Database Management: Version 2
+</td>
+<td>Texas
+</td></tr>
+<tr>
+<td>2
+</td>
+<td>Beginning MySQL Database Design and Optimization
+</td>
+<td>California
+</td></tr>
+<tr>
+<td>2
+</td>
+<td>Beginning MySQL Database Design and Optimization
+</td>
+<td>Florida
+</td></tr>
+<tr>
+<td>2
+</td>
+<td>Beginning MySQL Database Design and Optimization
+</td>
+<td>Texas
+</td></tr>
+<tr>
+<td>2
+</td>
+<td>The Relational Model for Database Management: Version 2
+</td>
+<td>California
+</td></tr>
+<tr>
+<td>2
+</td>
+<td>The Relational Model for Database Management: Version 2
+</td>
+<td>Florida
+</td></tr>
+<tr>
+<td>2
+</td>
+<td>The Relational Model for Database Management: Version 2
+</td>
+<td>Texas
+</td></tr>
+<tr>
+<td>3
+</td>
+<td>Beginning MySQL Database Design and Optimization
+</td>
+<td>Texas
+</td></tr>
+</tbody></table>
+<p>As this table structure consists of a compound primary key, it doesn't contain any non-key attributes and it's already in BCNF (and therefore also satisfies all the previous normal forms). However, if we assume that all available books are offered in each area, we might notice that the Title is not unambiguously bound to a certain Location and therefore the table doesn't satisfy 4NF.</p>
+<p>That means that, to satisfy the fourth normal form, this table needs to be decomposed as well:</p>
+<table>
+<tbody><tr>
+<td>
+<table>
+<caption align="top"><b>Franchisee - Book</b>
+</caption>
+<tbody><tr>
+<th><u>Franchisee ID</u>
+</th>
+<th><u>Title</u>
+</th></tr>
+<tr>
+<td>1
+</td>
+<td>Beginning MySQL Database Design and Optimization
+</td></tr>
+<tr>
+<td>1
+</td>
+<td>The Relational Model for Database Management: Version 2
+</td></tr>
+<tr>
+<td>2
+</td>
+<td>Beginning MySQL Database Design and Optimization
+</td></tr>
+<tr>
+<td>2
+</td>
+<td>The Relational Model for Database Management: Version 2
+</td></tr>
+<tr>
+<td>3
+</td>
+<td>Beginning MySQL Database Design and Optimization
+</td></tr>
+</tbody></table>
+</td>
+<td>
+<table>
+<caption align="top">Franchisee - Location
+</caption>
+<tbody><tr>
+<th><u>Franchisee ID</u>
+</th>
+<th><u>Location</u>
+</th></tr>
+<tr>
+<td>1
+</td>
+<td>California
+</td></tr>
+<tr>
+<td>1
+</td>
+<td>Florida
+</td></tr>
+<tr>
+<td>1
+</td>
+<td>Texas
+</td></tr>
+<tr>
+<td>2
+</td>
+<td>California
+</td></tr>
+<tr>
+<td>2
+</td>
+<td>Florida
+</td></tr>
+<tr>
+<td>2
+</td>
+<td>Texas
+</td></tr>
+<tr>
+<td>3
+</td>
+<td>Texas
+</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+<p>Now, every record is unambiguously identified by a superkey, therefore 4NF is satisfied.</p>
