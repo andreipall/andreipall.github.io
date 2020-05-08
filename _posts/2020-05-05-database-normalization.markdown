@@ -1244,3 +1244,574 @@ excerpt: Database normalization is the process of structuring a relational datab
 </tbody></table>
 </td></tr></tbody></table>
 <p>Now, every record is unambiguously identified by a superkey, therefore 4NF is satisfied.</p>
+<h3>Satisfying ETNF</h3>
+<p>Suppose the franchisees can also order books from different suppliers. Let the relation also be subject to the following constraint:</p>
+<ul>
+  <li>If a certain supplier supplies a certain title</li>
+  <li>and the title is supplied to the franchisee</li>
+  <li>and the franchisee is being supplied by the supplier,</li>
+  <li>then the supplier supplies the title to the franchisee.</li>
+</ul>
+<table>
+<caption>Supplier - Book - Franchisee
+</caption>
+<tbody><tr>
+<th><u>Supplier ID</u>
+</th>
+<th><u>Title</u>
+</th>
+<th><u>Franchisee ID</u>
+</th></tr>
+<tr>
+<td>1
+</td>
+<td>Beginning MySQL Database Design and Optimization
+</td>
+<td>1
+</td></tr>
+<tr>
+<td>2
+</td>
+<td>The Relational Model for Database Management: Version 2
+</td>
+<td>2
+</td></tr>
+<tr>
+<td>3
+</td>
+<td>Learning SQL
+</td>
+<td>3
+</td></tr></tbody></table>
+<p>This table is in 4NF, but the Supplier ID is equal to the join of its projections: { { Supplier ID , Book } , { Book, Franchisee ID } , { Franchisee ID , Supplier ID } }. No component of that join dependency is a superkey (the sole superkey being the entire heading), so the table does not satisfy the ETNF and can be further decomposed:</p>
+<table>
+<tbody><tr>
+<td>
+<table>
+<caption>Supplier - Book
+</caption>
+<tbody><tr>
+<th><u>Supplier ID</u>
+</th>
+<th><u>Title</u>
+</th></tr>
+<tr>
+<td>1
+</td>
+<td>Beginning MySQL Database Design and Optimization
+</td></tr>
+<tr>
+<td>2
+</td>
+<td>The Relational Model for Database Management: Version 2
+</td></tr>
+<tr>
+<td>3
+</td>
+<td>Learning SQL
+</td></tr></tbody></table>
+</td>
+<td>
+<table>
+<caption>Book - Franchisee
+</caption>
+<tbody><tr>
+<th><u>Title</u>
+</th>
+<th><u>Franchisee ID</u>
+</th></tr>
+<tr>
+<td>Beginning MySQL Database Design and Optimization
+</td>
+<td>1
+</td></tr>
+<tr>
+<td>The Relational Model for Database Management: Version 2
+</td>
+<td>2
+</td></tr>
+<tr>
+<td>Learning SQL
+</td>
+<td>3
+</td></tr></tbody></table>
+</td>
+<td>
+<table>
+<caption>Franchisee - Supplier
+</caption>
+<tbody><tr>
+<th><u>Supplier ID</u>
+</th>
+<th><u>Franchisee ID</u>
+</th></tr>
+<tr>
+<td>1
+</td>
+<td>1
+</td></tr>
+<tr>
+<td>2
+</td>
+<td>2
+</td></tr>
+<tr>
+<td>3
+</td>
+<td>3
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+<p>The decomposition produces ETNF compliance.</p>
+<h3>Satisfying 5NF</h3>
+<p>To spot a table not satisfying the 5NF, it is usually necessary to examine the data thoroughly. Suppose the table from 4NF example with a little modification in data and let's examine if it satisfies 5NF:</p>
+<table>
+<caption align="top"><b>Franchisee - Book  Location</b>
+</caption>
+<tbody><tr>
+<th><u>Franchisee ID</u>
+</th>
+<th><u>Title</u>
+</th>
+<th><u>Location</u>
+</th></tr>
+<tr>
+<td>1
+</td>
+<td>Beginning MySQL Database Design and Optimization
+</td>
+<td>California
+</td></tr>
+<tr>
+<td>1
+</td>
+<td>Learning SQL
+</td>
+<td>California
+</td></tr>
+<tr>
+<td>1
+</td>
+<td>The Relational Model for Database Management: Version 2
+</td>
+<td>Texas
+</td></tr>
+<tr>
+<td>2
+</td>
+<td>The Relational Model for Database Management: Version 2
+</td>
+<td>California
+</td></tr>
+</tbody></table>
+<p>If we decompose this table, we lower redundancies and get the following two tables:</p>
+<table>
+<tbody><tr>
+<td>
+<table>
+<caption align="top"><b>Franchisee - Book</b>
+</caption>
+<tbody><tr>
+<th><u>Franchisee ID</u>
+</th>
+<th><u>Title</u>
+</th></tr>
+<tr>
+<td>1
+</td>
+<td>Beginning MySQL Database Design and Optimization
+</td></tr>
+<tr>
+<td>1
+</td>
+<td>Learning SQL
+</td></tr>
+<tr>
+<td>1
+</td>
+<td>The Relational Model for Database Management: Version 2
+</td></tr>
+<tr>
+<td>2
+</td>
+<td>The Relational Model for Database Management: Version 2
+</td></tr>
+</tbody></table>
+</td>
+<td>
+<table>
+<caption align="top"><b>Franchisee - Location</b>
+</caption>
+<tbody><tr>
+<th><u>Franchisee ID</u>
+</th>
+<th><u>Location</u>
+</th></tr>
+<tr>
+<td>1
+</td>
+<td>California
+</td></tr>
+<tr>
+<td>1
+</td>
+<td>Texas
+</td></tr>
+<tr>
+<td>2
+</td>
+<td>California
+</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+<p>What happens if we try to join these tables? The query would return the following data:</p>
+<table>
+<caption align="top"><b>Franchisee - Book  - Location JOINed</b>
+</caption>
+<tbody><tr>
+<th><u>Franchisee ID</u>
+</th>
+<th><u>Title</u>
+</th>
+<th><u>Location</u>
+</th></tr>
+<tr>
+<td>1
+</td>
+<td>Beginning MySQL Database Design and Optimization
+</td>
+<td>California
+</td></tr>
+<tr>
+<td>1
+</td>
+<td>Learning SQL
+</td>
+<td>California
+</td></tr>
+<tr>
+<td><span style="color:red">1</span>
+</td>
+<td><span style="color:red">The Relational Model for Database Management: Version 2</span>
+</td>
+<td><span style="color:red">California</span>
+</td></tr>
+<tr>
+<td>1
+</td>
+<td>The Relational Model for Database Management: Version 2
+</td>
+<td>Texas
+</td></tr>
+<tr>
+<td><span style="color:red">1</span>
+</td>
+<td><span style="color:red">Learning SQL</span>
+</td>
+<td><span style="color:red">Texas</span>
+</td></tr>
+<tr>
+<td><span style="color:red">1</span>
+</td>
+<td><span style="color:red">Beginning MySQL Database Design and Optimization</span>
+</td>
+<td><span style="color:red">Texas</span>
+</td></tr>
+<tr>
+<td>2
+</td>
+<td>The Relational Model for Database Management: Version 2
+</td>
+<td>California
+</td></tr>
+</tbody></table>
+<p>Apparently, the JOIN returns three more rows than it should - let's try to add another table to clarify the relation. We end up with three separate tables:</p>
+<table>
+<tbody><tr>
+<td>
+<table>
+<caption align="top"><b>Franchisee - Book</b>
+</caption>
+<tbody><tr>
+<th><u>Franchisee ID</u>
+</th>
+<th><u>Title</u>
+</th></tr>
+<tr>
+<td>1
+</td>
+<td>Beginning MySQL Database Design and Optimization
+</td></tr>
+<tr>
+<td>1
+</td>
+<td>Learning SQL
+</td></tr>
+<tr>
+<td>1
+</td>
+<td>The Relational Model for Database Management: Version 2
+</td></tr>
+<tr>
+<td>2
+</td>
+<td>The Relational Model for Database Management: Version 2
+</td></tr>
+</tbody></table>
+</td>
+<td>
+<table>
+<caption align="top"><b>Franchisee - Location</b>
+</caption>
+<tbody><tr>
+<th><u>Franchisee ID</u>
+</th>
+<th><u>Location</u>
+</th></tr>
+<tr>
+<td>1
+</td>
+<td>California
+</td></tr>
+<tr>
+<td>1
+</td>
+<td>Texas
+</td></tr>
+<tr>
+<td>2
+</td>
+<td>California
+</td></tr>
+</tbody></table>
+</td>
+<td>
+<table>
+<caption align="top"><b>Location - Book</b>
+</caption>
+<tbody><tr>
+<th><u>Location</u>
+</th>
+<th><u>Title</u>
+</th></tr>
+<tr>
+<td>California
+</td>
+<td>Beginning MySQL Database Design and Optimization
+</td></tr>
+<tr>
+<td>California
+</td>
+<td>Learning SQL
+</td></tr>
+<tr>
+<td>California
+</td>
+<td>The Relational Model for Database Management: Version 2
+</td></tr>
+<tr>
+<td>Texas
+</td>
+<td>The Relational Model for Database Management: Version 2
+</td></tr>
+</tbody></table>
+</td></tr></tbody></table>
+<p>What will the JOIN return now? It actually is not possible to join these three tables. That means it wasn't possible to decompose the Franchisee - Book Location without data loss, therefore the table already satisfies 5NF.</p>
+<h3>Satisfying DKNF</h3>
+<p>Let's have a look at the Book table from previous examples and see if it satisfies the Domain Key Normal Form:</p>
+<table>
+<caption>Book
+</caption>
+<tbody><tr>
+<th><u>Title</u>
+</th>
+<th><b>Pages</b>
+</th>
+<th>Thickness
+</th>
+<th><i>Genre ID</i>
+</th>
+<th><i>Publisher ID</i>
+</th></tr>
+<tr>
+<td>Beginning MySQL Database Design and Optimization
+</td>
+<td>520
+</td>
+<td>Thick
+</td>
+<td><i>1</i>
+</td>
+<td><i>1</i>
+</td></tr>
+<tr>
+<td>The Relational Model for Database Management: Version 2
+</td>
+<td>538
+</td>
+<td>Thick
+</td>
+<td><i>2</i>
+</td>
+<td><i>2</i>
+</td></tr>
+<tr>
+<td>Learning SQL
+</td>
+<td>338
+</td>
+<td>Slim
+</td>
+<td><i>1</i>
+</td>
+<td><i>3</i>
+</td></tr>
+<tr>
+<td>SQL Cookbook
+</td>
+<td>636
+</td>
+<td>Thick
+</td>
+<td><i>1</i>
+</td>
+<td><i>3</i>
+</td></tr></tbody></table>
+<p>Logically, Thickness is determined by number of pages. That means it depends on Pages which is not a key. Let's set an example convention saying a book up to 350 pages is considered "slim" and a book over 350 pages is considered "thick".</p>
+<p>This convention is technically a constraint but it is neither a domain constraint nor a key constraint; therefore we cannot rely on domain constraints and key constraints to keep the data integrity.</p>
+<p>In other words - nothing prevents us from putting, for example, "Thick" for a book with only 50 pages - and this makes the table violate DKNF.</p>
+<p>To solve this, we can create a table holding enumeration that defines the Thickness and remove that column from the original table:</p>
+<table>
+<tbody><tr>
+<td>
+<table>
+<caption>Thickness Enum
+</caption>
+<tbody><tr>
+<th><u>Thickness</u>
+</th>
+<th>Min pages
+</th>
+<th>Max pages
+</th></tr>
+<tr>
+<td>Slim
+</td>
+<td>1
+</td>
+<td>350
+</td></tr>
+<tr>
+<td>Thick
+</td>
+<td>351
+</td>
+<td>999,999,999,999
+</td></tr></tbody></table>
+</td>
+<td>
+<table>
+<caption>Book -  Pages - Genre - Publisher
+</caption>
+<tbody><tr>
+<th><u>Title</u>
+</th>
+<th>Pages
+</th>
+<th><i>Genre ID</i>
+</th>
+<th><i>Publisher ID</i>
+</th></tr>
+<tr>
+<td>Beginning MySQL Database Design and Optimization
+</td>
+<td>520
+</td>
+<td><i>1</i>
+</td>
+<td><i>1</i>
+</td></tr>
+<tr>
+<td>The Relational Model for Database Management: Version 2
+</td>
+<td>538
+</td>
+<td><i>2</i>
+</td>
+<td><i>2</i>
+</td></tr>
+<tr>
+<td>Learning SQL
+</td>
+<td>338
+</td>
+<td><i>1</i>
+</td>
+<td><i>3</i>
+</td></tr>
+<tr>
+<td>SQL Cookbook
+</td>
+<td>636
+</td>
+<td><i>1</i>
+</td>
+<td><i>3</i>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+<p>That way, the domain integrity violation has been eliminated, and the table is in DKNF.</p>
+<h3>Satisfying 6NF</h3>
+<p>A simple and intuitive definition of the sixth normal form is that "a table is in 6NF when the row contains the Primary Key, and at most one other attribute".</p>
+<p>That means, for example, the Publishers table designed while creating the 1NF</p>
+<table>
+<caption>Publisher
+</caption>
+<tbody><tr>
+<th><u>Publisher_ID</u>
+</th>
+<th>Name
+</th>
+<th>Country
+</th></tr>
+<tr>
+<td>1
+</td>
+<td>Apress
+</td>
+<td>USA
+</td></tr></tbody></table>
+<p>needs to be further decomposed into two tables:</p>
+<table>
+<tbody><tr>
+<td>
+<table>
+<caption>Publisher
+</caption>
+<tbody><tr>
+<th><u>Publisher_ID</u>
+</th>
+<th>Name
+</th></tr>
+<tr>
+<td>1
+</td>
+<td>Apress
+</td></tr></tbody></table>
+</td>
+<td>
+<table>
+<caption>Publisher country
+</caption>
+<tbody><tr>
+<th><u>Publisher_ID</u>
+</th>
+<th>Country
+</th></tr>
+<tr>
+<td>1
+</td>
+<td>USA
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+<p>The obvious drawback of 6NF is the proliferation of tables required to represent the information on a single entity. If a table in 5NF has one primary key column and N attributes, representing the same information in 6NF will require N tables; multi-field updates to a single conceptual record will require updates to multiple tables; and inserts and deletes will similarly require operations across multiple tables. For this reason, in databases intended to serve Online Transaction Processing needs, 6NF should not be used.</p>
+<p>However, in data warehouses, which do not permit interactive updates and which are specialized for fast query on large data volumes, certain DBMSs use an internal 6NF representation - known as a Columnar data store. In situations where the number of unique values of a column is far less than the number of rows in the table, column-oriented storage allow significant savings in space through data compression. Columnar storage also allows fast execution of range queries (e.g., show all records where a particular column is between X and Y, or less than X).</p>
+<p>In all these cases, however, the database designer does not have to perform 6NF normalization manually by creating separate tables. Some DBMSs that are specialized for warehousing, such as Sybase IQ, use columnar storage by default, but the designer still sees only a single multi-column table.</p>
