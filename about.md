@@ -6,11 +6,11 @@ permalink: /about/
 ![Andrei Pall](/assets/img/andrei.jpg){:id="about-image"}
 Hello, my name is <strong>Andrei Pall</strong> and I am a web applications developer who lives in Brasov, Romania.
 
-I am a man who likes hiking, jogging and walking after work. I am 1.88 m tall and weigh 90 kg. If you are a woman who would like to know me as a person you can contact me on weekends or after working hours.
+I am a man who likes hiking, jogging and walking after work. I am 1.88 m tall and weigh around 90 kg. If you are a woman who would like to know me as a person you can contact me on weekends or after working hours.
 
 I have over 6 years experience with programming languages like Java and PHP and database management systems like MySQL and PostgreSQL.
 
-I am currently employed at <a href="https://www.icore.ro" target="_blank">iCore Outsourcing</a> where I work in many different areas of web development from back end programming (Java, PHP, SQL) to front end engineering (HTML, CSS, and JavaScript/jQuery/Backbone), user experience and visual design.
+I am currently employed at <a href="https://www.icore.ro" target="_blank">iCore Outsourcing</a> where I work in many different areas of web development from back end programming (Java, PHP, SQL) to front end engineering (HTML, CSS, and JavaScript/jQuery/Backbone), user experience and visual design (<a href="https://material.io" target="_blank">Material Design</a>).
 
 I am passionate about software development in all it’s forms and I like helping businesses and artists build and improve their online presence. Aside from web development, I enjoy spending my time reading books, playing chess and traveling around the world.
 
