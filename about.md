@@ -16,6 +16,8 @@ I have over 7 years experience with programming languages like Java and PHP and 
 
 I am currently employed at <a href="https://www.icore.ro" target="_blank">iCore Outsourcing</a> where I work in many different areas of web development from back end programming (Java, PHP, SQL) to front end engineering (HTML, CSS, and JavaScript/jQuery/Backbone), user experience and visual design (<a href="https://getbootstrap.com" target="_blank">Bootstrap</a> and <a href="https://material.io" target="_blank">Material</a> Design).
 
+<img src="../assets/img/team.png" id="team-image" title="Team" />
+
 I am passionate about software development in all it’s forms and I like helping businesses and artists build and improve their online presence. Aside from web development, I enjoy spending my time reading books, playing chess and traveling around the world.
 
 <img src="../assets/img/agile.png" id="agile-image" title="Agile" />
