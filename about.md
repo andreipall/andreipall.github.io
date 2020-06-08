@@ -18,7 +18,7 @@ I am currently employed at <a href="https://www.icore.ro" target="_blank">iCore 
 
 I am passionate about software development in all it’s forms and I like helping businesses and artists build and improve their online presence. Aside from web development, I enjoy spending my time reading books, playing chess and traveling around the world.
 
-<img src="/assets/img/lion.jpg" id="lion-image" title="Lion" />
+<img src="/assets/img/agile.png" id="agile-image" title="Agile" />
 
 ### Contact me
 
