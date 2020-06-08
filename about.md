@@ -8,7 +8,7 @@ Hello, my name is <strong>Andrei Pall</strong> and I am a web applications devel
 
 I am a man who likes hiking, jogging and walking after work. I am 1.88 m tall and weigh around 95 kilograms.
 
-Lately I have started to study psychology and more precisely emotional intelligence (otherwise known as emotional quotient or EQ). Emotional intelligence is the ability to understand, use, and manage your own emotions in positive ways to relieve stress, communicate effectively, empathize with others, overcome challenges and defuse conflict. 
+Lately I have started to study psychology and more precisely emotional intelligence (otherwise known as emotional quotient or EQ). Emotional intelligence is the ability to understand, use, and manage your own emotions in positive ways to relieve stress, communicate effectively, empathize with others and overcome challenges. 
 <img src="/assets/img/emotions.png" id="emotions-image" title="Emotions" />
 Emotional intelligence helps you build stronger relationships, succeed at school and work, and achieve your career and personal goals. It can also help you to connect with your feelings, turn intention into action, and make informed decisions about what matters most to you.
 
