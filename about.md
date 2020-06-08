@@ -8,9 +8,9 @@ Hello, my name is <strong>Andrei Pall</strong> and I am a web applications devel
 
 I am a man who likes hiking, jogging and walking after work. I am 1.88 m tall and weigh around 90 kg. If you are a woman who would like to know me as a person you can contact me on weekends or after working hours.
 
-Lately I have started to study psychology and more precisely emotional intelligence (otherwise known as emotional quotient or EQ). Emotional intelligence is the ability to understand, use, and manage your own emotions in positive ways to relieve stress, communicate effectively, empathize with others, overcome challenges and defuse conflict. Emotional intelligence helps you build stronger relationships, succeed at school and work, and achieve your career and personal goals. It can also help you to connect with your feelings, turn intention into action, and make informed decisions about what matters most to you.
-
+Lately I have started to study psychology and more precisely emotional intelligence (otherwise known as emotional quotient or EQ). Emotional intelligence is the ability to understand, use, and manage your own emotions in positive ways to relieve stress, communicate effectively, empathize with others, overcome challenges and defuse conflict. 
 <img src="/assets/img/emotions.png" id="emotions-image" title="Emotions" />
+Emotional intelligence helps you build stronger relationships, succeed at school and work, and achieve your career and personal goals. It can also help you to connect with your feelings, turn intention into action, and make informed decisions about what matters most to you.
 
 I have over 6 years experience with programming languages like Java and PHP and database management systems like MySQL and PostgreSQL.
 
