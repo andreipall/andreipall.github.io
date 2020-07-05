@@ -602,3 +602,49 @@ public class OrderNotFoundException extends RuntimeException {
 {% endhighlight %}
 <h3>@ControllerAdvice</h3>
 <p>This annotation is applied at the class level. As explained earlier, for each controller you can use @ExceptionHandler on a method that will be called when a given exception occurs. But this handles only those exception that occur within the controller in which it is defined. To overcome this problem you can now use the @ControllerAdvice annotation. This annotation is used to define @ExceptionHandler, @InitBinder and @ModelAttribute methods that apply to all @RequestMapping methods. Thus if you define the @ExceptionHandler annotation on a method in @ControllerAdvice class, it will be applied to all the controllers.</p>
+{% highlight java %}
+@ControllerAdvice
+class GlobalControllerExceptionHandler {
+    @ResponseStatus(HttpStatus.CONFLICT)  // 409
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public void handleConflict() {
+        // Nothing to do
+    }
+}
+{% endhighlight %}
+<h3>@RestController</h3>
+<p>This annotation is used at the class level. The @RestController annotation marks the class as a controller where every method returns a domain object instead of a view. By annotating a class with this annotation you no longer need to add @ResponseBody to all the RequestMapping method. It means that you no more use view-resolvers or send html in response. You just send the domain object as HTTP response in the format that is understood by the consumers like JSON.</p>
+<p>@RestController is a convenience annotation which combines @Controller and @ResponseBody.</p>
+<h3>@RestControllerAdvice</h3>
+<p>This annotation is applied on Java classes. @RestControllerAdvice is a convenience annotation which combines @ControllerAdvice and @ResponseBody. This annotation is used along with the @ExceptionHandler annotation to handle exceptions that occur within the controller.</p>
+<h3>@SessionAttribute</h3>
+<p>This annotation is used at method parameter level. The @SessionAttribute annotation is used to bind the method parameter to a session attribute. This annotation provides a convenient access to the existing or permanent session attributes.</p>
+{% highlight java %}
+@GetMapping("/info")
+public String userInfo(@SessionAttribute("user") User user) {
+	...
+	return "user";
+}
+{% endhighlight %}
+<h3>@SessionAttributes</h3>
+<p>This annotation is applied at type level for a specific handler. The @SessionAtrributes annotation is used when you want to add a JavaBean object into a session. This is used when you want to keep the object in session for short lived. @SessionAttributes is used in conjunction with @ModelAttribute.
+Consider this example:</p>
+{% highlight java %}
+@Controller
+@SessionAttributes("visitor")
+@RequestMapping("/trades")
+public class TradeController {
+
+    @RequestMapping("/**")
+    public String handleRequestById (@ModelAttribute("visitor") Visitor visitor,
+                                     Model model,
+                                     HttpServletRequest request) {
+        model.addAttribute("msg", "trades request, serving page " +
+                                                 request.getRequestURI());
+        visitor.addPageVisited(request.getRequestURI());
+        return "traders-page";
+    }
+   ...
+}
+{% endhighlight %}
+<p>The @ModelAttribute name is assigned to the @SessionAttributes as value. The @SessionAttributes has two elements. The value element is the name of the session in the model and the types element is the type of session attributes in the model.</p>
