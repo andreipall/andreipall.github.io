@@ -245,3 +245,360 @@ public class SpringMainClass {
 <h3>@Repository</h3>
 <p>This annotation is used on Java classes which directly access the database. The @Repository annotation works as marker for any class that fulfills the role of repository or Data Access Object.</p>
 <p>This annotation has a automatic translation feature. For example, when an exception occurs in the @Repository there is a handler for that exception and there is no need to add a try catch block.</p>
+<h2>Spring Boot Annotations</h2>
+<h3>@EnableAutoConfiguration</h3>
+<p>This annotation is usually placed on the main application class. The @EnableAutoConfiguration annotation implicitly defines a base “search package”. This annotation tells Spring Boot to start adding beans based on classpath settings, other beans, and various property settings.</p>
+{% highlight java %}
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+
+@EnableAutoConfiguration
+public class Application {
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+}
+{% endhighlight %}
+<h3>@SpringBootApplication</h3>
+<p>This annotation is used on the application class while setting up a Spring Boot project. The class that is annotated with the @SpringBootApplication must be kept in the base package. The one thing that the @SpringBootApplication does is a component scan. But it will scan only its sub-packages. As an example, if you put the class annotated with @SpringBootApplication in com.example then @SpringBootApplication will scan all its sub-packages, such as com.example.a, com.example.b, and com.example.a.x.</p>
+<p>The @SpringBootApplication is a convenient annotation that adds all the following:</p>
+<ul>
+<li>@Configuration</li>
+<li>@EnableAutoConfiguration</li>
+<li>@ComponentScan</li>
+</ul>
+{% highlight java %}
+package com.example.myapplication;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication // same as @Configuration @EnableAutoConfiguration @ComponentScan
+public class Application {
+
+	public static void main(String[] args) {
+		SpringApplication.run(Application.class, args);
+	}
+
+}
+{% endhighlight %}
+<h2>Spring MVC and REST Annotations</h2>
+<h3>@Controller</h3>
+<p>This annotation is used on Java classes that play the role of controller in your application. The @Controller annotation allows autodetection of component classes in the classpath and auto-registering bean definitions for them. To enable autodetection of such annotated controllers, you can add component scanning to your configuration. The Java class annotated with @Controller is capable of handling multiple request mappings.</p>
+<h3>@RequestMapping</h3>
+<p>This annotation is used both at class and method level. The @RequestMapping annotation is used to map web requests onto specific handler classes and handler methods. When @RequestMapping is used on class level it creates a base URI for which the controller will be used. When this annotation is used on methods it will give you the URI on which the handler methods will be executed. From this you can infer that the class level request mapping will remain the same whereas each handler method will have their own request mapping.</p>
+<p>Sometimes you may want to perform different operations based on the HTTP method used, even though the request URI may remain the same. In such situations, you can use the method attribute of @RequestMapping with an HTTP method value to narrow down the HTTP methods in order to invoke the methods of your class.</p>
+<p>Here is a basic example on how a controller along with request mappings work:</p>
+{% highlight java %}
+@Controller
+@RequestMapping("/welcome")
+public class WelcomeController{
+  @RequestMapping(method = RequestMethod.GET)
+  public String home(){
+    return "index";
+  }	
+}
+{% endhighlight %}
+<h3>@CookieValue</h3>
+This annotation is used at method parameter level. @CookieValue is used as argument of request mapping method. The HTTP cookie is bound to the @CookieValue parameter for a given cookie name. This annotation is used in the method annotated with @RequestMapping.
+Let us consider that the following cookie value is received with a http request:
+{% highlight java %}
+JSESSIONID=418AB76CD83EF94U85YD34W
+{% endhighlight %}
+To get the value of the cookie, use @CookieValue like this:
+{% highlight java %}
+@RequestMapping("/cookieValue")
+  public void getCookieValue(@CookieValue "JSESSIONID" String cookie){
+}
+{% endhighlight %}
+<h3>@CrossOrigin</h3>
+<p>This annotation is used both at class and method level to enable cross origin requests. In many cases the host that serves JavaScript will be different from the host that serves the data. In such a case Cross Origin Resource Sharing (CORS) enables cross-domain communication. To enable this communication you just need to add the @CrossOrigin annotation.</p>
+<p>By default the @CrossOrigin annotation allows all origin, all headers, the HTTP methods specified in the @RequestMapping annotation and maxAge of 30 min. You can customize the behavior by specifying the corresponding attribute values.</p>
+<p>An example to use @CrossOrigin at both controller and handler method levels is this.</p>
+{% highlight java %}
+@CrossOrigin(maxAge = 3600)
+@RestController
+@RequestMapping("/account")
+public class AccountController {
+
+@CrossOrigin(origins = "http://example.com")
+@RequestMapping("/message")
+  public Message getMessage() {
+      // ...
+    }
+ 
+@RequestMapping("/note")
+    public Note getNote() {
+        // ...
+    }
+}
+{% endhighlight %}
+<p>In this example, both getExample() and getNote() methods will have a maxAge of 3600 seconds. Also, getExample() will only allow cross-origin requests from http://example.com, while getNote() will allow cross-origin requests from all hosts.</p>
+<h3>@GetMapping</h3>
+<p>This annotation is used for mapping HTTP GET requests onto specific handler methods. @GetMapping is a composed annotation that acts as a shortcut for @RequestMapping(method = RequestMethod.GET).</p>
+<h3>@PostMapping</h3>
+<p>This annotation is used for mapping HTTP POST requests onto specific handler methods. @PostMapping is a composed annotation that acts as a shortcut for @RequestMapping(method = RequestMethod.POST).</p>
+<h3>@PutMapping</h3>
+<p>This annotation is used for mapping HTTP PUT requests onto specific handler methods. @PutMapping is a composed annotation that acts as a shortcut for @RequestMapping(method = RequestMethod.PUT).</p>
+<h3>@PatchMapping</h3>
+<p>This annotation is used for mapping HTTP PATCH requests onto specific handler methods. @PatchMapping is a composed annotation that acts as a shortcut for @RequestMapping(method = RequestMethod.PATCH).</p>
+<h3>@DeleteMapping</h3>
+<p>This annotation is used for mapping HTTP DELETE requests onto specific handler methods. @DeleteMapping is a composed annotation that acts as a shortcut for @RequestMapping(method = RequestMethod.DELETE).</p>
+<h3>@ExceptionHandler</h3>
+<p>This annotation is used at method levels to handle exception at the controller level. The @ExceptionHandler annotation is used to define the class of exception it will catch. You can use this annotation on methods that should be invoked to handle an exception. The @ExceptionHandler values can be set to an array of Exception types. If an exception is thrown that matches one of the types in the list, then the method annotated with matching @ExceptionHandler will be invoked.</p>
+{% highlight java %}
+@Controller
+public class ExceptionHandlingController {
+
+  // @RequestHandler methods
+  ...
+  
+  // Exception handling methods
+  
+  // Convert a predefined exception to an HTTP Status code
+  @ResponseStatus(value=HttpStatus.CONFLICT,
+                  reason="Data integrity violation")  // 409
+  @ExceptionHandler(DataIntegrityViolationException.class)
+  public void conflict() {
+    // Nothing to do
+  }
+  
+  // Specify name of a specific view that will be used to display the error:
+  @ExceptionHandler({SQLException.class,DataAccessException.class})
+  public String databaseError() {
+    // Nothing to do.  Returns the logical view name of an error page, passed
+    // to the view-resolver(s) in usual way.
+    // Note that the exception is NOT available to this view (it is not added
+    // to the model) but see "Extending ExceptionHandlerExceptionResolver"
+    // below.
+    return "databaseError";
+  }
+
+  // Total control - setup a model and return the view name yourself. Or
+  // consider subclassing ExceptionHandlerExceptionResolver (see below).
+  @ExceptionHandler(Exception.class)
+  public ModelAndView handleError(HttpServletRequest req, Exception ex) {
+    logger.error("Request: " + req.getRequestURL() + " raised " + ex);
+
+    ModelAndView mav = new ModelAndView();
+    mav.addObject("exception", ex);
+    mav.addObject("url", req.getRequestURL());
+    mav.setViewName("error");
+    return mav;
+  }
+}
+{% endhighlight %}
+<h3>@InitBinder</h3>
+<p>This annotation is a method level annotation that plays the role of identifying the methods which initialize the WebDataBinder - a DataBinder that binds the request parameter to JavaBean objects. To customise request parameter data binding , you can use @InitBinder annotated methods within our controller. The methods annotated with @InitBinder all argument types that handler methods support.</p>
+<p>The @InitBinder annotated methods will get called for each HTTP request if you don’t specify the value element of this annotation. The value element can be a single or multiple form names or request parameters that the init binder method is applied to.</p>
+{% highlight java %}
+@InitBinder
+public void initBinder(WebDataBinder dataBinder) {
+  StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+  dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
+}
+@InitBinder(value = "address")
+void initAddressValidator(WebDataBinder binder) {
+  binder.setValidator(new AddressValidator());
+}
+{% endhighlight %}
+<h3>@Mapper, @Mappings and @Mapping</h3>
+<p>This annotation is used on fields. The @Mapping annotation is a meta annotation that indicates a web mapping annotation. When mapping different field names, you need to configure the source field to its target field and to do that you have to add the @Mappings annotation. This annotation accepts an array of @Mapping having the source and the target fields.</p>
+{% highlight java %}
+public class EmployeeDTO {
+    private int employeeId;
+    private String employeeName;
+    // getters and setters
+}
+public class Employee {
+    private int id;
+    private String name;
+    // getters and setters
+}
+{% endhighlight %}
+{% highlight java %}
+@Mapper
+public interface EmployeeMapper {
+    @Mappings({
+      @Mapping(target="employeeId", source="entity.id"),
+      @Mapping(target="employeeName", source="entity.name")
+    })
+    EmployeeDTO employeeToEmployeeDTO(Employee entity);
+    @Mappings({
+      @Mapping(target="id", source="dto.employeeId"),
+      @Mapping(target="name", source="dto.employeeName")
+    })
+    Employee employeeDTOtoEmployee(EmployeeDTO dto);
+}
+{% endhighlight %}
+<h3>@MatrixVariable</h3>
+<p>This annotation is used to annotate request handler method arguments so that Spring can inject the relevant bits of matrix URI. Matrix variables can appear on any segment each separated by a semicolon. If a URL contains matrix variables, the request mapping pattern must represent them with a URI template. The @MatrixVariable annotation ensures that the request is matched with the correct matrix variables of the URI.</p>
+{% highlight java %}
+http://localhost:8080/spring-mvc-java-2/employeesContacts/contactNumber=223334411
+{% endhighlight %}
+{% highlight java %}
+@RequestMapping(value = "/employeesContacts/{contactNumber}", 
+  method = RequestMethod.GET)
+@ResponseBody
+public ResponseEntity<List<Employee>> getEmployeeBycontactNumber(
+  @MatrixVariable(required = true) String contactNumber) {
+    List<Employee> employeesList = new ArrayList<Employee>();
+    ...
+    return new ResponseEntity<List<Employee>>(employeesList, HttpStatus.OK);
+}
+{% endhighlight %}
+<h3>@PathVariable</h3>
+<p>This annotation is used to annotate request handler method arguments. The @RequestMapping annotation can be used to handle dynamic changes in the URI where certain URI value acts as a parameter. You can specify this parameter using a regular expression. The @PathVariable annotation can be used declare this parameter.</p>
+{% highlight java %}
+@ResponseStatus(value = HttpStatus.OK)
+@GetMapping(value = "/user/{name}/{email}")
+public void process2(@PathVariable String name, @PathVariable String email) {
+    logger.info("User name: {} and email: {}", name, email);
+}
+{% endhighlight %}
+<h3>@RequestAttribute</h3>
+<p>This annotation is used to bind the request attribute to a handler method parameter. Spring retrieves the named attributes value to populate the parameter annotated with @RequestAttribute. While the @RequestParam annotation is used bind the parameter values from query string, the @RequestAttribute is used to access the objects which have been populated on the server side.</p>
+
+@Controller
+public class ExampleController {
+{% highlight java %}
+  @RequestMapping("/")
+  @ResponseBody
+  public String handle (@RequestAttribute("visitorCounter") Integer counter) {
+      return String.format("Visitor number: %d", counter);
+  }
+}
+{% endhighlight %}
+<h3>@RequestBody</h3>
+<p>This annotation is used to annotate request handler method arguments. The @RequestBody annotation indicates that a method parameter should be bound to the value of the HTTP request body. The HttpMessageConveter is responsible for converting from the HTTP request message to object.</p>
+{% highlight java %}
+@PostMapping("/request")
+public ResponseEntity postController(
+  @RequestBody LoginForm loginForm) {
+  
+    exampleService.fakeAuthenticate(loginForm);
+    return ResponseEntity.ok(HttpStatus.OK);
+}
+{% endhighlight %}
+{% highlight java %}
+public class LoginForm {
+    private String username;
+    private String password;
+    // ...
+}
+{% endhighlight %}
+{% highlight bash %}
+curl -i \
+-H "Accept: application/json" \
+-H "Content-Type:application/json" \
+-X POST --data 
+  '{"username": "johnny", "password": "password"}' "https://localhost:8080/.../request"
+{% endhighlight %}
+<h3>@RequestHeader</h3>
+<p>This annotation is used to annotate request handler method arguments. The @RequestHeader annotation is used to map controller parameter to request header value. When Spring maps the request, @RequestHeader checks the header with the name specified within the annotation and binds its value to the handler method parameter. This annotation helps you to get the header details within the controller class.</p>
+{% highlight java %}
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Map;
+
+@RestController
+public class MyController {
+
+    private static final Logger logger = LoggerFactory.getLogger(MyController.class);
+
+    @GetMapping(value = "/agent")
+    @ResponseStatus(value = HttpStatus.OK)
+    public void client(@RequestHeader(value="User-Agent") String userAgent) {
+
+        logger.info("User agent is: {}", userAgent);
+    }
+
+    @GetMapping(value = "/all")
+    @ResponseStatus(value = HttpStatus.OK)
+    public void all(@RequestHeader Map<String, String> headers) {
+
+        logger.info("All headers: {}", headers);
+    }
+}
+{% endhighlight %}
+<h3>@RequestParam</h3>
+<p>This annotation is used to annotate request handler method arguments. Sometimes you get the parameters in the request URL, mostly in GET requests. In that case, along with the @RequestMapping annotation you can use the @RequestParam annotation to retrieve the URL parameter and map it to the method argument. The @RequestParam annotation is used to bind request parameters to a method parameter in your controller.</p>
+{% highlight java %}
+@GetMapping("/api/foos")
+@ResponseBody
+public String getFoos(@RequestParam(required = false) String id) { 
+    return "ID: " + id;
+}
+{% endhighlight %}
+{% highlight bash %}
+http://localhost:8080/api/foos?id=abc
+----
+ID: abc
+{% endhighlight %}
+<h3>@RequestPart</h3>
+<p>This annotation is used to annotate request handler method arguments. The @RequestPart annotation can be used instead of @RequestParam to get the content of a specific multipart and bind to the method argument annotated with @RequestPart. This annotation takes into consideration the “Content-Type” header in the multipart(request part).</p>
+{% highlight java %}
+@RequestMapping(value = "/user/avatar/update", method = RequestMethod.POST, consumes = { "multipart/form-data" })
+public @ResponseBody GenericResponseBody userAvatarUpdate(@RequestPart("avatar_data") AvatarRequest avatarRequest,
+      @RequestPart("avatar_file") MultipartFile file) {
+   User authenticatedUser = new AuthenticationHolder().getAuthenticatedUser();
+   User persistentUser = userService.findByPK(authenticatedUser.getId());
+
+   try {
+      persistentUser.setPicture(Utility.cropImage(file.getBytes(), avatarRequest.getX().intValue(),
+            avatarRequest.getY().intValue(), avatarRequest.getWidth().intValue(),
+            avatarRequest.getHeight().intValue(), avatarRequest.getScaleX() == -1 ? true : false,
+            avatarRequest.getScaleY() == -1 ? true : false, avatarRequest.getRotate()));
+   } catch (BusinessException | IOException e) {
+      return new GenericResponseBody(GenericResponseBodyState.ERROR);
+   }
+
+   userService.update(persistentUser);
+
+   return new GenericResponseBody(GenericResponseBodyState.SUCCESS);
+}
+{% endhighlight %}
+<h3>@ResponseBody</h3>
+<p>This annotation is used to annotate request handler methods. The @ResponseBody annotation is similar to the @RequestBody annotation. The @ResponseBody annotation indicates that the result type should be written straight in the response body in whatever format you specify like JSON or XML. Spring converts the returned object into a response body by using the HttpMessageConveter.</p>
+{% highlight java %}
+@Controller
+@RequestMapping("/post")
+public class ExamplePostController {
+ 
+    @Autowired
+    ExampleService exampleService;
+ 
+    @PostMapping("/response")
+    @ResponseBody
+    public ResponseTransfer postResponseController(
+      @RequestBody LoginForm loginForm) {
+        return new ResponseTransfer("Thanks For Posting!!!");
+     }
+}
+{% endhighlight %}
+{% highlight java %}
+{"text":"Thanks For Posting!!!"}
+{% endhighlight %}
+<h3>@ResponseStatus</h3>
+<p>This annotation is used on methods and exception classes. @ResponseStatus marks a method or exception class with a status code and a reason that must be returned. When the handler method is invoked the status code is set to the HTTP response which overrides the status information provided by any other means. A controller class can also be annotated with @ResponseStatus which is then inherited by all @RequestMapping methods.</p>
+{% highlight java %}
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+@ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "No such order")
+public class OrderNotFoundException extends RuntimeException {
+
+    public OrderNotFoundException(String message) {
+
+        super(message);
+    }
+}
+{% endhighlight %}
+<h3>@ControllerAdvice</h3>
+<p>This annotation is applied at the class level. As explained earlier, for each controller you can use @ExceptionHandler on a method that will be called when a given exception occurs. But this handles only those exception that occur within the controller in which it is defined. To overcome this problem you can now use the @ControllerAdvice annotation. This annotation is used to define @ExceptionHandler, @InitBinder and @ModelAttribute methods that apply to all @RequestMapping methods. Thus if you define the @ExceptionHandler annotation on a method in @ControllerAdvice class, it will be applied to all the controllers.</p>
