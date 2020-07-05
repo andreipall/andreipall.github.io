@@ -95,3 +95,153 @@ public class BeanA {
 }
 {% endhighlight %}
 <p>With the @Qualifier annotation added, Spring will now know which bean to autowire where beanB2 is the name of BeanB2.</p>
+<h3>@Configuration</h3>
+<p>This annotation is used on classes which define beans. @Configuration is an analog for XML configuration file – it is configuration using Java class. Java class annotated with @Configuration is a configuration by itself and will have methods to instantiate and configure the dependencies.</p3>
+<p>Here is an example:</p>
+{% highlight java %}
+@Configuration
+public class DataConfig{ 
+  @Bean
+  public DataSource source(){
+    DataSource source = new OracleDataSource();
+    source.setURL();
+    source.setUser();
+    return source;
+  }
+  @Bean
+  public PlatformTransactionManager manager(){
+    PlatformTransactionManager manager = new BasicDataSourceTransactionManager();
+    manager.setDataSource(source());
+    return manager;
+  }
+}
+{% endhighlight %}
+<h3>@ComponentScan</h3>
+<p>This annotation is used with @Configuration annotation to allow Spring to know the packages to scan for annotated components. @ComponentScan is also used to specify base packages using basePackageClasses or basePackage attributes to scan. If specific packages are not defined, scanning will occur from the package of the class that declares this annotation.</p>
+{% highlight java %}
+package com.andreipall.blog;
+import com.andreipall.blog.componentscan.example.demopackageB.DemoBeanB1;
+import org.springframework.boot.SpringApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+@ComponentScan(basePackages = {"com.andreipall.blog.componentscan.example.demopackageA",
+        "com.andreipall.blog.componentscan.example.demopackageD",
+        "com.andreipall.blog.componentscan.example.demopackageE"},
+        basePackageClasses = DemoBeanB1.class)
+public class BlogPostsApplicationWithComponentScan {
+    public static void main(String[] args) {
+        ApplicationContext context = SpringApplication.
+                run(BlogPostsApplicationWithComponentScan.class,args);
+        System.out.println("Contains A  "+context.
+                containsBeanDefinition("demoBeanA"));
+        System.out.println("Contains B2  " + context.
+                containsBeanDefinition("demoBeanB2"));
+        System.out.println("Contains C   " + context.
+                containsBeanDefinition("demoBeanC"));
+        System.out.println("Contains D   " + context.
+                containsBeanDefinition("demoBeanD"));
+
+    }
+}
+{% endhighlight %}
+<h3>@Bean</h3>
+<p>This annotation is used at the method level. @Bean annotation works with @Configuration to create Spring beans. As mentioned earlier, @Configuration will have methods to instantiate and configure dependencies. Such methods will be annotated with @Bean. The method annotated with this annotation works as bean ID and it creates and returns the actual bean.</p>
+<p>Here is an example:</p>
+{% highlight java %}
+@Configuration
+public class AppConfig{
+  @Bean
+  public Person person(){
+    return new Person(address());
+  }
+  @Bean
+  public Address address(){
+    return new Address();
+  }
+}
+{% endhighlight %}
+<h3>@Lazy</h3>
+<p>This annotation is used on component classes. By default all autowired dependencies are created and configured at startup. But if you want to initialize a bean lazily, you can use @Lazy annotation over the class. This means that the bean will be created and initialized only when it is first requested for. You can also use this annotation on @Configuration classes. This indicates that all @Bean methods within that @Configuration should be lazily initialized.</p>
+{% highlight java %}
+@Lazy
+@Configuration
+@ComponentScan(basePackages = "com.andreipall")
+public class AppConfig {
+ 
+    @Bean
+    public Region getRegion(){
+        return new Region();
+    }
+ 
+    @Bean
+    public Country getCountry(){
+        return new Country();
+    }
+}
+{% endhighlight %}
+<p>To apply this to only a specific bean, let's remove the @Lazy from a class, then we add it to the config of the desired bean:</p>
+{% highlight java %}
+@Bean
+@Lazy(true)
+public Region getRegion(){
+    return new Region();
+}
+{% endhighlight %}
+<h3>@Value</h3>
+<p>This annotation is used at the field, constructor parameter, and method parameter level. The @Value annotation indicates a default value expression for the field or parameter to initialize the property with. As the @Autowired annotation tells Spring to inject object into another when it loads your application context, you can also use @Value annotation to inject values from a property file into a bean’s attribute. It supports both #{...} and ${...} placeholders.</p>
+{% highlight java %}
+value.from.file=Value got from the file
+priority=high
+listOfValues=A,B,C
+{% endhighlight %}
+{% highlight java %}
+@Value("${value.from.file}")
+private String valueFromFile;
+{% endhighlight %}
+<h2>Spring Framework Stereotype Annotations</h2>
+<h3>@Component</h3>
+<p>This annotation is used on classes to indicate a Spring component. The @Component annotation marks the Java class as a bean or say component so that the component-scanning mechanism of Spring can add into the application context.</p>
+{% highlight java %}
+package com.andreipall;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class MathComponent {
+
+	public int add(int x, int y) {
+		return x + y;
+	}
+}
+{% endhighlight %}
+{% highlight java %}
+package com.andreipall;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+public class SpringMainClass {
+
+	public static void main(String[] args) {
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+		context.scan("com.andreipall");
+		context.refresh();
+
+		MathComponent ms = context.getBean(MathComponent.class);
+
+		int result = ms.add(1, 2);
+		System.out.println("Addition of 1 and 2 = " + result);
+
+		context.close();
+	}
+}
+{% endhighlight %}
+<h3>@Controller</h3>
+<p>The @Controller annotation is used to indicate the class is a Spring controller. This annotation can be used to identify controllers for Spring MVC.</p>
+<h3>@Service</h3>
+<p>This annotation is used on a class. The @Service marks a Java class that performs some service, such as execute business logic, perform calculations and call external APIs. This annotation is a specialized form of the @Component annotation intended to be used in the service layer.</p>
+<h3>@Repository</h3>
+<p>This annotation is used on Java classes which directly access the database. The @Repository annotation works as marker for any class that fulfills the role of repository or Data Access Object.</p>
+<p>This annotation has a automatic translation feature. For example, when an exception occurs in the @Repository there is a handler for that exception and there is no need to add a try catch block.</p>
