@@ -299,6 +299,24 @@ public class WelcomeController{
   }	
 }
 {% endhighlight %}
+<h3>@ModelAttribute</h3>
+<p>When the annotation is used at the method level it indicates the purpose of that method is to add one or more model attributes.</p>
+{% highlight java %}
+@ModelAttribute
+public void addAttributes(Model model) {
+    model.addAttribute("msg", "Welcome to Romania!");
+}
+{% endhighlight %}
+<p>In the example, we show a method that adds an attribute named msg to all models defined in the controller class.</p>
+<p>When used as a method argument, it indicates the argument should be retrieved from the model. When not present, it should be first instantiated and then added to the model and once present in the model, the arguments fields should be populated from all request parameters that have matching names.</p>
+{% highlight java %}
+@RequestMapping(value = "/addEmployee", method = RequestMethod.POST)
+public String submit(@ModelAttribute("employee") Employee employee) {
+    // Code that uses the employee object
+ 
+    return "employeeView";
+}
+{% endhighlight %}
 <h3>@CookieValue</h3>
 This annotation is used at method parameter level. @CookieValue is used as argument of request mapping method. The HTTP cookie is bound to the @CookieValue parameter for a given cookie name. This annotation is used in the method annotated with @RequestMapping.
 Let us consider that the following cookie value is received with a http request:
