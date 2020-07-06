@@ -648,3 +648,87 @@ public class TradeController {
 }
 {% endhighlight %}
 <p>The @ModelAttribute name is assigned to the @SessionAttributes as value. The @SessionAttributes has two elements. The value element is the name of the session in the model and the types element is the type of session attributes in the model.</p>
+<h2>Spring Framework DataAccess Annotations</h2>
+<h3>@Transactional</h3>
+<p>This annotation is placed before an interface definition, a method on an interface, a class definition, or a public method on a class. The mere presence of @Transactional is not enough to activate the transactional behaviour. The @Transactional is simply a metadata that can be consumed by some runtime infrastructure. This infrastructure uses the metadata to configure the appropriate beans with transactional behaviour.</p>
+<p>The annotation further supports configuration like:</p>
+<ul>
+<li>The Propagation type of the transaction</li>
+<li>The Isolation level of the transaction</li>
+<li>A timeout for the operation wrapped by the transaction</li>
+<li>A read only flag - a hint for the persistence provider that the transaction must be read only</li>
+<li>The rollback rules for the transaction</li>
+</ul>
+{% highlight java %}
+@Transactional
+public void businessLogic() {
+  ...
+}
+{% endhighlight %}
+<h2>Cache-Based Annotations</h2>
+<h3>@Cacheable</h3>
+<p>This annotation is used on methods. The simplest way of enabling the cache behaviour for a method is to annotate it with @Cacheable and parameterize it with the name of the cache where the results would be stored.</p>
+{% highlight java %}
+@Cacheable("addresses")
+public String getAddress(Book book){...}
+{% endhighlight %}
+<p>In the snippet above , the method getAddress is associated with the cache named addresses. Each time the method is called, the cache is checked to see whether the invocation has been already executed and does not have to be repeated.</p>
+<h3>@CachePut</h3>
+<p>This annotation is used on methods. Whenever you need to update the cache without interfering the method execution, you can use the @CachePut annotation. That is, the method will always be executed and the result cached.</p>
+{% highlight java %}
+@CachePut("addresses")
+public String getAddress(Book book){...}
+{% endhighlight %}
+<p>Using @CachePut and @Cacheable on the same method is strongly discouraged as the former forces the execution in order to execute a cache update, the latter causes the method execution to be skipped by using the cache.</p>
+<h3>@CacheEvict</h3>
+<p>This annotation is used on methods. It is not that you always want to populate the cache with more and more data. Sometimes you may want remove some cache data so that you can populate the cache with some fresh values. In such a case use the @CacheEvict annotation.</p>
+{% highlight java %}
+@CacheEvict(value="addresses", allEntries="true")
+public String getAddress(Book book){...}
+{% endhighlight %}
+<p>Here an additional element allEntries is used along with the cache name to be emptied. It is set to true so that it clears all values and prepares to hold new data.</p>
+<h3>@CacheConfig</h3>
+<p>This annotation is a class level annotation. The @CacheConfig annotation helps to streamline some of the cache information at one place. Placing this annotation on a class does not turn on any caching operation. This allows you to store the cache configuration at the class level so that you don’t have declare things multiple times.</p>
+{% highlight java %}
+@CacheConfig(cacheNames={"addresses"})
+public class CustomerDataService {
+ 
+    @Cacheable
+    public String getAddress(Customer customer) {...}
+}
+{% endhighlight %}
+<h2>Task Execution and Scheduling Annotations</h2>
+<h3>@Scheduled</h3>
+<p>This annotation is a method level annotation. The @Scheduled annotation is used on methods along with the trigger metadata. A method with @Scheduled should have void return type and should not accept any parameters.</p>
+<p>There are different ways of using the @Scheduled annotation:</p>
+{% highlight java %}
+@Scheduled(fixedDelay=5000)
+public void doSomething() {
+  // something that should execute periodically   
+}
+{% endhighlight %}
+<p>In this case, the duration between the end of last execution and the start of next execution is fixed. The tasks always wait until the previous one is finished.</p>
+{% highlight java %}
+@Scheduled(fixedRate=5000)
+public void doSomething() { 
+  // something that should execute periodically 
+}
+{% endhighlight %}
+<p>In this case, the beginning of the task execution does not wait for the completion of the previous execution.</p>
+{% highlight java %}
+@Scheduled(initialDelay=1000,fixedRate=5000)
+public void doSomething() { 
+ // something that should execute periodically after an initial delay  
+}
+{% endhighlight %}
+<p>The task gets executed initially with a delay and then continues with the specified fixed rate.</p>
+<h3>@Async</h3>
+<p>This annotation is used on methods to execute each method in a separate thread. The @Async annotation is provided on a method so that the invocation of that method will occur asynchronously. Unlike methods annotated with @Scheduled, the methods annotated with @Async can take arguments. They will be invoked in the normal way by callers at runtime rather than by a scheduled task.</p>
+<p>@Async can be used with both void return type methods and the methods that return a value. However methods with return value must have a Future typed return values.</p>
+{% highlight java %}
+@Async
+public void asyncMethodWithVoidReturnType() {
+    System.out.println("Execute method asynchronously. "
+      + Thread.currentThread().getName());
+}
+{% endhighlight %}
