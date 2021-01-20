@@ -5,7 +5,7 @@ date:   2021-01-20 16:30:56
 categories: java
 description: Spring Controller Method Arguments And Return Values
 keywords: [Andrei Pall, blog, freebsd, linux, framework]
-excerpt: @RequestMapping handler methods have a flexible signature and can choose from a range of supported controller method arguments and return values. The next table describes the supported controller method arguments.
+excerpt: RequestMapping handler methods have a flexible signature and can choose from a range of supported controller method arguments and return values. The next table describes the supported controller method arguments.
 ---
 <p>@RequestMapping handler methods have a flexible signature and can choose from a range of supported controller method arguments and return values.</p>
 <h3>Method Arguments</h3>
