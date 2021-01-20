@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Spring Controller Method Arguments And Return Values"
-date:   2020-06-26 16:53:56
+date:   2021-01-20 16:30:56
 categories: java
 description: Spring Controller Method Arguments And Return Values
 keywords: [Andrei Pall, blog, freebsd, linux, framework]
