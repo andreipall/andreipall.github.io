@@ -172,7 +172,7 @@ excerpt: When you prepare a Hibernate mapping document, you find that you map th
 </tr>
 </tbody></table>
 
-
+<h2>Hibernate Types</h2>
 <table>
 <tbody><tr>
 <th>Hibernate type (org.hibernate.type)</th>
