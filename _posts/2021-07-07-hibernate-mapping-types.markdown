@@ -171,3 +171,197 @@ excerpt: When you prepare a Hibernate mapping document, you find that you map th
 <td>VARCHAR</td>
 </tr>
 </tbody></table>
+
+
+<table>
+<tbody><tr>
+<th>Hibernate type (org.hibernate.type)</th>
+<th>JDBC type</th>
+<th>Java type</th>
+</tr>
+<tr>
+<td>StringType</td>
+<td>VARCHAR</td>
+<td>String</td>
+</tr>
+<tr>
+<td>MaterializedClob</td>
+<td>CLOB</td>
+<td>String</td>
+</tr>
+<tr>
+<td>TextType</td>
+<td>LONGVARCHAR</td>
+<td>String</td>
+</tr>
+<tr>
+<td>CharacterType</td>
+<td>CHAR</td>
+<td>char or Character</td>
+</tr>
+<tr>
+<td>BooleanType</td>
+<td>BIT</td>
+<td>boolean or Boolean</td>
+</tr>
+<tr>
+<td>NumericBooleanType</td>
+<td>INTEGER (e.g. 0 = false and 1 = true)</td>
+<td>boolean or Boolean</td>
+</tr>
+<tr>
+<td>YesNoType</td>
+<td>CHAR (e.g. ‘N’ or ‘n’ = false and ‘Y’ or ‘y’ = true)</td>
+<td>boolean or Boolean</td>
+</tr>
+<tr>
+<td>TrueFalseType</td>
+<td>CHAR (e.g. ‘F’ or ‘f’ = false and ‘T’ or ‘t’ = true)</td>
+<td>boolean or Boolean</td>
+</tr>
+<tr>
+<td>ByteType</td>
+<td>TINYINT</td>
+<td>byte or Byte</td>
+</tr>
+<tr>
+<td>ShortType</td>
+<td>SMALLINT</td>
+<td>short or Short</td>
+</tr>
+<tr>
+<td>IntegerType</td>
+<td>INTEGER</td>
+<td>int or Integer</td>
+</tr>
+<tr>
+<td>LongType</td>
+<td>BIGINT</td>
+<td>long or Long</td>
+</tr>
+<tr>
+<td>FloatType</td>
+<td>FLOAT</td>
+<td>float or Float</td>
+</tr>
+<tr>
+<td>DoubleType</td>
+<td>DOUBLE</td>
+<td>double or Double</td>
+</tr>
+<tr>
+<td>BigIntegerType</td>
+<td>NUMERIC</td>
+<td>BigInteger</td>
+</tr>
+<tr>
+<td>BigDecimalType</td>
+<td>NUMERIC</td>
+<td>BigDecimal </td>
+</tr>
+<tr>
+<td>TimestampType</td>
+<td>TIMESTAMP</td>
+<td>java.sql.Timestamp or java.util.Date</td>
+</tr>
+<tr>
+<td>TimeType</td>
+<td>TIME</td>
+<td>java.sql.Time</td>
+</tr>
+<tr>
+<td>DateType</td>
+<td>DATE</td>
+<td>java.sql.Date</td>
+</tr>
+<tr>
+<td>CalendarType</td>
+<td>TIMESTAMP</td>
+<td>java.util.Calendar or java.util.GregorianCalendar</td>
+</tr>
+<tr>
+<td>CalendarType</td>
+<td>DATE</td>
+<td>java.util.Calendar or java.util.GregorianCalendar</td>
+</tr>
+<tr>
+<td>CurrencyType</td>
+<td>VARCHAR</td>
+<td>java.util.Currency</td>
+</tr>
+<tr>
+<td>LocaleType</td>
+<td>VARCHAR</td>
+<td>java.util.Locale</td>
+</tr>
+<tr>
+<td>TimeZoneType</td>
+<td>VARCHAR</td>
+<td>java.util.TimeZone</td>
+</tr>
+<tr>
+<td>UrlType</td>
+<td>VARCHAR</td>
+<td>java.net.URL</td>
+</tr>
+<tr>
+<td>ClassType</td>
+<td>VARCHAR</td>
+<td>java.lang.Class</td>
+</tr>
+<tr>
+<td>BlobType</td>
+<td>BLOB</td>
+<td>java.sql.Blob</td>
+</tr>
+<tr>
+<td>ClobType</td>
+<td>CLOB</td>
+<td>java.sql.Clob</td>
+</tr>
+<tr>
+<td>BinaryType</td>
+<td>VARBINARY</td>
+<td>byte[] or Byte[]</td>
+</tr>
+<tr>
+<td>BinaryType</td>
+<td>BLOB</td>
+<td>byte[] or Byte[]</td>
+</tr>
+<tr>
+<td>BinaryType</td>
+<td>LONGVARBINARY</td>
+<td>byte[] or Byte[]</td>
+</tr>
+<tr>
+<td>BinaryType</td>
+<td>LONGVARBINARY</td>
+<td>byte[] or Byte[]</td>
+</tr>
+<tr>
+<td>CharArrayType</td>
+<td>VARCHAR</td>
+<td>char[] or Character[]</td>
+</tr>
+<tr>
+<td>UUIDBinaryType</td>
+<td>BINARY</td>
+<td>java.util.UUID</td>
+</tr>
+<tr>
+<td>UUIDBinaryType</td>
+<td>CHAR or VARCHAR</td>
+<td>java.util.UUID</td>
+</tr>
+<tr>
+<td>UUIDBinaryType</td>
+<td>PostgreSQL UUID</td>
+<td>java.util.UUID</td>
+</tr>
+<tr>
+<td>SerializableType</td>
+<td>VARBINARY</td>
+<td>Serializable</td>
+</tr>
+</tbody></table>
