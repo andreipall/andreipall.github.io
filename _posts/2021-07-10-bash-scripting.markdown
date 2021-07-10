@@ -14,10 +14,9 @@ Getting started
 ### Introduction
 {: .-intro}
 
-This is a quick reference to getting started with Bash scripting.
+Bash is an sh-compatible shell that incorporates useful features from the Korn shell (ksh) and the C shell (csh). It offers functional improvements over sh for both programming and interactive use. In addition, most sh scripts can be run by Bash without modification. 
 
-- [Learn bash in y minutes](https://learnxinyminutes.com/docs/bash/) _(learnxinyminutes.com)_
-- [Bash Guide](http://mywiki.wooledge.org/BashGuide) _(mywiki.wooledge.org)_
+This is a quick reference to getting started with Bash scripting.
 
 ### Example
 
