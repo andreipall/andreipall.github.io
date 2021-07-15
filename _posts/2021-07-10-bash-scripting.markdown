@@ -21,7 +21,7 @@ This is a quick reference to getting started with Bash scripting.
 ### Example
 
 ```bash
-#!/usr/bin/env bash
+#!/bin/bash
 
 NAME="John"
 echo "Hello $NAME!"
