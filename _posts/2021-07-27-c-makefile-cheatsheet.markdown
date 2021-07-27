@@ -9,30 +9,6 @@ excerpt: Make is a build automation tool that automatically builds executable pr
 ---
 <p>Make is a build automation tool that automatically builds executable programs and libraries from source code by reading files called Makefiles which specify how to derive the target program.</p>
 
-<h1>C Makefile cheatsheet<a class="headerlink" href="#c-makefile-cheatsheet" title="Permalink to this headline">¶</a></h1>
-<div class="contents topic" id="table-of-contents">
-<p class="topic-title">Table of Contents</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="#c-makefile-cheatsheet" id="id1">C Makefile cheatsheet</a></p>
-<ul>
-<li><p><a class="reference internal" href="#automatic-variables" id="id2">Automatic variables</a></p></li>
-<li><p><a class="reference internal" href="#using-warning-text-check-make-rules-for-debug" id="id3">using <code class="docutils literal notranslate"><span class="pre">$(warning</span> <span class="pre">text)</span></code> check make rules (for debug)</a></p></li>
-<li><p><a class="reference internal" href="#string-functions" id="id4">string functions</a></p></li>
-<li><p><a class="reference internal" href="#using-sort-list-sort-list-and-remove-duplicates" id="id5">using <code class="docutils literal notranslate"><span class="pre">$(sort</span> <span class="pre">list)</span></code> sort list and remove duplicates</a></p></li>
-<li><p><a class="reference internal" href="#single-dollar-sign-and-double-dollar-sign" id="id6">single dollar sign and double dollar sign</a></p></li>
-<li><p><a class="reference internal" href="#build-executable-files-respectively" id="id7">build executable files respectively</a></p></li>
-<li><p><a class="reference internal" href="#using-eval-predefine-variables" id="id8">using <code class="docutils literal notranslate"><span class="pre">$(eval)</span></code> predefine variables</a></p></li>
-<li><p><a class="reference internal" href="#build-subdir-and-link-together" id="id9">build subdir and link together</a></p></li>
-<li><p><a class="reference internal" href="#build-shared-library" id="id10">build shared library</a></p></li>
-<li><p><a class="reference internal" href="#build-shared-and-static-library" id="id11">build shared and static library</a></p></li>
-<li><p><a class="reference internal" href="#build-recursively" id="id12">build recursively</a></p></li>
-<li><p><a class="reference internal" href="#replace-current-shell" id="id13">replace current shell</a></p></li>
-<li><p><a class="reference internal" href="#one-line-condition" id="id14">one line condition</a></p></li>
-<li><p><a class="reference internal" href="#using-define-to-control-cflags" id="id15">Using define to control CFLAGS</a></p></li>
-</ul>
-</li>
-</ul>
-</div>
 <section id="automatic-variables">
 <h2>Automatic variables<a class="headerlink" href="#automatic-variables" title="Permalink to this headline">¶</a></h2>
 <table class="docutils align-default">
