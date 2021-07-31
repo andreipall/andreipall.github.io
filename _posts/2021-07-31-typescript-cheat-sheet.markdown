@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "TypeScript Cheat Sheet"
-date:   2018-02-14 12:46:56
+date:   2021-07-31 12:46:56
 categories: JavaScript
 description: TypeScript Cheat Sheet
 keywords: [Andrei Pall, blog, freebsd, linux, framework]
