@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "MySQL query to extract domains from URLs"
-date:   2020-04-18 16:53:56
+date:   2021-10-11 16:53:56
 categories: sql
 description: MySQL query to extract domains from URLs
 keywords: [Andrei Pall, blog, freebsd, linux, framework]
