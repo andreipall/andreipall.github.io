@@ -18,6 +18,17 @@ spring.datasource.username=root
 spring.datasource.password=eclipse
 spring.datasource.driver-class-name=com.mysql.jdbc.Driver
 spring.jpa.hibernate.ddl-auto=create-drop
+
+#spring.jpa.show-sql=true
+
+#Show SQL
+spring.jpa.properties.hibernate.show_sql=true
+
+#Format SQL
+spring.jpa.properties.hibernate.format_sql=true
+
+#Show bind values
+logging.level.org.hibernate.type.descriptor.sql=trace
 {% endhighlight %}
 Restart the app and you are ready!<br/>
 Things to note:
