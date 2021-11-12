@@ -7,7 +7,7 @@ description: Java - All Functional Interfaces
 keywords: [Andrei Pall, blog, freebsd, linux, framework]
 excerpt: Here follows a complete list of the general purpose functional interfaces available in the standard Java API.
 ---
-      <p>Here follows a complete list of the general purpose functional interfaces available in the standard Java API.</p>
+<p>Here follows a complete list of the general purpose functional interfaces available in the standard Java API.</p>
       <table class="white">
         <thead>
           <tr>
@@ -334,4 +334,3 @@ excerpt: Here follows a complete list of the general purpose functional interfac
           </tr>
         </tbody>
       </table>
-    
