@@ -335,8 +335,7 @@ excerpt: Here follows a complete list of the general purpose functional interfac
 </tbody>
 </table>
 
-
-                <p>
+<p>
     The term <em>Java functional interface</em> was introduced in Java 8.
     A <em>functional interface</em> in Java is an interface that contains only a single abstract (unimplemented)
     method. A functional interface can contain default and static methods which do have an implementation, in
