@@ -2,7 +2,7 @@
 layout: post
 title:  "How To Pass Data Between Unrelated Components In Angular"
 date:   2022-03-07 11:53:56
-categories: javascript
+categories: JavaScript
 description: How To Pass Data Between Unrelated Components In Angular
 keywords: [Andrei Pall, blog, linux, framework]
 excerpt: To pass data between unrelated components In Angular use a shared service with Subject or BehaviorSubject, like this:
