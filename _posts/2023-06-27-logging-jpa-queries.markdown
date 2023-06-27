@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Logging JPA Queries"
-date:   2023-06-27 12:46:56
+date:   2023-06-27 11:26:56
 categories: java
 description: Logging JPA Queries
 keywords: [Andrei Pall, blog, java, jpa, spring, framework]
