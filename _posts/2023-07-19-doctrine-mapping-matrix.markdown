@@ -8,7 +8,7 @@ keywords: [Andrei Pall, blog, php, symfony, framework]
 excerpt: The following table shows an overview of Doctrine's type abstraction. The matrix contains the mapping information for how a specific Doctrine type is mapped to the database and back to PHP.
 ---
 <p>The following table shows an overview of Doctrine's type abstraction. The matrix contains the mapping information for how a specific Doctrine type is mapped to the database and back to PHP.</p>
-<pre><code class="console">+-------------------+---------------+-----------------------------------------------------------------------------------------------+
+<pre style="width: 1150px;"><code class="console">+-------------------+---------------+-----------------------------------------------------------------------------------------------+
 | Doctrine          | PHP           | Database vendor                                                                               |
 |                   |               +--------------------------+---------+----------------------------------------------------------+
 |                   |               | Name                     | Version | Type                                                     |
