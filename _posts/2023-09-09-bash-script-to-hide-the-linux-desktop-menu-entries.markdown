@@ -29,7 +29,7 @@ do
         fi
     fi
 done
-if [ "$counter" -eq "0" ]; then
+if [ $counter -eq 0 ]; then
    echo "No desktop menu entries found.";
 fi
 {% endhighlight %}
