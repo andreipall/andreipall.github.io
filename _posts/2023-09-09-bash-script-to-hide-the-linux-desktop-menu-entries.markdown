@@ -20,7 +20,7 @@ for entryName in "${entryNames[@]}"
 do
     entry_path="$path$entryName"
     # Check if the entry exists
-    if test -f "$entry_path"; then
+    if [ -f $entry_path ]; then
         # Check if the entry is hidden
         if ! grep -q "NoDisplay=true" "$entry_path"; then
             echo "NoDisplay=true" >> $entry_path
