@@ -12,6 +12,11 @@ excerpt: This Bash script hides the desktop menu entries.
 #!/bin/bash
 # This Bash script hides the desktop menu entries, by Andrei Pall
 
+if [ $UID -ne 0 ]; then
+    echo "ERROR: Run as root user..."
+    exit 1
+fi
+
 entryNames=("avahi-discover.desktop" "bssh.desktop" "bvnc.desktop" "gcr-prompter.desktop" "gcr-viewer.desktop" "mpv.desktop" "qv4l2.desktop" "qvidcap.desktop" "xfce4-mail-reader.desktop")
 path="/usr/share/applications/"
 
