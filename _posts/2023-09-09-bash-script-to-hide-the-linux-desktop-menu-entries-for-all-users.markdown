@@ -1,16 +1,16 @@
 ---
 layout: post
-title:  "Bash script to hide the Linux desktop menu entries"
+title:  "Bash script to hide the Linux desktop menu entries for all users"
 date:   2023-09-09 12:46:56
 categories: Linux
-description: Bash script to hide the Linux desktop menu entries
+description: Bash script to hide the Linux desktop menu entries for all users
 keywords: [Andrei Pall, blog, freebsd, linux, framework]
-excerpt: This Bash script hides the desktop menu entries.
+excerpt: This Bash script hides the desktop menu entries for all users.
 ---
-<p>This Bash script hides the desktop menu entries:</p>
+<p>This Bash script hides the desktop menu entries for all users:</p>
 {% highlight bash %}
 #!/bin/bash
-# This Bash script hides the desktop menu entries, by Andrei Pall
+# This Bash script hides the desktop menu entries for all users, by Andrei Pall
 
 if [ $UID -ne 0 ]; then
     echo "ERROR: Run as root user..."
