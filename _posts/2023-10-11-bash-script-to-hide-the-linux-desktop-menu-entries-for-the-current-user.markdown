@@ -18,25 +18,25 @@ home_path="$HOME/.local/share/applications/"
 
 # Check if the home directory exists and create it if it doesn't
 if [ ! -d "$home_path" ]; then
-	mkdir -p "$home_path"
+    mkdir -p "$home_path"
 fi
 
 counter=0
 for entry_name in "${entry_names[@]}"
 do
     entry_path="$path$entry_name"
-	entry_home_path="$home_path$entry_name"
+    entry_home_path="$home_path$entry_name"
     # Check if the entry exists
     if [ -f "$entry_path" ]; then
-		if [ ! -f "$entry_home_path" ]; then
-			cp "$entry_path" "$entry_home_path"
-			# Check if the entry is hidden
-			if ! grep -q "NoDisplay=true" "$entry_home_path"; then
-				echo "NoDisplay=true" >> "$entry_home_path"
-				echo "The file $entry_home_path is hidden."
-				let counter++
-			fi
-		fi
+        if [ ! -f "$entry_home_path" ]; then
+            cp "$entry_path" "$entry_home_path"
+            # Check if the entry is hidden
+            if ! grep -q "NoDisplay=true" "$entry_home_path"; then
+                echo "NoDisplay=true" >> "$entry_home_path"
+                echo "The file $entry_home_path is hidden."
+                let counter++
+            fi
+        fi
     fi
 done
 if [ $counter -eq 0 ]; then
