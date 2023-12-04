@@ -34,7 +34,7 @@ do
             if ! grep -q "NoDisplay=true" "$entry_home_path"; then
                 echo "NoDisplay=true" >> "$entry_home_path"
                 echo "The file $entry_home_path is hidden."
-                let counter++
+                (( counter++ ))
             fi
         fi
     fi
