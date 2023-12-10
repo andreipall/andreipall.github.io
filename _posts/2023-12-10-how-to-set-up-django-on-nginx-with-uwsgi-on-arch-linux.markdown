@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "How to Set Up Django on Nginx with uWSGI on Arch Linux"
-date:   2023-12-10 16:46:56
+date:   2023-12-10 14:46:56
 categories: Python
 description: How to Set Up Django on Nginx with uWSGI on Arch Linux
 keywords: [Andrei Pall, blog, php, symfony, framework]
