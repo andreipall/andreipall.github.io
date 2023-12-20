@@ -10,7 +10,7 @@ excerpt: Install uwsgi on your virtual environment
 <p>Install uwsgi on your virtual environment:</p>
 {% highlight bash %}
 pip install wheel
-pip install uwsgi
+pip install uwsgi --no-cache-dir
 {% endhighlight %}
 <p>Now we can serve the Django project with uWSGI with the following command:</p>
 {% highlight bash %}
