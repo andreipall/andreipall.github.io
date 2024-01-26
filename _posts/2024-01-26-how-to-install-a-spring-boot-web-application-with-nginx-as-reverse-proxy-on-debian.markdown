@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "How to Install a Spring Boot Web Application with Nginx as Reverse Proxy on Debian"
-date:   2024-01-26 18:46:56
+date:   2024-01-26 10:46:56
 categories: Java
 description: How to Install a Spring Boot Web Application with Nginx as Reverse Proxy on Debian
 keywords: [Andrei Pall, blog, php, symfony, framework]
