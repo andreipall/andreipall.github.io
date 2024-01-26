@@ -31,6 +31,7 @@ WantedBy=multi-user.target
 <p>To flag the application to start automatically on system boot, use the following command:</p>
 {% highlight bash %}
 sudo systemctl enable myapp.service
+sudo journalctl -u myapp.service
 {% endhighlight %}
 <p>Next, you will need to install Nginx as a reverse proxy for Apache Tomcat. First, install the Nginx web server with the following command:</p>
 {% highlight bash %}
