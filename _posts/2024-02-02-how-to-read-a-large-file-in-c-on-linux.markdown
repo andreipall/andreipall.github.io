@@ -4,7 +4,7 @@ title:  "How to read a large file in C on Linux"
 date:   2024-02-02 10:46:56
 categories: C
 description: How to read a large file in C on Linux
-keywords: [Andrei Pall, blog, php, symfony, framework]
+keywords: [Andrei Pall, blog, c, gcc, linux]
 excerpt: Reading a large file in C on Linux involves opening the file, reading its contents in chunks, and processing each chunk as needed. Here's a simple example using the standard C library functions
 ---
 <p>Reading a large file in C on Linux involves opening the file, reading its contents in chunks, and processing each chunk as needed. Here's a simple example using the standard C library functions:</p>
