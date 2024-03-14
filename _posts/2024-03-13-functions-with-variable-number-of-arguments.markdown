@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Functions with variable number of arguments"
-date:   2024-03-14 10:46:56
+date:   2024-03-13 10:46:56
 categories: C
 description: Functions with variable number of arguments
 keywords: [Andrei Pall, blog, c, gcc, linux]
