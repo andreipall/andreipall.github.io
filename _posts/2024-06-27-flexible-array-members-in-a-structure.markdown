@@ -20,7 +20,7 @@ struct student
     int stud_name_len;
     //this is used to store the size of the struct
     int struct_size;
-    //flexible array member (FAM) - must be at the end of the structure declaration
+    //flexible array member (FAM) - must be at the end of the structure definition
     char stud_name[];
 };
 
