@@ -54,33 +54,29 @@ int main()
 }
 {% endhighlight %}
 {% highlight c %}
-#include <string.h>
 #include <stdio.h>
-#include <malloc.h>
+#include <string.h>
+#include <stdlib.h>
 
-struct myArray
+struct struct_name
 {
     int len;
-    int array[];
+    char name[];
 };
 
-
-int main()  {
-	struct myArray *m = NULL;
-	int arraySize = 0;
-
-	printf("Enter the size of the flexible array\n");
-	scanf("%d", &arraySize);
-
-	size_t size = sizeof(struct myArray);
-	m = malloc(size + (sizeof(int) * arraySize));
-
-	m->len = arraySize;
-	m->array[0] = 55;
-	m->array[1] = 199;
-
-	printf("array is: %d:%d\n", m->array[0], m->array[1]);
-    free(m);
-	return 0;
+int main()
+{
+    char name[200];
+    printf("Enter your name:\n");
+    fgets(name, 200, stdin);
+    name[strcspn(name, "\r\n")] = 0;
+    printf("Entered name: %s, size: %ld\n", name, strlen(name));
+    printf("Entered name array size: %ld\n", sizeof(name));
+    struct struct_name *s = malloc(sizeof(struct struct_name) + (sizeof(char) * strlen(name)));
+    s->len = strlen(name);
+    strncpy(s->name, name, strlen(name));
+    printf("Flexible array is: %s, length:%d\n", s->name, s->len);
+    free(s);
+    return 0;
 }
 {% endhighlight %}
