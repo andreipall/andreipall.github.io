@@ -114,4 +114,4 @@ int main(int argc, char *argv[]) {
 }
 {% endhighlight %}
 <p>Compile the program with gcc -o inotify_example inotify_example.c.</p>
-<p>Run the program with ./inotify_example <directory_to_watch> <command_to_execute>.</p>
+<p>Run the program with ./inotify_example &lt;directory_to_watch&gt; &lt;command_to_execute&gt;.</p>
