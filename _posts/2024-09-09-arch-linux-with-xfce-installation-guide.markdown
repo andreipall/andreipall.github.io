@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Arch Linux with Xfce installation guide"
-date:   2024-09-09 17:46:56
+date:   2024-09-09 10:46:56
 categories: Linux
 description: Arch Linux with Xfce installation guide
 keywords: [Andrei Pall, blog, freebsd, linux, framework]
