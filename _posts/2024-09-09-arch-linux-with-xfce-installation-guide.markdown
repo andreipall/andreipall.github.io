@@ -51,9 +51,14 @@ grub-mkconfig -o /boot/grub/grub.cfg
 pacman -S xfce4
 pacman -S xfce4-goodies
 select: mousepad ristretto thunar-archive-plugin thunar-media-tags-plugin xfce4-pulseaudio-plugin xfce4-screenshoter xfce4-notifyd
-pacman -S lightdm-gtk-greeter network-manager-applet noto-fonts celluloid firefox gvfs gvfs-mtp xarchiver unrar unzip pulseaudio pavucontrol xreader transmission-gtk
+pacman -S lightdm-gtk-greeter network-manager-applet noto-fonts celluloid firefox gvfs gvfs-mtp xarchiver unrar unzip pulseaudio pavucontrol xreader transmission-gtk xcursor-vanilla-dmz
 systemctl enable lightdm.service
 systemctl enable NetworkManager
+
+nano /usr/share/icons/default/index.theme
+[Icon Theme]
+Inherits=Vanilla-DMZ
+
 nano /etc/lightdm/lightdm.conf
 [Seat:*]
 autologin-user=andrei
@@ -61,5 +66,12 @@ autologin-session=xfce
 
 groupadd -r autologin
 gpasswd -a andrei autologin
+
+Put the following in ~/.config/gtk-3.0/settings.ini (create the file if it doesn’t exist): 
+[Settings]
+gtk-recent-files-max-age=0
+gtk-recent-files-limit=0
+
+rm ~/.local/share/recently-used.xbel
 reboot
 {% endhighlight %}
