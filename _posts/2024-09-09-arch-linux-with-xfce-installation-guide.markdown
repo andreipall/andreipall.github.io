@@ -37,6 +37,13 @@ exit
 umount -R /mnt
 reboot
 
+nano /etc/systemd/network/20-wired.network
+[Match]
+Name=enp4s0
+
+[Network]
+DHCP=yes
+
 ip link set dev enp4s0 up
 systemctl start systemd-networkd.service
 systemctl start systemd-resolved.service
