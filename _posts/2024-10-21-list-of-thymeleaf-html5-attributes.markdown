@@ -308,3 +308,48 @@ excerpt: Thymeleaf has a lot of attributes each of them targeting a specific HTM
 </tr>
 </tbody>
 </table>
+
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>th:async</code></td>
+<td style="text-align: left;"><code>th:autofocus</code></td>
+<td style="text-align: left;"><code>th:autoplay</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>th:checked</code></td>
+<td style="text-align: left;"><code>th:controls</code></td>
+<td style="text-align: left;"><code>th:declare</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>th:default</code></td>
+<td style="text-align: left;"><code>th:defer</code></td>
+<td style="text-align: left;"><code>th:disabled</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>th:formnovalidate</code></td>
+<td style="text-align: left;"><code>th:hidden</code></td>
+<td style="text-align: left;"><code>th:ismap</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>th:loop</code></td>
+<td style="text-align: left;"><code>th:multiple</code></td>
+<td style="text-align: left;"><code>th:novalidate</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>th:nowrap</code></td>
+<td style="text-align: left;"><code>th:open</code></td>
+<td style="text-align: left;"><code>th:pubdate</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>th:readonly</code></td>
+<td style="text-align: left;"><code>th:required</code></td>
+<td style="text-align: left;"><code>th:reversed</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>th:scoped</code></td>
+<td style="text-align: left;"><code>th:seamless</code></td>
+<td style="text-align: left;"><code>th:selected</code></td>
+</tr>
+</tbody>
+</table>
