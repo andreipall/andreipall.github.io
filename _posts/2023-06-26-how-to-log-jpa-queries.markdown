@@ -9,6 +9,6 @@ excerpt: We can log the SQL statements by configuring loggers in the properties 
 ---
 <p>We can log the SQL statements by configuring loggers in the properties file:</p>
 {% highlight java %}
-logging.level.org.hibernate.SQL=DEBUG
-logging.level.org.hibernate.type.descriptor.sql.BasicBinder=TRACE
+logging.level.org.hibernate.SQL=debug
+logging.level.org.hibernate.orm.jdbc.bind=trace
 {% endhighlight %}
