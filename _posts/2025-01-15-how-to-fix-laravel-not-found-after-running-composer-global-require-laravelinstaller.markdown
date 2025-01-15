@@ -13,7 +13,7 @@ excerpt: The issue you&#039;re encountering is likely due to the global Composer
 <p>Find the Composer global bin directory:</p>
 {% highlight bash %}
 composer global config bin-dir --absolute
-# Output: /home/your-username/.composer/vendor/bin
+# Output: /home/your-username/.config/composer/vendor/bin
 {% endhighlight %}
 </li>
 <li>
