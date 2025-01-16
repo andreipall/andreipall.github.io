@@ -8,7 +8,7 @@ keywords: [Andrei Pall, blog, php, symfony, framework]
 excerpt: There are basically two ways to setup your ownership and permissions. Either you give yourself ownership or you make the webserver the owner of all files.
 ---
 <p>There are basically two ways to setup your ownership and permissions. Either you give yourself ownership or you make the webserver the owner of all files.</p>
-<p><strong>Webserver as owner (the way most people do it, and the Laravel doc's way):</strong></p>
+<p><strong>Webserver as owner (the way most people do it, and the Laravel doc&#039;s way):</strong></p>
 <p>assuming http (it could be something else) is your webserver user.</p>
 {% highlight bash %}sudo chown -R http:http /path/to/your/laravel/root/directory{% endhighlight %}
 <p>if you do that, the webserver owns all the files, and is also the group, and you will have some problems uploading files or working with files via FTP, because your FTP client will be logged in as you, not your webserver, so add your user to the webserver user group:</p>
@@ -30,4 +30,4 @@ sudo find . -type d -exec chmod 775 {} \;{% endhighlight %}
 <p>Whichever way you set it up, then you need to give read and write permissions to the webserver for storage, cache and any other directories the webserver needs to upload or write too (depending on your situation), so run the commands from bashy above:</p>
 {% highlight bash %}sudo chgrp -R http storage bootstrap/cache
 sudo chmod -R ug+rwx storage bootstrap/cache{% endhighlight %}
-<p>Now, you're secure and your website works, AND you can work with the files fairly easily</p>
+<p>Now, you&#039;re secure and your website works, AND you can work with the files fairly easily</p>
