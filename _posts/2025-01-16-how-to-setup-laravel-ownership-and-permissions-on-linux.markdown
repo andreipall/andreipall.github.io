@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "How to setup Laravel ownership and permissions on Linux"
-date:   2025-01-16 11:46:56
+date:   2025-01-16 02:46:56
 categories: PHP
 description: How to setup Laravel ownership and permissions on Linux
 keywords: [Andrei Pall, blog, php, symfony, framework]
