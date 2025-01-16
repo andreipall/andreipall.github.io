@@ -12,7 +12,7 @@ excerpt: There are basically two ways to setup your ownership and permissions. E
 <p>assuming http (it could be something else) is your webserver user.</p>
 {% highlight bash %}sudo chown -R http:http /path/to/your/laravel/root/directory{% endhighlight %}
 <p>if you do that, the webserver owns all the files, and is also the group, and you will have some problems uploading files or working with files via FTP, because your FTP client will be logged in as you, not your webserver, so add your user to the webserver user group:</p>
-{% highlight bash %}sudo usermod -a -G http andrei</pre>
+{% highlight bash %}sudo usermod -a -G http andrei{% endhighlight %}
 <p>Of course, this assumes your webserver is running as http, and your user is andrei.</p>
 <p>Then you set all your directories to 755 and your files to 644...
 SET file permissions</p>
