@@ -745,11 +745,13 @@ table {
   width: 100%;
   border: 1px solid $base-04;
   border-collapse: collapse;
+  background-color: $base-05;
 }
 td,
 th {
   padding: .25em .5em;
   border: 1px solid $base-04;
+  background-color: $base-05;
 }
 tbody tr:nth-child(odd) td,
 tbody tr:nth-child(odd) th {
