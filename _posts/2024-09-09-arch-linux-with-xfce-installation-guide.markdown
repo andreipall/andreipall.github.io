@@ -54,11 +54,12 @@ nano /etc/sudoers
 uncomment %wheel ALL=(ALL) ALL
 nano /etc/default/grub
 GRUB_TIMEOUT=0
+GRUB_CMDLINE_LINUX_DEFAULT="systemd.show_status=1 systemd.log_level=info"
 grub-mkconfig -o /boot/grub/grub.cfg
 pacman -S xfce4
 pacman -S xfce4-goodies
-select: mousepad ristretto thunar-archive-plugin thunar-media-tags-plugin xfce4-pulseaudio-plugin xfce4-screenshoter xfce4-notifyd
-pacman -S lightdm-gtk-greeter network-manager-applet noto-fonts celluloid firefox gvfs gvfs-mtp xarchiver unrar unzip pulseaudio pavucontrol xreader transmission-gtk xcursor-vanilla-dmz
+select: mousepad ristretto thunar-archive-plugin xfce4-pulseaudio-plugin xfce4-screenshoter xfce4-notifyd
+pacman -S lightdm-gtk-greeter network-manager-applet noto-fonts parole gst-libav gst-plugins-bad gst-plugins-ugly firefox gvfs gvfs-mtp xarchiver unrar unzip pulseaudio pavucontrol xreader transmission-gtk xcursor-vanilla-dmz
 systemctl enable lightdm.service
 systemctl enable NetworkManager
 
