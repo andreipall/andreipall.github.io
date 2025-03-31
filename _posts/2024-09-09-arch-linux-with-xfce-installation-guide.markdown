@@ -83,3 +83,21 @@ gtk-recent-files-limit=0
 rm ~/.local/share/recently-used.xbel
 reboot
 {% endhighlight %}
+<p>Uncomplicated firewall configuration</p>
+{% highlight bash %}
+pacman -S ufw
+systemctl enable ufw.service
+systemctl start ufw.service
+systemctl status ufw
+ufw default allow outgoing
+ufw default deny incoming
+ufw allow ssh
+ufw allow 22
+ufw status
+ufw enable
+ufw allow http/tcp
+ufw allow from 192.168.3.3 to any port 22 proto tcp
+ufw status numbered
+ufw delete 1
+ufw status numbered
+{% endhighlight %}
