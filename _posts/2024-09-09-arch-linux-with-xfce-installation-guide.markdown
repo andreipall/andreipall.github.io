@@ -100,4 +100,7 @@ ufw allow from 192.168.3.3 to any port 22 proto tcp
 ufw status numbered
 ufw delete 1
 ufw status numbered
+For Transmission:
+ufw allow 51413/tcp
+ufw allow 51413/udp
 {% endhighlight %}
