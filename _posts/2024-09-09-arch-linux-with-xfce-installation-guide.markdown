@@ -55,20 +55,20 @@ uncomment %wheel ALL=(ALL) ALL
 nano /etc/default/grub
 GRUB_TIMEOUT=0
 GRUB_CMDLINE_LINUX_DEFAULT="systemd.show_status=1 systemd.log_level=info"
+GRUB_PRELOAD_MODULES="part_gpt"
+GRUB_TIMEOUT_STYLE=hidden
 grub-mkconfig -o /boot/grub/grub.cfg
 pacman -S xfce4
+select all except xfce4-power-manager xfwm4-themes
 pacman -S xfce4-goodies
 select: mousepad ristretto thunar-archive-plugin xfce4-pulseaudio-plugin xfce4-screenshoter xfce4-notifyd
-pacman -S lightdm-gtk-greeter network-manager-applet noto-fonts parole gst-libav gst-plugins-bad gst-plugins-ugly firefox gvfs gvfs-mtp xarchiver unrar unzip pulseaudio pavucontrol xreader transmission-gtk xcursor-vanilla-dmz
+pacman -S lightdm-gtk-greeter network-manager-applet noto-fonts parole gst-libav gst-plugins-bad gst-plugins-ugly chromium gvfs gvfs-mtp xarchiver unrar unzip pulseaudio pavucontrol xreader transmission-gtk
 systemctl enable lightdm.service
 systemctl enable NetworkManager
 
-nano /usr/share/icons/default/index.theme
-[Icon Theme]
-Inherits=Vanilla-DMZ
-
 nano /etc/lightdm/lightdm.conf
 [Seat:*]
+xserver-command=X -s 0 -dpms
 autologin-user=andrei
 autologin-session=xfce
 
