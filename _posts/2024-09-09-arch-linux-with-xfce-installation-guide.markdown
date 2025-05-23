@@ -55,7 +55,7 @@ DHCP=yes
 ip link set dev enp4s0 up
 systemctl start systemd-networkd.service
 systemctl start systemd-resolved.service
-pacman -S xorg-server xf86-video-intel
+pacman -S xorg-server xf86-video-intel intel-media-driver
 useradd -m -G wheel andrei
 passwd andrei
 nano /etc/sudoers
