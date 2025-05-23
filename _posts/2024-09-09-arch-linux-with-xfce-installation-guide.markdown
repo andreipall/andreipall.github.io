@@ -37,6 +37,7 @@ exit
 umount -R /mnt
 reboot
 
+ip addr show
 nano /etc/systemd/network/20-wired.network
 [Match]
 Name=enp4s0
