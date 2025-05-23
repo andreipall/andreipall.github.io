@@ -9,6 +9,13 @@ excerpt: Arch Linux is a lightweight and flexible Linux distribution that tries 
 ---
 {% highlight bash %}
 fdisk -l
+fdisk /dev/sdb
+// m for help
+// p to print the current partition layout
+// g to create an empty partition table
+// n to create a new partition
+// t to change partition type
+// w to write the changes
 mkfs.fat -F32 /dev/sdb1
 mkfs.ext4 /dev/sdb2
 pacman -Syy
