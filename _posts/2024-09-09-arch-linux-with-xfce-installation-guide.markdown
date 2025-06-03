@@ -56,7 +56,7 @@ ip link set dev enp4s0 up
 systemctl start systemd-networkd.service
 systemctl start systemd-resolved.service
 pacman -S xorg-server xf86-video-intel intel-media-driver
-useradd -m -G wheel andrei
+useradd -m -c "Full Name" -G wheel andrei
 passwd andrei
 nano /etc/sudoers
 uncomment %wheel ALL=(ALL) ALL
