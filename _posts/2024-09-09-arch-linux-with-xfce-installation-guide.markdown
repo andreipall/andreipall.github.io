@@ -112,3 +112,8 @@ For Transmission:
 ufw allow 51413/tcp
 ufw allow 51413/udp
 {% endhighlight %}
+<p>Time synchronization</p>
+{% highlight bash %}
+timedatectl set-ntp true
+timedatectl status
+{% endhighlight %}
