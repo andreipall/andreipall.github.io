@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "How to deploy Angular and Spring Boot on Tomcat"
-date: 2025-07-03 06:26:56
+date: 2025-07-03 01:26:56
 categories: java
 description: How to deploy Angular and Spring Boot on Tomcat
 keywords: [Andrei Pall, blog, java, jpa, spring, framework]
