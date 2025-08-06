@@ -1,9 +1,9 @@
 ---
 layout: post
-title:  "Arch Linux with Xfce installation guide"
+title:  "Arch Linux with Xfce - installation guide"
 date:   2024-09-09 10:46:56
 categories: Linux
-description: Arch Linux with Xfce installation guide
+description: Arch Linux with Xfce - installation guide
 keywords: [Andrei Pall, blog, freebsd, linux, framework]
 excerpt: Arch Linux is a lightweight and flexible Linux distribution that tries to Keep It Simple.
 ---
