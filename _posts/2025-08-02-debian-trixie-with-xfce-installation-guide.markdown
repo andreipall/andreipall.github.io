@@ -1,9 +1,9 @@
 ---
 layout: post
-title:  "Debian Trixie with Xfce - installation guide"
+title:  "Debian Trixie with Xfce – installation guide"
 date:   2025-08-02 10:46:56
 categories: Linux
-description: "Debian Trixie with Xfce - installation guide"
+description: "Debian Trixie with Xfce – installation guide"
 keywords: [Andrei Pall, blog, freebsd, linux, framework]
 excerpt: Debian is one of the oldest operating systems based on the Linux kernel, and is the basis of many other Linux distributions.
 ---
