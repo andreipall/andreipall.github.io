@@ -7,6 +7,7 @@ description: "Debian Trixie with Xfce – installation guide"
 keywords: [Andrei Pall, blog, freebsd, linux, framework]
 excerpt: Debian is one of the oldest operating systems based on the Linux kernel, and is the basis of many other Linux distributions.
 ---
+Debian is one of the oldest operating systems based on the Linux kernel, and is the basis of many other Linux distributions.
 {% highlight bash %}
 apt-get install xserver-xorg-video-intel xserver-xorg-input-all xserver-xorg-core polkitd systemd-timesyncd --no-install-recommends
 apt-get install xfce4 chromium mousepad ristretto thunar-archive-plugin xfce4-notifyd xfce4-screenshooter xfce4-terminal gvfs-backends fonts-noto-core xarchiver unzip 7zip transmission-gtk parole network-manager-applet gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gnome-icon-theme tumbler ca-certificates pulseaudio pavucontrol lightdm lightdm-gtk-greeter --no-install-recommends
