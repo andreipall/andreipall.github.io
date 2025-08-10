@@ -44,7 +44,7 @@ https://github.com/vinceliuice/Qogir-theme
 {% endhighlight %}
 Install the firewall:
 {% highlight bash %}
-apt-get install ufw
+apt-get install ufw --no-install-recommends
 ufw enable
 ufw default deny incoming
 ufw default allow outgoing
