@@ -42,6 +42,25 @@ https://github.com/vinceliuice/Qogir-theme
 {% highlight bash %}
 ./install.sh -t default -c standard --tweaks image
 {% endhighlight %}
+Add the non-free repository
+{% highlight bash %}
+nano /etc/apt/sources.list
+
+
+deb http://deb.debian.org/debian/ trixie main non-free-firmware non-free
+deb-src http://deb.debian.org/debian/ trixie main non-free-firmware non-free
+
+deb http://security.debian.org/debian-security trixie-security main non-free-firmware non-free
+deb-src http://security.debian.org/debian-security trixie-security main non-free-firmware non-free
+
+# trixie-updates, to get updates before a point release is made;
+# see https://www.debian.org/doc/manuals/debian-reference/ch02.en.html#_updates_and_backports
+deb http://deb.debian.org/debian/ trixie-updates main non-free-firmware non-free
+deb-src http://deb.debian.org/debian/ trixie-updates main non-free-firmware non-free
+
+
+sudo apt install p7zip-rar
+{% endhighlight %}
 Install the firewall:
 {% highlight bash %}
 apt-get install ufw --no-install-recommends
