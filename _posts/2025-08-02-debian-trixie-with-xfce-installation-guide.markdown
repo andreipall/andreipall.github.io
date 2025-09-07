@@ -11,6 +11,7 @@ Debian is one of the oldest operating systems based on the Linux kernel, and is 
 {% highlight bash %}
 apt-get install xserver-xorg-video-intel xserver-xorg-input-all xserver-xorg-core polkitd systemd-timesyncd sudo --no-install-recommends
 apt-get install xfce4 chromium mousepad ristretto thunar-archive-plugin xfce4-notifyd xfce4-screenshooter xfce4-terminal gvfs-backends fonts-noto xarchiver unzip 7zip transmission-gtk parole network-manager-applet gstreamer1.0-libav gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gnome-icon-theme tumbler ca-certificates pulseaudio pavucontrol lightdm lightdm-gtk-greeter --no-install-recommends
+apt remove os-prober
 
 systemctl enable dbus
 systemctl enable lightdm.service
@@ -28,6 +29,7 @@ nano /etc/default/grub
 GRUB_TIMEOUT=0
 GRUB_CMDLINE_LINUX_DEFAULT="systemd.show_status=1 systemd.log_level=info"
 GRUB_TIMEOUT_STYLE=hidden
+GRUB_DISABLE_OS_PROBER=true
 update-grub
 {% endhighlight %}
 Set managed=true in network manager config:
