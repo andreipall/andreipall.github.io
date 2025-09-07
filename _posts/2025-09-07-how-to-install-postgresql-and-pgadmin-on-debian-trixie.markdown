@@ -7,7 +7,7 @@ description: How to install PostgreSQL and pgAdmin on Debian Trixie
 keywords: [Andrei Pall, blog, freebsd, linux, framework]
 excerpt: Follow this guide to install the PostgreSQL database server and the pgAdmin4 PostgreSQL administration tool to your Debian 13 system
 ---
-<p>Follow this guide to install the PostgreSQL database server and the pgAdmin4 PostgreSQL administration tool to your Debian 12 system:</p>
+<p>Follow this guide to install the PostgreSQL database server and the pgAdmin4 PostgreSQL administration tool to your Debian 13 system:</p>
 {% highlight sql %}
 sudo apt install postgresql postgresql-client
 sudo -u postgres psql
