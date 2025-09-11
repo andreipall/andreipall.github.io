@@ -70,7 +70,7 @@ pacman -S xfce4
 select all except xfce4-power-manager xfwm4-themes
 pacman -S xfce4-goodies
 select: mousepad ristretto thunar-archive-plugin xfce4-pulseaudio-plugin xfce4-screenshoter xfce4-notifyd
-pacman -S lightdm-gtk-greeter network-manager-applet noto-fonts parole gst-libav gst-plugins-bad gst-plugins-ugly chromium gvfs gvfs-mtp xarchiver unrar unzip pulseaudio pavucontrol xreader transmission-gtk
+pacman -S lightdm-gtk-greeter network-manager-applet noto-fonts parole gst-libav gst-plugins-bad gst-plugins-ugly chromium gvfs gvfs-mtp xarchiver unrar unzip pulseaudio pavucontrol xreader transmission-gtk foliate
 systemctl enable lightdm.service
 systemctl enable NetworkManager
 
