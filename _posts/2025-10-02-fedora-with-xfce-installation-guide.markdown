@@ -60,5 +60,9 @@ sudo firewall-cmd --zone=public --list-all
 {% endhighlight %}
 {% highlight bash %}
 sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+sudo dnf install distribution-gpg-keys
+sudo rpmkeys --import /usr/share/distribution-gpg-keys/rpmfusion/RPM-GPG-KEY-rpmfusion-free-fedora-$(rpm -E %fedora)
+sudo dnf --setopt=localpkg_gpgcheck=1 install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm 
+sudo dnf swap ffmpeg-free ffmpeg --allowerasing
 sudo dnf install gstreamer1-plugins-bad-freeworld
 {% endhighlight %}
