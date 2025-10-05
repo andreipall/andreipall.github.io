@@ -16,7 +16,7 @@ sudo dnf update -y
 sudo dnf install -y xorg-x11-server-Xorg xorg-x11-drv-intel xorg-x11-drv-libinput mesa-dri-drivers dbus-x11 virtualbox-guest-additions --setopt=install_weak_deps=False
 
 # Install Xfce desktop
-sudo dnf install -y exo garcon thunar thunar-volman tumbler xfce4-appfinder xfce4-panel xfce4-session xfce4-settings xfce4-terminal xfconf xfdesktop xfwm4 librsvg2 --setopt=install_weak_deps=False
+sudo dnf install -y exo garcon thunar thunar-volman tumbler xfce4-appfinder xfce4-panel xfce4-session xfce4-settings xfce4-terminal xfconf xfdesktop xfwm4 librsvg2 libglvnd-gles --setopt=install_weak_deps=False
 sudo dnf install firefox mousepad ristretto thunar-archive-plugin xfce4-notifyd xfce4-screenshooter gvfs-mtp google-noto-fonts-all xarchiver unzip unrar xdg-utils gzip tar network-manager-applet tumbler pulseaudio pavucontrol xfce4-pulseaudio-plugin sassc --setopt=install_weak_deps=False
 sudo dnf install parole gstreamer1-libav gstreamer1-plugins-base gstreamer1-plugins-good gstreamer1-plugins-bad-free gstreamer1-plugins-ugly-free transmission-gtk --setopt=install_weak_deps=False
 sudo dnf install -y lightdm lightdm-gtk --setopt=install_weak_deps=False
