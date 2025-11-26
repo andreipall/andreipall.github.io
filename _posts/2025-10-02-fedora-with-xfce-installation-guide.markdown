@@ -20,7 +20,7 @@ sudo dnf install -y exo garcon thunar thunar-volman tumbler xfce4-appfinder xfce
 sudo dnf install firefox mousepad ristretto thunar-archive-plugin xfce4-notifyd xfce4-screenshooter gvfs-mtp google-noto-fonts-all xarchiver unzip unrar p7zip p7zip-plugins xdg-utils gzip tar network-manager-applet tumbler pulseaudio pavucontrol xfce4-pulseaudio-plugin sassc --setopt=install_weak_deps=False
 sudo dnf install parole gstreamer1-libav gstreamer1-plugins-base gstreamer1-plugins-good gstreamer1-plugins-bad-free gstreamer1-plugins-ugly-free transmission-gtk --setopt=install_weak_deps=False
 sudo dnf install -y lightdm lightdm-gtk --setopt=install_weak_deps=False
-sudo dnf remove openssh
+sudo dnf remove openssh bluez xfsprogs ntfsprogs ntfs-3g plymouth flashrom 
 
 # LightDM is lightweight and works well with Xfce
 sudo systemctl enable lightdm
