@@ -1,9 +1,9 @@
 ---
 layout: post
-title:  "How to setup Laravel ownership and permissions on Linux"
+title:  "How to setup Laravel ownership and permissions on Arch Linux"
 date:   2025-01-15 12:46:56
 categories: PHP
-description: How to setup Laravel ownership and permissions on Linux
+description: How to setup Laravel ownership and permissions on Arch Linux
 keywords: [Andrei Pall, blog, php, symfony, framework]
 excerpt: There are basically two ways to setup your ownership and permissions. Either you give yourself ownership or you make the webserver the owner of all files.
 ---
