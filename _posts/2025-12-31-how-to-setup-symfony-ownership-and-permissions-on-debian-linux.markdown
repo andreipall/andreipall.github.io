@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "How to setup Symfony ownership and permissions on Debian Linux"
-date:   2025-12-31 10:46:56
+date:   2025-12-31 06:46:56
 categories: PHP
 description: How to setup Symfony ownership and permissions on Debian Linux
 keywords: [Andrei Pall, blog, php, symfony, framework]
