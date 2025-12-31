@@ -32,4 +32,4 @@ sudo find . -type d -exec chmod 775 {} \;{% endhighlight %}
 sudo chgrp -R www-data var
 sudo chmod -R ug+rwx var
 {% endhighlight %}
-<p>Now, you&#039;re secure and your website works, and you can work with the files fairly easily</p>
+<p>Now, you&#039;re secure and your website works, and you can work with the files fairly easily.</p>
