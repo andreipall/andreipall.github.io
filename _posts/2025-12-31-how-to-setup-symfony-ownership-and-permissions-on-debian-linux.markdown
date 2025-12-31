@@ -27,7 +27,7 @@ SET file permissions</p>
 {% highlight bash %}sudo find . -type f -exec chmod 664 {} \;   
 sudo find . -type d -exec chmod 775 {} \;{% endhighlight %}
 <p><strong>Then give the webserver the rights to read and write to var</strong></p>
-<p>Whichever way you set it up, then you need to give read and write permissions to the webserver for storage, cache and any other directories the webserver needs to upload or write too (depending on your situation), so run the commands from bash above:</p>
+<p>Whichever way you set it up, then you need to give read and write permissions to the webserver for var and any other directories the webserver needs to upload or write too (depending on your situation), so run the commands from bash above:</p>
 {% highlight bash %}
 sudo chgrp -R www-data var
 sudo chmod -R ug+rwx var
