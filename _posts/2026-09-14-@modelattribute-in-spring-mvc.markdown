@@ -1,11 +1,11 @@
 ---
 layout: post
-title:  "@ModelAttribute in Spring MVC"
+title:  "ModelAttribute in Spring MVC"
 date:   2026-09-14 03:46:56
 categories: Java
-description: @ModelAttribute in Spring MVC
+description: ModelAttribute in Spring MVC
 keywords: [Andrei Pall, blog, mvc, maven, java, spring, framework]
-excerpt: In Spring MVC, @ModelAttribute is mainly used to bind HTTP request parameters to a Java object (a model/DTO) and/or add an object to the MVC model.
+excerpt: In Spring MVC, ModelAttribute is mainly used to bind HTTP request parameters to a Java object (a model/DTO) and/or add an object to the MVC model.
 ---
 In **Spring MVC**, `@ModelAttribute` is mainly used to **bind HTTP request parameters to a Java object** (a model/DTO) and/or **add an object to the MVC model**.
 
