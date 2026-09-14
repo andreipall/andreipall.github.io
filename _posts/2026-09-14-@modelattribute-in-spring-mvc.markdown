@@ -200,20 +200,20 @@ Typically binds a **request body**, such as JSON:
 
 So, as a simple rule:
 
-  -----------------------------------------------------------------------
-  Annotation                          Usually used for
-  ----------------------------------- -----------------------------------
-  `@RequestParam`                     One/small number of request
+-----------------------------------------------------------------------
+Annotation                          Usually used for
+----------------------------------- -----------------------------------
+`@RequestParam`                     One/small number of request
                                       parameters
 
-  `@ModelAttribute`                   Binding multiple form/query
+`@ModelAttribute`                   Binding multiple form/query
                                       parameters to an object
 
-  `@RequestBody`                      Binding JSON/XML request body to an
+`@RequestBody`                      Binding JSON/XML request body to an
                                       object
 
-  `@PathVariable`                     Values embedded in the URL path
-  -----------------------------------------------------------------------
+`@PathVariable`                     Values embedded in the URL path
+-----------------------------------------------------------------------
 
 ## A useful mental model
 
