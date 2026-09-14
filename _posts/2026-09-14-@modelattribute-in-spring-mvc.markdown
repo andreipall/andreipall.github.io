@@ -199,7 +199,7 @@ Typically binds a **request body**, such as JSON:
 ```
 
 So, as a simple rule:
-
+{% highlight java %}
 -----------------------------------------------------------------------
 Annotation                          Usually used for
 ----------------------------------- -----------------------------------
@@ -214,7 +214,7 @@ Annotation                          Usually used for
 
 `@PathVariable`                     Values embedded in the URL path
 -----------------------------------------------------------------------
-
+{% endhighlight %}
 ## A useful mental model
 
 ``` text
