@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Java Annotations - A Practical Guide with Examples"
-date:   2026-09-14 03:46:56
+date:   2026-10-13 03:46:56
 categories: Java
 description: Java Annotations - A Practical Guide with Examples
 keywords: [Andrei Pall, blog, mvc, maven, java, spring, framework]
