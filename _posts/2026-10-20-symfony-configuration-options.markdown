@@ -13,7 +13,7 @@ In Symfony, configuration options are spread across the official documentation, 
 
 ## 1. Official configuration reference
 
-[Symfony — All Configuration Options](https://symfony.com/doc/current/reference/configuration.html)
+[Symfony — All Configuration Options](https://symfony.com/doc/current/reference/index.html)
 
 This is the main index for configuration options, including:
 
