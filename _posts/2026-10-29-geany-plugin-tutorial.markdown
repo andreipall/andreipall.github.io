@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "How to create a Geany plugin in C - step-by-step tutorial"
-date:   2021-07-29 12:46:56
+date:   2026-10-29 12:46:56
 categories: C
 description: How to create a Geany plugin in C - step-by-step tutorial
 keywords: [Andrei Pall, blog, freebsd, linux, framework]
