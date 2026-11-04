@@ -11,7 +11,7 @@ To update Symfony 8 recipes, use **Symfony Flex** through Composer.
 
 ### 1. List available recipe updates
 
-```bash id="bwnw1i"
+```
 composer recipes
 ```
 
@@ -19,7 +19,7 @@ This shows installed recipes and indicates which ones have updates available.
 
 ### 2. Update all outdated recipes
 
-```bash id="1tlnad"
+```
 composer recipes:update
 ```
 
@@ -27,7 +27,7 @@ Symfony Flex will let you select which recipes to update.
 
 To update a specific recipe:
 
-```bash id="zlu2m0"
+```
 composer recipes:update symfony/framework-bundle
 ```
 
@@ -35,7 +35,7 @@ composer recipes:update symfony/framework-bundle
 
 Since you don't want Composer to ask for a GitHub token, use:
 
-```bash id="0x0ogg"
+```
 COMPOSER_NO_INTERACTION=1 composer recipes:update symfony/framework-bundle
 ```
 
@@ -45,7 +45,7 @@ This disables interactive prompts, but it does not bypass GitHub API rate limits
 
 Symfony Flex may modify configuration files. Inspect the changes:
 
-```bash id="lfu78x"
+```
 git status
 git diff
 git diff --cached
@@ -53,20 +53,20 @@ git diff --cached
 
 If everything looks correct:
 
-```bash id="tede98"
+```
 git add .
 git commit -m "Update Symfony 8 recipes"
 ```
 
 ### 5. Verify the recipes
 
-```bash id="a80bt8"
+```
 composer recipes
 ```
 
 You can also validate your Symfony configuration:
 
-```bash id="5h8r7r"
+```
 php bin/console lint:container
 php bin/console cache:clear
 ```
