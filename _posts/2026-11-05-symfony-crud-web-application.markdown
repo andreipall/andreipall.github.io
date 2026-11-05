@@ -132,7 +132,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 #[ORM\Table(name: 'product')]
 class Product
-{
+&#123;
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -145,32 +145,32 @@ class Product
     private float $price = 0.0;
 
     public function getId(): ?int
-    {
+    &#123;
         return $this->id;
-    }
+    &#125;
 
     public function getName(): string
-    {
+    &#123;
         return $this->name;
-    }
+    &#125;
 
     public function setName(string $name): self
-    {
+    &#123;
         $this->name = $name;
         return $this;
-    }
+    &#125;
 
     public function getPrice(): float
-    {
+    &#123;
         return $this->price;
-    }
+    &#125;
 
     public function setPrice(float $price): self
-    {
+    &#123;
         $this->price = $price;
         return $this;
-    }
-}
+    &#125;
+&#125;
 ```
 
 For applications involving real monetary calculations, use decimal or integer minor units instead of `float`.
@@ -189,12 +189,12 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 class ProductRepository extends ServiceEntityRepository
-{
+&#123;
     public function __construct(ManagerRegistry $registry)
-    {
+    &#123;
         parent::__construct($registry, Product::class);
-    }
-}
+    &#125;
+&#125;
 ```
 
 ## 8. Create the exceptions
@@ -207,12 +207,12 @@ class ProductRepository extends ServiceEntityRepository
 namespace App\Exception;
 
 class ProductNotFoundException extends \RuntimeException
-{
+&#123;
     public function __construct(int $id)
-    {
-        parent::__construct("Product with ID {$id} not found");
-    }
-}
+    &#123;
+        parent::__construct("Product with ID &#123;$id&#125; not found");
+    &#125;
+&#125;
 ```
 
 **src/Exception/ProductValidationException.php**
@@ -223,8 +223,8 @@ class ProductNotFoundException extends \RuntimeException
 namespace App\Exception;
 
 class ProductValidationException extends \InvalidArgumentException
-{
-}
+&#123;
+&#125;
 ```
 
 These exceptions let the service report errors without depending on HTTP classes.
@@ -245,34 +245,34 @@ use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
 class ProductService
-{
+&#123;
     public function __construct(
         private ProductRepository $repository,
         private EntityManagerInterface $entityManager
-    ) {
-    }
+    ) &#123;
+    &#125;
 
     /**
      * @return Product[]
      */
     public function getAll(): array
-    {
+    &#123;
         return $this->repository->findAll();
-    }
+    &#125;
 
     public function getById(int $id): Product
-    {
+    &#123;
         $product = $this->repository->find($id);
 
-        if ($product === null) {
+        if ($product === null) &#123;
             throw new ProductNotFoundException($id);
-        }
+        &#125;
 
         return $product;
-    }
+    &#125;
 
     public function create(array $data): Product
-    {
+    &#123;
         $this->validate($data);
 
         $product = new Product();
@@ -284,10 +284,10 @@ class ProductService
         $this->entityManager->flush();
 
         return $product;
-    }
+    &#125;
 
     public function update(int $id, array $data): Product
-    {
+    &#123;
         $product = $this->getById($id);
 
         $this->validate($data);
@@ -298,46 +298,46 @@ class ProductService
         $this->entityManager->flush();
 
         return $product;
-    }
+    &#125;
 
     public function delete(int $id): void
-    {
+    &#123;
         $product = $this->getById($id);
 
         $this->entityManager->remove($product);
         $this->entityManager->flush();
-    }
+    &#125;
 
     private function validate(array $data): void
-    {
+    &#123;
         if (
             !isset($data['name']) ||
             !is_string($data['name']) ||
             trim($data['name']) === ''
-        ) {
+        ) &#123;
             throw new ProductValidationException(
                 'Product name is required'
             );
-        }
+        &#125;
 
-        if (mb_strlen(trim($data['name'])) > 255) {
+        if (mb_strlen(trim($data['name'])) > 255) &#123;
             throw new ProductValidationException(
                 'Product name must not exceed 255 characters'
             );
-        }
+        &#125;
 
         if (
             !isset($data['price']) ||
             !is_numeric($data['price']) ||
             !is_finite((float) $data['price']) ||
             (float) $data['price'] < 0
-        ) {
+        ) &#123;
             throw new ProductValidationException(
                 'Price must be a non-negative number'
             );
-        }
-    }
-}
+        &#125;
+    &#125;
+&#125;
 ```
 
 The service is reusable from a REST API controller, console command, or message handler.
@@ -362,23 +362,23 @@ use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('/products', name: 'product_')]
 class ProductController extends AbstractController
-{
+&#123;
     public function __construct(
         private ProductService $productService
-    ) {
-    }
+    ) &#123;
+    &#125;
 
     #[Route('', name: 'index', methods: ['GET'])]
     public function index(): Response
-    {
+    &#123;
         return $this->render('product/index.html.twig', [
             'products' => $this->productService->getAll()
         ]);
-    }
+    &#125;
 
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
-    {
+    &#123;
         $data = [
             'name' => '',
             'price' => ''
@@ -386,22 +386,22 @@ class ProductController extends AbstractController
 
         $error = null;
 
-        if ($request->isMethod('POST')) {
+        if ($request->isMethod('POST')) &#123;
             if (!$this->isCsrfTokenValid(
                 'product_form',
                 (string) $request->request->get('_token', '')
-            )) {
+            )) &#123;
                 throw $this->createAccessDeniedException(
                     'Invalid CSRF token'
                 );
-            }
+            &#125;
 
             $data = [
                 'name' => $request->request->all()['name'] ?? '',
                 'price' => $request->request->all()['price'] ?? ''
             ];
 
-            try {
+            try &#123;
                 $this->productService->create($data);
 
                 $this->addFlash(
@@ -410,10 +410,10 @@ class ProductController extends AbstractController
                 );
 
                 return $this->redirectToRoute('product_index');
-            } catch (ProductValidationException $e) {
+            &#125; catch (ProductValidationException $e) &#123;
                 $error = $e->getMessage();
-            }
-        }
+            &#125;
+        &#125;
 
         return $this->render('product/form.html.twig', [
             'title' => 'Create product',
@@ -423,21 +423,21 @@ class ProductController extends AbstractController
         ], new Response(
             status: $error ? 422 : 200
         ));
-    }
+    &#125;
 
     #[Route(
-        '/{id}/edit',
+        '/&#123;id&#125;/edit',
         name: 'edit',
         requirements: ['id' => '\d+'],
         methods: ['GET', 'POST']
     )]
     public function edit(int $id, Request $request): Response
-    {
-        try {
+    &#123;
+        try &#123;
             $product = $this->productService->getById($id);
-        } catch (ProductNotFoundException) {
+        &#125; catch (ProductNotFoundException) &#123;
             throw $this->createNotFoundException();
-        }
+        &#125;
 
         $data = [
             'name' => $product->getName(),
@@ -446,22 +446,22 @@ class ProductController extends AbstractController
 
         $error = null;
 
-        if ($request->isMethod('POST')) {
+        if ($request->isMethod('POST')) &#123;
             if (!$this->isCsrfTokenValid(
                 'product_form',
                 (string) $request->request->get('_token', '')
-            )) {
+            )) &#123;
                 throw $this->createAccessDeniedException(
                     'Invalid CSRF token'
                 );
-            }
+            &#125;
 
             $data = [
                 'name' => $request->request->all()['name'] ?? '',
                 'price' => $request->request->all()['price'] ?? ''
             ];
 
-            try {
+            try &#123;
                 $this->productService->update($id, $data);
 
                 $this->addFlash(
@@ -470,12 +470,12 @@ class ProductController extends AbstractController
                 );
 
                 return $this->redirectToRoute('product_index');
-            } catch (ProductValidationException $e) {
+            &#125; catch (ProductValidationException $e) &#123;
                 $error = $e->getMessage();
-            } catch (ProductNotFoundException) {
+            &#125; catch (ProductNotFoundException) &#123;
                 throw $this->createNotFoundException();
-            }
-        }
+            &#125;
+        &#125;
 
         return $this->render('product/form.html.twig', [
             'title' => 'Edit product',
@@ -488,43 +488,43 @@ class ProductController extends AbstractController
         ], new Response(
             status: $error ? 422 : 200
         ));
-    }
+    &#125;
 
     #[Route(
-        '/{id}/delete',
+        '/&#123;id&#125;/delete',
         name: 'delete',
         requirements: ['id' => '\d+'],
         methods: ['POST']
     )]
     public function delete(int $id, Request $request): JsonResponse
-    {
+    &#123;
         $token = (string) $request->request->get('_token', '');
 
         if (!$this->isCsrfTokenValid(
             'delete_product_' . $id,
             $token
-        )) {
+        )) &#123;
             return $this->json([
                 'success' => false,
                 'message' => 'Invalid CSRF token'
             ], 403);
-        }
+        &#125;
 
-        try {
+        try &#123;
             $this->productService->delete($id);
 
             return $this->json([
                 'success' => true,
                 'message' => 'Product deleted successfully'
             ]);
-        } catch (ProductNotFoundException) {
+        &#125; catch (ProductNotFoundException) &#123;
             return $this->json([
                 'success' => false,
                 'message' => 'Product not found'
             ], 404);
-        }
-    }
-}
+        &#125;
+    &#125;
+&#125;
 ```
 
 The controller never directly calls Doctrine or the repository. For a larger application, use Symfony Form types and Validator DTOs.
@@ -555,7 +555,7 @@ The controller never directly calls Doctrine or the repository. For a larger app
     &#123;% endblock %&#125;
 
     &#123;% block javascripts %&#125;
-        {{ importmap('app') }}
+        &#123;&#123; importmap('app') &#125;&#125;
     &#123;% endblock %&#125;
 </head>
 <body>
@@ -563,7 +563,7 @@ The controller never directly calls Doctrine or the repository. For a larger app
 <nav class="navbar navbar-dark bg-dark mb-4">
     <div class="container">
         <a class="navbar-brand"
-           href="{{ path('product_index') }}">
+           href="&#123;&#123; path('product_index') &#125;&#125;">
             Product Manager
         </a>
     </div>
@@ -573,7 +573,7 @@ The controller never directly calls Doctrine or the repository. For a larger app
 
     &#123;% for message in app.flashes('success') %&#125;
         <div class="alert alert-success alert-dismissible fade show">
-            {{ message }}
+            &#123;&#123; message &#125;&#125;
             <button type="button"
                     class="btn-close"
                     data-bs-dismiss="alert"
@@ -607,7 +607,7 @@ Bootstrap CSS is loaded from a CDN; JavaScript and application CSS are managed b
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1>Products</h1>
 
-    <a href="{{ path('product_new') }}"
+    <a href="&#123;&#123; path('product_new') &#125;&#125;"
        class="btn btn-primary">
         Add product
     </a>
@@ -644,32 +644,32 @@ Bootstrap CSS is loaded from a CDN; JavaScript and application CSS are managed b
 
                     &#123;% for product in products %&#125;
                         <tr class="product-row"
-                            data-name="{{ product.name|lower }}">
+                            data-name="&#123;&#123; product.name|lower &#125;&#125;">
 
-                            <td>{{ product.id }}</td>
+                            <td>&#123;&#123; product.id &#125;&#125;</td>
 
-                            <td>{{ product.name }}</td>
+                            <td>&#123;&#123; product.name &#125;&#125;</td>
 
                             <td>
-                                {{ product.price|number_format(2) }}
+                                &#123;&#123; product.price|number_format(2) &#125;&#125;
                             </td>
 
                             <td>
-                                <a href="{{ path('product_edit', {
+                                <a href="&#123;&#123; path('product_edit', &#123;
                                     id: product.id
-                                }) }}"
+                                &#125;) &#125;&#125;"
                                    class="btn btn-sm btn-warning">
                                     Edit
                                 </a>
 
                                 <button type="button"
                                         class="btn btn-sm btn-danger delete-product"
-                                        data-url="{{ path('product_delete', {
+                                        data-url="&#123;&#123; path('product_delete', &#123;
                                             id: product.id
-                                        }) }}"
-                                        data-token="{{ csrf_token(
+                                        &#125;) &#125;&#125;"
+                                        data-token="&#123;&#123; csrf_token(
                                             'delete_product_' ~ product.id
-                                        ) }}">
+                                        ) &#125;&#125;">
                                     Delete
                                 </button>
                             </td>
@@ -701,26 +701,26 @@ Twig automatically escapes dynamic content in this template.
 ```twig
 &#123;% extends 'base.html.twig' %&#125;
 
-&#123;% block title %&#125;{{ title }}&#123;% endblock %&#125;
+&#123;% block title %&#125;&#123;&#123; title &#125;&#125;&#123;% endblock %&#125;
 
 &#123;% block body %&#125;
 
-<h1 class="mb-4">{{ title }}</h1>
+<h1 class="mb-4">&#123;&#123; title &#125;&#125;</h1>
 
 <div class="card">
     <div class="card-body">
 
         &#123;% if error %&#125;
             <div class="alert alert-danger" role="alert">
-                {{ error }}
+                &#123;&#123; error &#125;&#125;
             </div>
         &#123;% endif %&#125;
 
-        <form method="post" action="{{ action }}">
+        <form method="post" action="&#123;&#123; action &#125;&#125;">
 
             <input type="hidden"
                    name="_token"
-                   value="{{ csrf_token('product_form') }}">
+                   value="&#123;&#123; csrf_token('product_form') &#125;&#125;">
 
             <div class="mb-3">
                 <label for="name" class="form-label">
@@ -731,7 +731,7 @@ Twig automatically escapes dynamic content in this template.
                        class="form-control"
                        id="name"
                        name="name"
-                       value="{{ data.name }}"
+                       value="&#123;&#123; data.name &#125;&#125;"
                        maxlength="255"
                        required>
             </div>
@@ -745,7 +745,7 @@ Twig automatically escapes dynamic content in this template.
                        class="form-control"
                        id="price"
                        name="price"
-                       value="{{ data.price }}"
+                       value="&#123;&#123; data.price &#125;&#125;"
                        min="0"
                        step="0.01"
                        required>
@@ -755,7 +755,7 @@ Twig automatically escapes dynamic content in this template.
                 Save
             </button>
 
-            <a href="{{ path('product_index') }}"
+            <a href="&#123;&#123; path('product_index') &#125;&#125;"
                class="btn btn-secondary">
                 Cancel
             </a>
@@ -796,25 +796,25 @@ import './products.js';
 ```javascript
 import $ from 'jquery';
 
-$(function () {
+$(function () &#123;
 
     // Filter products without a server request
-    $('#search').on('input', function () {
+    $('#search').on('input', function () &#123;
 
         const search = $(this).val().toLowerCase().trim();
 
-        $('.product-row').each(function () {
+        $('.product-row').each(function () &#123;
 
             const name = $(this).attr('data-name');
 
             $(this).toggle(name.includes(search));
 
-        });
+        &#125;);
 
-    });
+    &#125;);
 
     // Delete products through AJAX
-    $(document).on('click', '.delete-product', function () {
+    $(document).on('click', '.delete-product', function () &#123;
 
         const button = $(this);
         const row = button.closest('tr');
@@ -822,25 +822,25 @@ $(function () {
         const url = button.attr('data-url');
         const token = button.attr('data-token');
 
-        if (!confirm('Are you sure you want to delete this product?')) {
+        if (!confirm('Are you sure you want to delete this product?')) &#123;
             return;
-        }
+        &#125;
 
         button.prop('disabled', true);
 
-        $.ajax({
+        $.ajax(&#123;
             url: url,
             type: 'POST',
 
-            data: {
+            data: &#123;
                 _token: token
-            },
+            &#125;,
 
             dataType: 'json',
 
-            success: function (response) {
+            success: function (response) &#123;
 
-                if (response.success) {
+                if (response.success) &#123;
 
                     row.remove();
 
@@ -849,7 +849,7 @@ $(function () {
                         'success'
                     );
 
-                } else {
+                &#125; else &#123;
 
                     showMessage(
                         response.message,
@@ -857,11 +857,11 @@ $(function () {
                     );
 
                     button.prop('disabled', false);
-                }
+                &#125;
 
-            },
+            &#125;,
 
-            error: function (xhr) {
+            error: function (xhr) &#123;
 
                 const message = xhr.responseJSON?.message
                     ?? 'An error occurred while deleting the product';
@@ -869,12 +869,12 @@ $(function () {
                 showMessage(message, 'danger');
 
                 button.prop('disabled', false);
-            }
-        });
+            &#125;
+        &#125;);
 
-    });
+    &#125;);
 
-    function showMessage(message, type) {
+    function showMessage(message, type) &#123;
 
         const alert = $('<div>')
             .addClass('alert')
@@ -884,9 +884,9 @@ $(function () {
 
         $('#ajax-message').empty().append(alert);
 
-    }
+    &#125;
 
-});
+&#125;);
 ```
 
 Using `.text()` rather than `.html()` prevents interpreting untrusted messages as HTML.
@@ -896,29 +896,29 @@ Using `.text()` rather than `.html()` prevents interpreting untrusted messages a
 **assets/styles/app.css**
 
 ```css
-body {
+body &#123;
     background-color: #f5f6f8;
-}
+&#125;
 
-.card {
+.card &#123;
     border-radius: 8px;
-}
+&#125;
 
 .table td,
-.table th {
+.table th &#123;
     vertical-align: middle;
-}
+&#125;
 
-#search {
+#search &#123;
     max-width: 400px;
-}
+&#125;
 
-.product-row {
+.product-row &#123;
     transition: background-color 0.2s;
-}
+&#125;
 ```
 
-Twig loads the import map using `{{ importmap('app') }}`. Compile for production:
+Twig loads the import map using `&#123;&#123; importmap('app') &#125;&#125;`. Compile for production:
 
 ```bash
 APP_ENV=prod APP_DEBUG=0 php bin/console asset-map:compile
@@ -967,8 +967,8 @@ php bin/console debug:router
 |---|---|
 | `product_index` | `/products` |
 | `product_new` | `/products/new` |
-| `product_edit` | `/products/{id}/edit` |
-| `product_delete` | `/products/{id}/delete` |
+| `product_edit` | `/products/&#123;id&#125;/edit` |
+| `product_delete` | `/products/&#123;id&#125;/delete` |
 
 ## 14. PHPUnit tests for ProductService using mocks
 
@@ -988,13 +988,13 @@ use Doctrine\ORM\EntityManagerInterface;
 use PHPUnit\Framework\TestCase;
 
 class ProductServiceTest extends TestCase
-{
+&#123;
     private ProductRepository $repository;
     private EntityManagerInterface $entityManager;
     private ProductService $service;
 
     protected function setUp(): void
-    {
+    &#123;
         $this->repository = $this->createMock(
             ProductRepository::class
         );
@@ -1007,17 +1007,17 @@ class ProductServiceTest extends TestCase
             $this->repository,
             $this->entityManager
         );
-    }
+    &#125;
 
     private function makeProduct(): Product
-    {
+    &#123;
         return (new Product())
             ->setName('Laptop')
             ->setPrice(999.99);
-    }
+    &#125;
 
     public function testGetAll(): void
-    {
+    &#123;
         $products = [
             $this->makeProduct()
         ];
@@ -1031,10 +1031,10 @@ class ProductServiceTest extends TestCase
             $products,
             $this->service->getAll()
         );
-    }
+    &#125;
 
     public function testGetById(): void
-    {
+    &#123;
         $product = $this->makeProduct();
 
         $this->repository
@@ -1047,10 +1047,10 @@ class ProductServiceTest extends TestCase
             $product,
             $this->service->getById(1)
         );
-    }
+    &#125;
 
     public function testGetByIdNotFound(): void
-    {
+    &#123;
         $this->repository
             ->method('find')
             ->with(999)
@@ -1061,10 +1061,10 @@ class ProductServiceTest extends TestCase
         );
 
         $this->service->getById(999);
-    }
+    &#125;
 
     public function testCreate(): void
-    {
+    &#123;
         $this->entityManager
             ->expects($this->once())
             ->method('persist')
@@ -1086,10 +1086,10 @@ class ProductServiceTest extends TestCase
 
         $this->assertSame('Keyboard', $product->getName());
         $this->assertSame(49.99, $product->getPrice());
-    }
+    &#125;
 
     public function testCreateTrimsName(): void
-    {
+    &#123;
         $this->entityManager
             ->expects($this->once())
             ->method('persist');
@@ -1104,10 +1104,10 @@ class ProductServiceTest extends TestCase
         ]);
 
         $this->assertSame('Laptop', $product->getName());
-    }
+    &#125;
 
     public function testCreateInvalidName(): void
-    {
+    &#123;
         $this->entityManager
             ->expects($this->never())
             ->method('persist');
@@ -1124,10 +1124,10 @@ class ProductServiceTest extends TestCase
             'name' => '',
             'price' => 100
         ]);
-    }
+    &#125;
 
     public function testCreateNegativePrice(): void
-    {
+    &#123;
         $this->entityManager
             ->expects($this->never())
             ->method('persist');
@@ -1140,10 +1140,10 @@ class ProductServiceTest extends TestCase
             'name' => 'Laptop',
             'price' => -10
         ]);
-    }
+    &#125;
 
     public function testUpdate(): void
-    {
+    &#123;
         $product = $this->makeProduct();
 
         $this->repository
@@ -1171,10 +1171,10 @@ class ProductServiceTest extends TestCase
             $updated->getName()
         );
         $this->assertSame(1299.99, $updated->getPrice());
-    }
+    &#125;
 
     public function testUpdateNotFound(): void
-    {
+    &#123;
         $this->repository
             ->method('find')
             ->with(999)
@@ -1192,10 +1192,10 @@ class ProductServiceTest extends TestCase
             'name' => 'Laptop',
             'price' => 100
         ]);
-    }
+    &#125;
 
     public function testDelete(): void
-    {
+    &#123;
         $product = $this->makeProduct();
 
         $this->repository
@@ -1214,10 +1214,10 @@ class ProductServiceTest extends TestCase
             ->method('flush');
 
         $this->service->delete(1);
-    }
+    &#125;
 
     public function testDeleteNotFound(): void
-    {
+    &#123;
         $this->repository
             ->method('find')
             ->with(999)
@@ -1236,8 +1236,8 @@ class ProductServiceTest extends TestCase
         );
 
         $this->service->delete(999);
-    }
-}
+    &#125;
+&#125;
 ```
 
 These 11 tests cover primary CRUD operations and business validation without connecting to MySQL.
@@ -1261,13 +1261,13 @@ use Symfony\Component\Security\Csrf\CsrfToken;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 
 class ProductControllerTest extends TestCase
-{
+&#123;
     private ProductService $service;
     private CsrfTokenManagerInterface $csrfManager;
     private ProductController $controller;
 
     protected function setUp(): void
-    {
+    &#123;
         $this->service = $this->createMock(
             ProductService::class
         );
@@ -1288,10 +1288,10 @@ class ProductControllerTest extends TestCase
         );
 
         $this->controller->setContainer($container);
-    }
+    &#125;
 
     public function testDeleteSuccess(): void
-    {
+    &#123;
         $this->csrfManager
             ->expects($this->once())
             ->method('isTokenValid')
@@ -1319,10 +1319,10 @@ class ProductControllerTest extends TestCase
             true,
             json_decode($response->getContent(), true)['success']
         );
-    }
+    &#125;
 
     public function testDeleteInvalidCsrfToken(): void
-    {
+    &#123;
         $this->csrfManager
             ->expects($this->once())
             ->method('isTokenValid')
@@ -1339,10 +1339,10 @@ class ProductControllerTest extends TestCase
         $response = $this->controller->delete(1, $request);
 
         $this->assertSame(403, $response->getStatusCode());
-    }
+    &#125;
 
     public function testDeleteNotFound(): void
-    {
+    &#123;
         $this->csrfManager
             ->method('isTokenValid')
             ->willReturn(true);
@@ -1367,8 +1367,8 @@ class ProductControllerTest extends TestCase
             false,
             json_decode($response->getContent(), true)['success']
         );
-    }
-}
+    &#125;
+&#125;
 ```
 
 These tests verify delegation to the service, CSRF rejection, and appropriate JSON responses. Form rendering, validation errors, and redirects are more conveniently tested with `WebTestCase`.
@@ -1398,9 +1398,9 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class ProductWebTest extends WebTestCase
-{
+&#123;
     public function testProductIndex(): void
-    {
+    &#123;
         $client = static::createClient();
 
         $client->request('GET', '/products');
@@ -1411,10 +1411,10 @@ class ProductWebTest extends WebTestCase
             'h1',
             'Products'
         );
-    }
+    &#125;
 
     public function testCreateProduct(): void
-    {
+    &#123;
         $client = static::createClient();
 
         $crawler = $client->request(
@@ -1439,10 +1439,10 @@ class ProductWebTest extends WebTestCase
             'table',
             'Test Laptop'
         );
-    }
+    &#125;
 
     public function testCreateProductInvalidData(): void
-    {
+    &#123;
         $client = static::createClient();
 
         $crawler = $client->request(
@@ -1469,10 +1469,10 @@ class ProductWebTest extends WebTestCase
             '.alert-danger',
             'Product name is required'
         );
-    }
+    &#125;
 
     public function testEditProduct(): void
-    {
+    &#123;
         $client = static::createClient();
 
         $container = static::getContainer();
@@ -1510,10 +1510,10 @@ class ProductWebTest extends WebTestCase
             'table',
             'Updated Product'
         );
-    }
+    &#125;
 
     public function testDeleteProduct(): void
-    {
+    &#123;
         $client = static::createClient();
 
         $entityManager = static::getContainer()->get(
@@ -1552,10 +1552,10 @@ class ProductWebTest extends WebTestCase
         );
 
         $this->assertTrue($response['success']);
-    }
+    &#125;
 
     public function testDeleteWithoutCsrfToken(): void
-    {
+    &#123;
         $client = static::createClient();
 
         $client->request(
@@ -1564,8 +1564,8 @@ class ProductWebTest extends WebTestCase
         );
 
         $this->assertResponseStatusCodeSame(403);
-    }
-}
+    &#125;
+&#125;
 ```
 
 These tests exercise forms, redirects, CSRF, and database persistence. Configure database isolation before using this suite in a shared environment. `WebTestCase` does not execute JavaScript; use Symfony Panther or Playwright for browser-level jQuery testing.
