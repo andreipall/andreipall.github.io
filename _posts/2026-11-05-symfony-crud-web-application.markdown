@@ -535,7 +535,7 @@ The controller never directly calls Doctrine or the repository. For a larger app
 
 **templates/base.html.twig**
 
-{% highlight php %}
+```twig
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -545,18 +545,18 @@ The controller never directly calls Doctrine or the repository. For a larger app
           content="width=device-width, initial-scale=1">
 
     <title>
-        {% block title %}Product Manager{% endblock %}
+        &#123;% block title %&#125;Product Manager&#123;% endblock %&#125;
     </title>
 
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 
-    {% block stylesheets %}
-    {% endblock %}
+    &#123;% block stylesheets %&#125;
+    &#123;% endblock %&#125;
 
-    {% block javascripts %}
+    &#123;% block javascripts %&#125;
         {{ importmap('app') }}
-    {% endblock %}
+    &#123;% endblock %&#125;
 </head>
 <body>
 
@@ -571,7 +571,7 @@ The controller never directly calls Doctrine or the repository. For a larger app
 
 <main class="container">
 
-    {% for message in app.flashes('success') %}
+    &#123;% for message in app.flashes('success') %&#125;
         <div class="alert alert-success alert-dismissible fade show">
             {{ message }}
             <button type="button"
@@ -580,16 +580,16 @@ The controller never directly calls Doctrine or the repository. For a larger app
                     aria-label="Close">
             </button>
         </div>
-    {% endfor %}
+    &#123;% endfor %&#125;
 
-    {% block body %}
-    {% endblock %}
+    &#123;% block body %&#125;
+    &#123;% endblock %&#125;
 
 </main>
 
 </body>
 </html>
-{% endhighlight %}
+```
 
 Bootstrap CSS is loaded from a CDN; JavaScript and application CSS are managed by AssetMapper.
 
@@ -597,12 +597,12 @@ Bootstrap CSS is loaded from a CDN; JavaScript and application CSS are managed b
 
 **templates/product/index.html.twig**
 
-{% highlight php %}
-{% extends 'base.html.twig' %}
+```twig
+&#123;% extends 'base.html.twig' %&#125;
 
-{% block title %}Products{% endblock %}
+&#123;% block title %&#125;Products&#123;% endblock %&#125;
 
-{% block body %}
+&#123;% block body %&#125;
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1>Products</h1>
@@ -642,7 +642,7 @@ Bootstrap CSS is loaded from a CDN; JavaScript and application CSS are managed b
 
                 <tbody id="product-table">
 
-                    {% for product in products %}
+                    &#123;% for product in products %&#125;
                         <tr class="product-row"
                             data-name="{{ product.name|lower }}">
 
@@ -674,13 +674,13 @@ Bootstrap CSS is loaded from a CDN; JavaScript and application CSS are managed b
                                 </button>
                             </td>
                         </tr>
-                    {% else %}
+                    &#123;% else %&#125;
                         <tr>
                             <td colspan="4">
                                 No products found.
                             </td>
                         </tr>
-                    {% endfor %}
+                    &#123;% endfor %&#125;
 
                 </tbody>
             </table>
@@ -689,8 +689,8 @@ Bootstrap CSS is loaded from a CDN; JavaScript and application CSS are managed b
     </div>
 </div>
 
-{% endblock %}
-{% endhighlight %}
+&#123;% endblock %&#125;
+```
 
 Twig automatically escapes dynamic content in this template.
 
@@ -698,23 +698,23 @@ Twig automatically escapes dynamic content in this template.
 
 **templates/product/form.html.twig**
 
-{% highlight php %}
-{% extends 'base.html.twig' %}
+```twig
+&#123;% extends 'base.html.twig' %&#125;
 
-{% block title %}{{ title }}{% endblock %}
+&#123;% block title %&#125;{{ title }}&#123;% endblock %&#125;
 
-{% block body %}
+&#123;% block body %&#125;
 
 <h1 class="mb-4">{{ title }}</h1>
 
 <div class="card">
     <div class="card-body">
 
-        {% if error %}
+        &#123;% if error %&#125;
             <div class="alert alert-danger" role="alert">
                 {{ error }}
             </div>
-        {% endif %}
+        &#123;% endif %&#125;
 
         <form method="post" action="{{ action }}">
 
@@ -765,8 +765,8 @@ Twig automatically escapes dynamic content in this template.
     </div>
 </div>
 
-{% endblock %}
-{% endhighlight %}
+&#123;% endblock %&#125;
+```
 
 Both forms use POST and redirect to the listing on success.
 
