@@ -535,7 +535,7 @@ The controller never directly calls Doctrine or the repository. For a larger app
 
 **templates/base.html.twig**
 
-```twig
+{% highlight php %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -589,7 +589,7 @@ The controller never directly calls Doctrine or the repository. For a larger app
 
 </body>
 </html>
-```
+{% endhighlight %}
 
 Bootstrap CSS is loaded from a CDN; JavaScript and application CSS are managed by AssetMapper.
 
@@ -597,7 +597,7 @@ Bootstrap CSS is loaded from a CDN; JavaScript and application CSS are managed b
 
 **templates/product/index.html.twig**
 
-```twig
+{% highlight php %}
 {% extends 'base.html.twig' %}
 
 {% block title %}Products{% endblock %}
@@ -690,7 +690,7 @@ Bootstrap CSS is loaded from a CDN; JavaScript and application CSS are managed b
 </div>
 
 {% endblock %}
-```
+{% endhighlight %}
 
 Twig automatically escapes dynamic content in this template.
 
@@ -698,7 +698,7 @@ Twig automatically escapes dynamic content in this template.
 
 **templates/product/form.html.twig**
 
-```twig
+{% highlight php %}
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ title }}{% endblock %}
@@ -766,7 +766,7 @@ Twig automatically escapes dynamic content in this template.
 </div>
 
 {% endblock %}
-```
+{% endhighlight %}
 
 Both forms use POST and redirect to the listing on success.
 
