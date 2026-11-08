@@ -1308,6 +1308,7 @@ Some common property flags are:
   -----------------------------------------------------------------------
   Flag                                Meaning
   ----------------------------------- -----------------------------------
+  
   `G_PARAM_READABLE`                  The property can be read
 
   `G_PARAM_WRITABLE`                  The property can be changed
@@ -1323,6 +1324,7 @@ Some common property flags are:
 
   `G_PARAM_EXPLICIT_NOTIFY`           The implementation explicitly
                                       controls notification
+
   -----------------------------------------------------------------------
 
 Properties are particularly important in GTK because many GTK widgets
