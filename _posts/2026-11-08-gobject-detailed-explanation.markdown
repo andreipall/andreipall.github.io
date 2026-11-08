@@ -1430,6 +1430,7 @@ This distinction is important.
   -----------------------------------------------------------------------
   Virtual methods                     Signals
   ----------------------------------- -----------------------------------
+  
   Define overridable class behavior   Announce events
 
   Stored as function pointers in      Registered in the GObject signal
@@ -1440,6 +1441,7 @@ This distinction is important.
 
   Usually dispatched through a class  Can invoke multiple connected
   method                              callbacks
+  
   -----------------------------------------------------------------------
 
 Signals can also have a class closure or default class handler, so they
