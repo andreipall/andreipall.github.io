@@ -318,7 +318,7 @@ This is how GObject implements polymorphism.
 ## 3.3 Instance versus class
 
 This distinction is extremely important.
-
+``` text
   -----------------------------------------------------------------------
   Instance structure                  Class structure
   ----------------------------------- -----------------------------------
@@ -332,7 +332,7 @@ This distinction is extremely important.
 
   Stores fields such as name and age  Stores method implementations
   -----------------------------------------------------------------------
-
+```
 For example, imagine creating three Person objects:
 
 ``` c
@@ -1304,7 +1304,7 @@ caller, so you must free the returned string.
 ## 8.5 Property flags
 
 Some common property flags are:
-
+``` text
   -----------------------------------------------------------------------
   Flag                                Meaning
   ----------------------------------- -----------------------------------
@@ -1326,7 +1326,7 @@ Some common property flags are:
                                       controls notification
 
   -----------------------------------------------------------------------
-
+```
 Properties are particularly important in GTK because many GTK widgets
 expose their configuration through GObject properties.
 
@@ -1426,7 +1426,7 @@ implementation.
 ## 9.3 Signals are not exactly the same as virtual methods
 
 This distinction is important.
-
+``` text
   -----------------------------------------------------------------------
   Virtual methods                     Signals
   ----------------------------------- -----------------------------------
@@ -1443,7 +1443,7 @@ This distinction is important.
   method                              callbacks
   
   -----------------------------------------------------------------------
-
+```
 Signals can also have a class closure or default class handler, so they
 can interact with inheritance. However, their main purpose is event
 communication.
@@ -1760,7 +1760,7 @@ its parent to do the same.
 ## 11.3 `dispose()` versus `finalize()`
 
 You will frequently encounter two lifecycle methods.
-
+``` text
   -----------------------------------------------------------------------
   Method                              Purpose
   ----------------------------------- -----------------------------------
@@ -1772,7 +1772,7 @@ You will frequently encounter two lifecycle methods.
                                       by the object, such as allocated
                                       memory
   -----------------------------------------------------------------------
-
+```
 For example, imagine a Window object owns a reference to another
 GObject.
 
@@ -2423,7 +2423,7 @@ This is how you can create reusable custom graphical components.
 When reading GTK or GLib source code, you will encounter many macros.
 
 These are some of the most important ones.
-
+``` text
   -----------------------------------------------------------------------
   Macro                               Purpose
   ----------------------------------- -----------------------------------
@@ -2458,7 +2458,7 @@ These are some of the most important ones.
   `G_OBJECT_CLASS()`                  Accesses the GObject class
                                       structure
   -----------------------------------------------------------------------
-
+```
 There are also two important declaration macros:
 
 ### `G_DECLARE_DERIVABLE_TYPE`
@@ -2564,7 +2564,7 @@ Let's put all the main concepts into one picture.
 
 If you already know an object-oriented programming language, this
 comparison can help you understand GObject.
-
+``` text
   -------------------------------------------------------------------------------------
   Concept           C++                      Java                     GObject
   ----------------- ------------------------ ------------------------ -----------------
@@ -2599,7 +2599,7 @@ comparison can help you understand GObject.
   Runtime type      RTTI                     Built-in                 GType system
   information                                                         
   -------------------------------------------------------------------------------------
-
+```
 One important difference is memory management.
 
 GObject does not use garbage collection like Java.
