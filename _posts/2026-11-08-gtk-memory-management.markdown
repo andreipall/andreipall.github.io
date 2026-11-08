@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "GTK+ Memory Management Explained"
-date:   2026-11-08 01:46:56
+date:   2026-11-08 01:12:56
 categories: C
 description: GTK+ Memory Management Explained
 keywords: [Andrei Pall, blog, freebsd, linux, framework]
