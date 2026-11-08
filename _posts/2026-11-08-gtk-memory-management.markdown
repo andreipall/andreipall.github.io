@@ -1,15 +1,13 @@
 ---
 layout: post
 title:  "GTK+ Memory Management Explained"
-date:   2026-10-29 12:46:56
+date:   2026-11-08 12:46:56
 categories: C
 description: GTK+ Memory Management Explained
 keywords: [Andrei Pall, blog, freebsd, linux, framework]
 excerpt: GTK+ uses a memory management system based primarily on reference counting, provided by the GLib Object System (GObject).
 ---
-GTK+ (now generally called **GTK**) uses a memory management system
-based primarily on **reference counting**, provided by the GLib Object
-System (GObject).
+GTK+ uses a memory management system based primarily on **reference counting**, provided by the GLib Object System (GObject).
 
 Unlike languages such as Java or Python, GTK+ does not use a traditional
 garbage collector. Instead, objects are explicitly managed through
