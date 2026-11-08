@@ -2715,7 +2715,7 @@ the official documentation in this order:
 # 19. The most important things to remember
 
 If you remember only a few concepts, remember these:
-
+``` text
   Concept              What it means
   -------------------- --------------------------------------------------
   GObject              An object-oriented system implemented in C
@@ -2730,6 +2730,7 @@ If you remember only a few concepts, remember these:
   Signals              Allow objects to communicate through events
   Interfaces           Allow unrelated classes to share capabilities
   `g_object_unref()`   Releases an object reference
+```
 
 **My recommendation:** Pay particular attention to the relationship
 between the instance structure, class structure, and `G_DEFINE_TYPE`.
