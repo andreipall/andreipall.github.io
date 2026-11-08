@@ -32,15 +32,11 @@ alive.
 
 There are three important operations:
 
------------------------------------------------------------------------
-  Function                            Purpose
------------------------------------ -----------------------------------
 `g_object_ref()`                    Increases the reference count.
 
 `g_object_unref()`                  Decreases the reference count.
 
 `g_object_ref_sink()`               Acquires a normal reference, consuming a floating reference if one exists.
------------------------------------------------------------------------
 
 When the reference count reaches zero, the object is finalized and its
 memory is released.
