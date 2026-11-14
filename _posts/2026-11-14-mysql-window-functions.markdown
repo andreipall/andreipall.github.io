@@ -7,8 +7,6 @@ description: MySQL Window Functions - Complete Guide
 keywords: [Andrei Pall, oracle, sql, database, tutorial, blog, project]
 excerpt: MySQL Window Functions are extremely useful for SQL developers, data analysts, and backend developers. They allow you to perform calculations across multiple rows while keeping each individual row in the result set.
 ---
-# **MySQL Window Functions – Complete Guide with Detailed Explanations and Examples**
-
 MySQL Window Functions are extremely useful for SQL developers, data analysts, and backend developers. They allow you to perform calculations across multiple rows while **keeping each individual row in the result set**.
 
 They are commonly used for:
