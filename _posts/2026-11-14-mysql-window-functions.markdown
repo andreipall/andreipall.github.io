@@ -372,10 +372,6 @@ PERCENT_RANK() OVER (
 )
 ```
 
-Formula:
-
-\\[ PERCENT\\\_RANK = \frac{RANK - 1}{TotalRows - 1} \\]
-
 Example:
 
 ```
@@ -420,10 +416,6 @@ Note that ties use the same rank, so percentages can also be repeated.
 
 It returns the proportion of rows whose ordering value is less than or equal to the current row's value.
 
-Formula:
-
-\\[ CUME\\\_DIST = \frac{\text{Number of rows up to current peer group}}{\text{Total rows}} \\]
-
 Example:
 
 ```
@@ -464,7 +456,7 @@ Total rows = 5.
 
 Therefore:
 
-\\[ 3/5 = 0.60 \\]
+3/5 = 0.60
 
 **Difference between PERCENT_RANK() and CUME_DIST():**
 
